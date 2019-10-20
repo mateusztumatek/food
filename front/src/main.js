@@ -20,7 +20,17 @@ Vue.config.productionTip = false
 Vue.prototype.$eventBus = new Vue();
 
 Vue.mixin({
+  data(){
+    return{
+      errors:[],
+    }
+  },
   methods:{
+    resetErrors(){
+      setTimeout(() => {
+        this.errors = [];
+      }, 3000)
+    },
     startLoading(){
       this.$store.commit('app/setLoading', true);
     },
