@@ -5,6 +5,7 @@ const getters = {
     mobile: (state) => {return  state.navigation.mobile},
     verified: (state) => {return state.user.user.email_verified_at},
     app: (state) => {return state.app.app},
-    search: (state) => {return state.search.search}
+    search: (state) => {return state.search.search},
+    places: (state) => {return state.places.places}
 };
 export default getters;

@@ -1,3 +1,4 @@
+var _ = require('lodash');
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -10,6 +11,8 @@ import vuetify from './plugins/vuetify';
 import './registerServiceWorker'
 import * as VueGoogleMaps from "vue2-google-maps";
 import secrete from './secrete';
+import prototypes from './prototypes';
+Vue.use(prototypes);
 Vue.use(VueGoogleMaps, {
   load: {
     key: secrete.google,
@@ -26,6 +29,9 @@ Vue.mixin({
     }
   },
   methods:{
+    getSrc(src){
+      return this.$root.getSrc(src);
+    },
     resetErrors(){
       setTimeout(() => {
         this.errors = [];
@@ -41,6 +47,7 @@ Vue.mixin({
     }
   }
 })
+
 new Vue({
   store,
   router,

@@ -24,4 +24,7 @@ class UserController extends Controller
         $users = User::where('name', 'LIKE', '%'.$request->term.'%')->orWhere('login', 'LIKE', '%'.$request->term.'%')->paginate(10);
         return response()->json($users);
     }
+    public function show(Request $request){
+        return response()->json($request->user()->load('places'));
+    }
 }

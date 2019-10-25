@@ -20,6 +20,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             getUser().then(response => {
                 commit('setUser', response);
+                commit('places/SET_PLACES', response.places, {root: true});
                 resolve(response);
             }).catch(e => {
                 removeToken();

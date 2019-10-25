@@ -1,108 +1,175 @@
 <template>
     <div class="w-100">
-        <v-card>
-            <v-card-title>Tworzenie nowego miejsca</v-card-title>
-            <v-card-text>
-                <v-row justify="center">
-                    <v-col cols="12" class="text-center">
-                        <v-avatar class="change-avatar" color="indigo" size="200">
-                            <img
-                                    :src="place.image"
+        <v-form
+                ref="form"
+                v-model="valid"
+                lazy-validation>
+            <v-card>
+                <v-card-title>Tworzenie nowego miejsca</v-card-title>
+                <v-card-text>
+                    <v-row justify="center">
+                        <v-col cols="12" class="text-center">
+                            <v-avatar class="change-avatar" color="indigo" size="200" v-if="place.image">
+                                <img
+                                        :src="getSrc(place.image)"
+                                >
+                                <div class="change"><v-btn @click="$refs.file_input.click()" small color="primary">Zmień</v-btn></div>
+                            </v-avatar>
+                            <v-btn v-else @click="$refs.file_input.click()">Dodaj zdjęcie</v-btn>
+                            <input type="file" id="file_input" @change="uploadLogo()" style="display: none" ref="file_input"></input>
+
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field :error="(errors.name)? true : false"
+                                          :error-messages="errors.name" v-model="place.name" label="Nazwa miejsca"></v-text-field>
+                        </v-col>
+
+                        <v-col cols="12">
+                            <v-textarea
+                                    outlined
+                                    v-model="place.description"
+                                    label="Opis miejsca"
+                            ></v-textarea>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-combobox
+                                    v-model="place.tags"
+                                    chips
+                                    clearable
+                                    label="Tagi"
+                                    multiple
                             >
-                            <div class="change"><v-btn @click="$refs.file_input.click()" small color="primary">Zmień</v-btn></div>
-                            <input type="file" id="file_input" @change="uploadImage()" style="display: none" ref="file_input"></input>
-                        </v-avatar>
-                    </v-col>
-                    <v-col cols="12">
-                        <v-text-field v-model="place.name" label="Nazwa miejsca"></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                        <v-text-field v-model="place.description" label="Opis miejsca"></v-text-field>
-                    </v-col>
-
-                    <v-col cols="12">
-                        <v-textarea
-                                outlined
-                                v-model="place.description"
-                                label="Opis miejsca"
-                        ></v-textarea>
-                    </v-col>
-                    <v-col cols="12">
-                        <div class="mb-3">
-                            <label style="width: 100%" >
-                                <gmap-autocomplete  class="el-input__inner" style="width: 100%; min-height: 60px"
-                                                    :options="{types: ['address']}"
-                                                    @place_changed="setPlace">
-                                </gmap-autocomplete>
-                            </label>
-                        </div>
+                                <template v-slot:selection="{ attrs, item, select, selected }">
+                                    <v-chip
+                                            v-bind="attrs"
+                                            :input-value="selected"
+                                            close
+                                            color="blue"
+                                            @click="place.tags.splice(place.tags.findIndex(e => e == item), 1)"
+                                            @click:close="place.tags.splice(place.tags.findIndex(e => e == item), 1)"
+                                    >
+                                        <strong>{{ item }}</strong>
+                                    </v-chip>
+                                </template>
+                            </v-combobox>
+                        </v-col>
+                        <v-col cols="12">
+                            <div class="mb-3">
+                                <label style="width: 100%" >
+                                    <gmap-autocomplete  class="el-input__inner" style="width: 100%; min-height: 60px"
+                                                        :options="{types: ['address']}"
+                                                        @place_changed="setPlace">
+                                    </gmap-autocomplete>
+                                </label>
+                            </div>
 
 
-                        <gmap-map
-                                :center="center"
-                                :zoom="10"
-                                style="width:100%;  height: 400px;"
+                            <gmap-map
+                                    :center="center"
+                                    :zoom="10"
+                                    style="width:100%;  height: 400px;"
+                            >
+                                <gmap-marker
+                                        :key="0"
+                                        v-if="place.lat"
+                                        :position="{lat: parseFloat(place.lat), lng: parseFloat(place.lng)}"
+                                ></gmap-marker>
+                            </gmap-map>
+                        </v-col>
+                    </v-row>
+                    <div v-for="e in errors">
+                        <v-alert
+                                v-for="item in e"
+                                border="left"
+                                color="indigo"
+                                dark
                         >
-                            <gmap-marker
-                                    :key="0"
-                                    v-if="place.lat"
-                                    :position="{lat: place.lat, lng: place.lng}"
-                            ></gmap-marker>
-                        </gmap-map>
-                    </v-col>
-                </v-row>
-                <div v-for="e in errors">
-                    <v-alert
-                            v-for="item in e"
-                            border="left"
-                            color="indigo"
-                            dark
-                    >
-                        {{item}}
-                    </v-alert>
-                </div>
+                            {{item}}
+                        </v-alert>
+                    </div>
+                </v-card-text>
 
-            </v-card-text>
-        </v-card>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" @click="save">
+                        <v-icon class="mr-2">mdi-content-save</v-icon>
+                        Zapisz
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-form>
     </div>
 </template>
 <script>
+    import {upload} from "../../api/upload";
+    import {getPlace} from "../../api/place";
+
     export default {
         data(){
             return{
-
+                valid: true,
                place:{},
             }
         },
         computed:{
           center(){
               if(this.place.lat){
-                  return {lat: this.place.lat, lng: this.place.lng}
+                  return {lat: parseFloat(this.place.lat), lng: parseFloat(this.place.lng)}
               }else return {lat: 51.714776 , lng: 19.495305}
           }
         },
+
+        mounted(){
+          if(this.$route.params.id){
+              getPlace(this.$route.params.id).then(response => {
+                  this.place = response;
+                  this.place.tags = this.place.tags.map((item) => {
+                      return item.tag;
+                  })
+              })
+          }
+        },
         methods:{
+            save(){
+                this.startLoading();
+                if(this.place.id){
+                    this.$store.dispatch('places/updatePlace', this.place).then(response => {
+                        this.stopLoading();
+                        this.$router.push('/place');
+                    }).catch(e => {
+                        this.errors = e.response.data.errors;
+                        this.stopLoading();
+                    })
+                }else{
+                    this.$store.dispatch('places/storePlace', this.place).then(response => {
+                        this.stopLoading();
+                        this.$router.push('/place');
+                    }).catch(e => {
+                        this.errors = e.response.data.errors;
+                        this.stopLoading();
+                    })
+                }
+            },
             setPlace(place){
                 var temp = {
-                    maps_street: '',
+                    street: '',
                 };
-                console.log('PLACE', place);
                 var check = 0;
                 place.address_components.forEach(element => {
                     if(element.types.includes('locality')){
-                        temp.maps_city = element.short_name;
+                        temp.city = element.short_name;
                         check = check +1;
                     }
                     if(element.types.includes('postal_code')){
-                        temp.maps_code = element.short_name;
+                        temp.postal_code = element.short_name;
                         check = check +1;
                     }
                     if(element.types.includes('route')){
-                        temp.maps_street = temp.maps_street + ' ' +element.short_name;
+                        temp.street = temp.street + ' '+element.short_name;
                         check = check +1;
                     }
                     if(element.types.includes('street_number')){
-                        temp.maps_street = temp.maps_street + ' ' +element.short_name;
+                        temp.street = temp.street + ' ' +element.short_name;
                         check = check +1;
                     }
                 })
@@ -116,6 +183,17 @@
                 }
                 this.$set(this.place, 'lat', place.geometry.location.lat());
                 this.$set(this.place, 'lng', place.geometry.location.lng());
+            },
+            uploadLogo(){
+                var formData = new FormData();
+                formData.append('files[]', this.$refs.file_input.files[0]);
+                this.startLoading();
+                upload(formData, 'places').then(response => {
+                    this.stopLoading();
+                    this.$set(this.place, 'image', response.data[0]);
+                }).catch(e => {
+                    this.stopLoading();
+                })
             }
         }
     }

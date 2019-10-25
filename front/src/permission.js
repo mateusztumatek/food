@@ -15,16 +15,21 @@ router.beforeEach(async(to, from, next) => {
             // if is logged in, redirect to the home page
             next({ path: '/' });
         } else {
-            store.dispatch('user/getUser').then(response => {
-                console.log(store.getters.user.email_verified_at);
-                if(!store.getters.user.email_verified_at){
-                    if(to.path !== '/verify'){
-                        next('/verify');
+            if(!store.getters.user.id){
+                store.dispatch('user/getUser').then(response => {
+                    if(!store.getters.user.email_verified_at){
+                        if(to.path !== '/verify'){
+                            next('/verify');
+                        }
                     }
-                }
-                if(to.path == '/verify') next('/');
+                    if(to.path == '/verify') next('/');
+                    next();
+                });
+
+            }else{
                 next();
-            });
+            }
+
         }
     } else {
         if (to.meta.auth == true) {

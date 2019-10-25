@@ -7,7 +7,7 @@ import LoginLayout from '@/AppLogin.vue';
 Vue.use(Router)
 
 import StoreRoutes from '@/routes/store.js';
-console.log(StoreRoutes);
+import ProductRoutes from '@/routes/products.js'
 export const my_routes =
   [
     {
@@ -105,6 +105,7 @@ export const my_routes =
       ]
     },
     StoreRoutes,
+    ProductRoutes,
     {
       path: '*',
       name: '404',

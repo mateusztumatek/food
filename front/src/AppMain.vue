@@ -17,18 +17,20 @@
                 <div class="square"></div>
             </div>
         </div>
+        <errors-component></errors-component>
     </v-app>
 </template>
 
 <script>
     import myHeader from './views/layout/left-bar';
     import myTopbar from './views/layout/topbar-component';
-
+    import ErrorsComponent from './components/errors';
     export default {
         name: 'App',
         components:{
             myLeftbar: myHeader,
-            myTopbar: myTopbar
+            myTopbar: myTopbar,
+            ErrorsComponent
         },
         computed: {
             app(){

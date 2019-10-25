@@ -9,6 +9,7 @@
                 <v-list-item
                         v-for="item in items"
                         :key="item.text"
+                        v-if="item.visible"
                         :to="(item.to)? item.to : null"
                 >
                     <v-list-item-icon>
@@ -62,8 +63,11 @@
             return{
                 drawer: false,
                 items: [
-                    { icon: 'home', text: 'Strona główna', to: '/'},
-                    { icon: 'favorite', text: 'Lista życzeń', to:'/wishlist' },
+                    { icon: 'home', text: 'Strona główna', to: '/', visible: true},
+                    { icon: 'mdi-alarm-check', text: 'Twoje miejsca', to:'/place', visible: true},
+                    { icon: 'mdi-package-variant-closed', text: 'Produkty', to:'/products', visible: true},
+
+                    { icon: 'favorite', text: 'Lista życzeń', to:'/wishlist', visible: false },
                 ],
                 items2: [
                     { picture: 28, text: 'Joseph' },

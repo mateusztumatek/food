@@ -1,10 +1,10 @@
 <template>
     <div class="w-100">
         <v-row>
-            <v-col cols="12" md="6" lg="4" v-for="place in places">
+            <!--<v-col cols="12" md="6" lg="4" v-for="place in places">
                 <v-card hover ripple>
                     <v-img
-                            class="white--text align-end"
+                            class="white&#45;&#45;text align-end"
                             :src="getSrc(place.image)"
                             height="200px"
                     >
@@ -34,40 +34,36 @@
                         <v-btn @click="del(place)"><v-icon>mdi-trash-can-outline</v-icon>Usuń</v-btn>
                     </v-card-actions>
                 </v-card>
-            </v-col>
+            </v-col>-->
             <v-col cols="12" md="6" lg="4">
                 <v-card height="100%" class="align-center d-flex">
                     <v-card-text class="text-center">
-                        <v-btn to="place/create">Dodaj nowe</v-btn>
+                        <v-btn @click="create_new()">Dodaj nowy produkt</v-btn>
                     </v-card-text>
                 </v-card>
             </v-col>
         </v-row>
+        <createor-component v-on:close="creator = false" :visible="creator"></createor-component>
     </div>
 </template>
 <script>
+    import CreateorComponent from './creator';
     export default {
-        computed:{
-            places(){
-                return this.$store.getters.places;
+        components:{
+            CreateorComponent
+        },
+        data(){
+            return{
+                creator: false,
             }
         },
+        mounted() {
+            this.$store.dispatch('products/getProducts');
+        },
         methods:{
-            del(place){
-                this.$confirm('Usuwanie elementu', 'Czy na pewno chcesz usunąć ten element?').then(res => {
-                    this.$store.dispatch('places/deletePlace', place);
-                }).catch(e => {
-
-                })
+            create_new(){
+                this.creator = true;
             }
         }
     }
 </script>
-<style lang="scss">
-    .white--text{
-        .v-card__title{
-            background: rgb(0,0,0);
-            background: linear-gradient(0deg, rgba(0,0,0,0.865983893557423) 0%, rgba(0,0,0,0.6615021008403361) 40%, rgba(0,0,0,0) 100%);
-        }
-    }
-</style>

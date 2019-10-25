@@ -8,7 +8,7 @@ const store = {
         path: '/',
         name: 'Place',
         component: () => import('@/views/place/info'),
-        meta: {title: 'Edit user', auth: true}
+        meta: {title: 'Places', auth: true}
        },
         {
             path: '/place/create',
@@ -16,6 +16,12 @@ const store = {
             component: () => import('@/views/place/create'),
             meta: {title: 'Create place', auth: true}
         },
+        {
+            path: '/place/edit/:id',
+            name: 'Place edit',
+            component: () => import('@/views/place/create'),
+            meta: {title: 'Edit place', auth: true}
+        }
     ]
 };
 export default store;
