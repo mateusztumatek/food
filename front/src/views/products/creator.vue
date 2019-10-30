@@ -6,89 +6,84 @@
                     <span class="headline">Dodaj produkt</span>
                 </v-card-title>
                 <v-card-text>
-                    <v-stepper non-linear
+                    <v-stepper
                                style="background-color: transparent; box-shadow: none !important;"
                                v-model="step">
                         <v-stepper-header>
-                            <v-stepper-step editable @click="step=1" step="1">Name of step 1</v-stepper-step>
+                            <v-stepper-step :complete="dones[1]" editable @click="step=1" step="1">Dane usługi / produktu</v-stepper-step>
 
                             <v-divider></v-divider>
 
-                            <v-stepper-step editable @click="step=2" step="2">Name of step 2</v-stepper-step>
+                            <v-stepper-step :complete="dones[2]" editable @click="(dones[2])? step=2 : null" step="2">Kategoria</v-stepper-step>
 
                             <v-divider></v-divider>
 
-                            <v-stepper-step editable step="3" @click="step=3">Name of step 3</v-stepper-step>
+                            <v-stepper-step :complete="dones[3]" editable step="3" @click="(dones[3])? step=3 : null">Cena i czas przygotowania</v-stepper-step>
                         </v-stepper-header>
 
                         <v-stepper-items>
                             <v-stepper-content step="1">
-                                <v-card
-                                        class="mb-12"
-                                        color="grey lighten-1"
-                                        height="200px"
-                                ></v-card>
-
-                                <v-btn
-                                        color="primary"
-                                        @click="step = 2"
-                                >
-                                    Continue
-                                </v-btn>
-
-                                <v-btn text>Cancel</v-btn>
+                                <first v-on:next_step="nextStep" v-on:done="done"></first>
                             </v-stepper-content>
 
                             <v-stepper-content step="2">
-                                <v-card
-                                        class="mb-12"
-                                        color="grey lighten-1"
-                                        height="200px"
-                                ></v-card>
-
-                                <v-btn
-                                        color="primary"
-                                >
-                                    Continue
-                                </v-btn>
-
-                                <v-btn text>Cancel</v-btn>
+                                <second  v-on:next_step="nextStep" v-on:done="done"></second>
                             </v-stepper-content>
 
                             <v-stepper-content step="3">
-                                <v-card
-                                        class="mb-12"
-                                        color="grey lighten-1"
-                                        height="200px"
-                                ></v-card>
-
-                                <v-btn
-                                        color="primary"
-                                >
-                                    Continue
-                                </v-btn>
-
-                                <v-btn text>Cancel</v-btn>
+                                <third v-on:next_step="nextStep" v-on:done="done"></third>
                             </v-stepper-content>
                         </v-stepper-items>
                     </v-stepper>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="$emit('close')">Close</v-btn>
-                    <v-btn color="blue darken-1" text @click="$emit('close')">Save</v-btn>
+                    <v-btn color="blue darken-1" text @click="$emit('close')">Zamknij</v-btn>
+                    <v-btn color="blue darken-1" v-if="isDone()" text @click="save()">Zapisz</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
     </div>
 </template>
 <script>
+    import {upload} from "../../api/upload";
+    import First from './create-partials/first';
+    import Second from './create-partials/second';
+    import Third from './create-partials/third';
+
     export default {
+        name: 'Product_creator',
+        components:{
+          First, Second, Third
+        },
         props:['visible'],
         data(){
             return{
                 step: 1,
-                product: {}
+                dones:{},
+            }
+        },
+        methods:{
+            isDone(){
+              if(this.dones[1] && this.dones[2] && this.dones[3]) return true;
+              return false;
+            },
+            done(step, value){
+                this.$set(this.dones, step, value);
+            },
+            nextStep(value){
+                this.step = value;
+            },
+            save(){
+/*
+                this.startLoading();
+*/
+                this.$store.dispatch('products/saveProduct').then(response => {
+                    /*this.$emit('close');
+                    this.stopLoading();*/
+                }).catch(e => {
+                    this.stopLoading();
+                });
             }
         }
     }

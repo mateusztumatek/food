@@ -17,6 +17,9 @@ Route::group(['middleware' => ['auth:api']], function (){
     Route::put('/users/{id}', 'UserController@update');
     Route::resource('/examples', 'ExampleController');
     Route::resource('/places', 'PlaceController');
+    Route::resource('/categories', 'CategoryController');
+    Route::resource('/products', 'ItemController');
+
 });
 Route::post('/upload/{hash}', 'UploadController@upload');
 Route::get('/search', 'UserController@search');
