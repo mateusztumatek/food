@@ -39,14 +39,13 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" text @click="$emit('close')">Zamknij</v-btn>
-                    <v-btn color="blue darken-1" v-if="isDone()" text @click="save()">Zapisz</v-btn>
+                    <v-btn color="blue darken-1" v-if="isDone() || product.id" text @click="save()">Zapisz</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
     </div>
 </template>
 <script>
-    import {upload} from "../../api/upload";
     import First from './create-partials/first';
     import Second from './create-partials/second';
     import Third from './create-partials/third';
@@ -57,6 +56,9 @@
           First, Second, Third
         },
         props:['visible'],
+        computed:{
+          product(){return this.$store.getters.products.new_product}
+        },
         data(){
             return{
                 step: 1,
@@ -75,12 +77,12 @@
                 this.step = value;
             },
             save(){
-/*
                 this.startLoading();
-*/
-                this.$store.dispatch('products/saveProduct').then(response => {
-                    /*this.$emit('close');
-                    this.stopLoading();*/
+                if(this.product.id) var dispatch = 'products/editProduct';
+                else dispatch = 'products/saveProduct';
+                this.$store.dispatch(dispatch).then(response => {
+                    this.$emit('close');
+                    this.stopLoading();
                 }).catch(e => {
                     this.stopLoading();
                 });

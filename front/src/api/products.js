@@ -13,3 +13,10 @@ export function storeProduct(data) {
         data: data
     })
 }
+export function editProduct(id, data) {
+    return Request({
+        url:config.config.base_url+'/api/products/'+id,
+        method: 'PUT',
+        data: data
+    })
+}

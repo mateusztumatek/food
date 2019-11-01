@@ -37,7 +37,8 @@
                 </v-col>
                 <v-col cols="12">
                     <v-combobox
-                            v-model="tags"
+                            :value="product.tags"
+                            item-text="tag"
                             chips
                             clearable
                             label="Tagi"
@@ -53,7 +54,7 @@
                                     @click="product.tags.splice(product.tags.findIndex(e => e == item), 1)"
                                     @click:close="product.tags.splice(product.tags.findIndex(e => e == item), 1)"
                             >
-                                <strong>{{ item }}</strong>
+                                <strong>{{ (item.tag)? item.tag : item }}</strong>
                             </v-chip>
                         </template>
                     </v-combobox>

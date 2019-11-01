@@ -1,0 +1,10 @@
+@media screen and (max-width: 1200px){
+  .v-dialog{
+    margin: 10px !important;
+    max-height: 100% !important;
+    width: 100% !important;
+    .v-stepper__content{
+      padding: 0px;
+    }
+  }
+}

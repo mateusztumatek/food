@@ -23,7 +23,6 @@
         },
         watch:{
             app_errors: function () {
-                console.log(this.app_errors);
             }
         }
     }

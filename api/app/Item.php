@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     protected $fillable = ['place_id', 'name', 'description', 'image', 'price', 'prepere_time', 'active'];
+    public function getImageAttribute($image){
+        if($image) return $image;
+            else return 'products/placeholder.png';
+    }
     public function categories(){
         return $this->belongsToMany('App\Category', 'item_categories', 'item_id', 'category_id');
     }

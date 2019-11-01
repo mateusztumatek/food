@@ -6,21 +6,40 @@
                 clipped
         >
             <v-list dense>
-                <v-list-item
+                <v-list-group
                         v-for="item in items"
                         :key="item.text"
                         v-if="item.visible"
                         :to="(item.to)? item.to : null"
                 >
+                    <template v-slot:activator>
+                        <v-list-item-title>{{item.icon}}</v-list-item-title>
+                    </template>
                     <v-list-item-icon>
-                        <v-icon>{{item.icon}}</v-icon>
+                        <v-icon></v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>
                             {{ item.text }}
                         </v-list-item-title>
+                        <v-list-group
+                                prepend-icon="account_circle"
+                                value="true"
+                        >
+
+
+                            <v-list-item>
+                                <v-list-item
+                                        link>
+                                    <v-list-item-icon>
+                                        <v-icon>mdi-home</v-icon>
+                                    </v-list-item-icon>
+                                    <v-list-item-title> text</v-list-item-title>
+                                </v-list-item>
+                            </v-list-item>
+                        </v-list-group>
                     </v-list-item-content>
-                </v-list-item>
+                </v-list-group>
                 <v-subheader class="mt-4 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
                 <v-list>
                     <v-list-item
@@ -66,8 +85,7 @@
                     { icon: 'home', text: 'Strona główna', to: '/', visible: true},
                     { icon: 'mdi-alarm-check', text: 'Twoje miejsca', to:'/place', visible: true},
                     { icon: 'mdi-package-variant-closed', text: 'Produkty', to:'/products', visible: true},
-
-                    { icon: 'favorite', text: 'Lista życzeń', to:'/wishlist', visible: false },
+                    { icon: 'favorite', text: 'Kategorie', to:'/wishlist', visible: true },
                 ],
                 items2: [
                     { picture: 28, text: 'Joseph' },

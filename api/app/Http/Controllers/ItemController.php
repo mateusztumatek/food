@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Item;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class ItemController extends Controller
     public function index(){
         $items = Item::whereHas('place', function ($q){
             $q->where('user_id', Auth::id());
-        })->with('categories', 'tags', 'place')->paginate(10);
+        })->with('categories', 'tags', 'place')->get();
         return response()->json($items);
     }
     public function store(Request $request){
@@ -40,6 +41,43 @@ class ItemController extends Controller
             $arr['tag'] = $tag;
             $arr['model_name'] = 'item';
             $item->tags()->create($arr);
+        }
+        return response()->json($item->load('tags', 'categories'));
+    }
+    public function update(Request $request, $id){
+        $item = Item::find($id);
+        if(!Auth::check() || $item->place->user_id != Auth::id()) return response()->json(['message' => 'You dont have permission'], 403);
+        $request->request->set('user_id', Auth::id());
+        $this->Validate($request, $this->validators($request));
+        $item->update($request->all());
+        $item->tags()->delete();
+        $item->categories()->detach();
+        foreach ($request->tags as $tag){
+            if(is_object($tag) || is_array($tag)){
+                Tag::create($tag);
+            }else{
+                $arr = [];
+                $arr['model_name'] = 'item';
+                $arr['model_id'] = $item->id;
+                $arr['tag'] = $tag;
+                Tag::create($arr);
+            }
+        }
+
+        foreach ($request->categories as $category){
+            if(is_array($category) || is_object($category)){
+                $cat = Category::where('id', $category['id'])->first();
+
+            }else{
+                if(!($cat = Category::where('place_id', $request->place_id)->where('name' , $category)->first())){
+                    $cat = Category::create([
+                        'name' => $category,
+                        'active' => true,
+                        'place_id' => $request->place_id
+                    ]);
+                }
+            }
+            if($cat) $item->categories()->attach($cat->id);
         }
         return response()->json($item->load('tags', 'categories'));
     }
