@@ -13,7 +13,13 @@ export function getPlace(id) {
         method: 'get',
     })
 }
-
+export function getPlaces(params) {
+    return Request({
+        url: config.config.base_url+'/api/places',
+        method: 'get',
+        params: params
+    })
+}
 export function updatePlace(id, data) {
     return Request({
         url:config.config.base_url+'/api/places/'+id,

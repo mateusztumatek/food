@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth:api']], function (){
     Route::resource('/examples', 'ExampleController');
     Route::resource('/places', 'PlaceController');
     Route::resource('/categories', 'CategoryController');
+    Route::delete('/categories', 'CategoryController@massiveDestroy');
     Route::resource('/products', 'ItemController');
 
 });

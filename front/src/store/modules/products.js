@@ -33,6 +33,11 @@ const actions = {
                 reject(e);
             })
         })
+    },
+    deleteProduct: ({commit, state}) => {
+        return new Promist((resolve, reject) => {
+
+        })
     }
 }
 const mutations = {
@@ -50,6 +55,10 @@ const mutations = {
     UPDATE_PRODUCT:(state, data) => {
         const index = _.findIndex(state.products, ['id', data.id]);
         state.products[index] = data;
+    },
+    DELETE_PRODUCT: (state, data) => {
+        const index = _.findIndex(state.products, ['id', data.id]);
+        state.products.splice(index, 1);
     }
 };
 const getters = {

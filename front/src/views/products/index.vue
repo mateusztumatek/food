@@ -1,44 +1,47 @@
 <template>
     <div class="w-100">
         <v-row>
-            <v-col cols="12" md="6" lg="4" v-for="product in products">
-                <v-card hover ripple>
-                    <v-img
-                            class="white&#45;&#45;text align-end"
-                            :src="getSrc(product.image)"
-                            height="200px"
-                    >
-                        <div class="align-items-center justify-content-end" style="padding: 10px">
-                            <v-chip
-                                    style="font-size: 0.7rem"
-                                    class="mr-1"
-                                    v-for="tag in product.tags"
-                                    color="blue"
-                            >
-                                <strong>{{ tag.tag }}</strong>
-                            </v-chip>
-                        </div>
+            <v-fade-transition v-for="product in products">
+                <v-col cols="12" md="6" lg="4">
+                    <v-card hover ripple>
+                        <v-img
+                                class="white&#45;&#45;text align-end"
+                                :src="getSrc(product.image)"
+                                height="200px"
+                        >
+                            <div class="align-items-center justify-content-end" style="padding: 10px">
+                                <v-chip
+                                        style="font-size: 0.7rem"
+                                        class="mr-1"
+                                        v-for="tag in product.tags"
+                                        color="blue"
+                                >
+                                    <strong>{{ tag.tag }}</strong>
+                                </v-chip>
+                            </div>
 
-                        <v-card-title>{{product.name}}
-                            <p class="text-muted w-100" style="font-size: 0.7rem">{{product.created_at}}</p>
-                        </v-card-title>
-                    </v-img>
-                    <v-card-text>
-                        {{product.description}}
-                        <p class="w-100 mb-0">{{product.description}}</p>
-                        <p class="w-100 mb-0"><v-icon class="mr-2">mdi-apps</v-icon>
-                            <v-chip color="blue" v-for="category in product.categories" class="mr-1">
-                                {{category.name}}
-                            </v-chip>
-                        </p>
+                            <v-card-title>{{product.name}}
+                                <p class="text-muted w-100" style="font-size: 0.7rem">{{product.created_at}}</p>
+                            </v-card-title>
+                        </v-img>
+                        <v-card-text>
+                            {{product.description}}
+                            <p class="w-100 mb-0">{{product.description}}</p>
+                            <p class="w-100 mb-0"><v-icon class="mr-2">mdi-apps</v-icon>
+                                <v-chip color="blue" v-for="category in product.categories" class="mr-1">
+                                    {{category.name}}
+                                </v-chip>
+                            </p>
 
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn @click="editItem(product)">Edytuj</v-btn>
-                        <v-btn @click="del(product)"><v-icon>mdi-trash-can-outline</v-icon>Usuń</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-btn @click="editItem(product)">Edytuj</v-btn>
+                            <v-btn @click="del(product)"><v-icon>mdi-trash-can-outline</v-icon>Usuń</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-col>
+            </v-fade-transition>
+
             <v-col cols="12" md="6" lg="4">
                 <v-card height="100%" class="align-center d-flex">
                     <v-card-text class="text-center">
@@ -68,6 +71,14 @@
             this.$store.dispatch('products/getProducts');
         },
         methods:{
+            del(product){
+                this.$store.commit('products/DELETE_PRODUCT', product);
+            /*  this.startLoading();
+              this.$store.dispatch('products/deleteProduct', product).then(response => {
+                  this.stopLoading();
+
+              })*/
+            },
             create_new(){
                 this.creator = true;
             },

@@ -8,6 +8,7 @@ Vue.use(Router)
 
 import StoreRoutes from '@/routes/store.js';
 import ProductRoutes from '@/routes/products.js'
+import CategoryRoutes from '@/routes/categories';
 export const my_routes =
   [
     {
@@ -106,6 +107,7 @@ export const my_routes =
     },
     StoreRoutes,
     ProductRoutes,
+    CategoryRoutes,
     {
       path: '*',
       name: '404',

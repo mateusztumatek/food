@@ -1,15 +1,25 @@
 import router from '../../router';
-import {updatePlace, storePlace, deletePlace} from '../../api/place';
-
+import {updatePlace, storePlace, deletePlace, getPlaces} from '../../api/place';
 const state = {
     places:[],
 };
 const actions = {
+    getPlaces: ({commit}, params) => {
+        return new Promise((resolve, reject) => {
+            getPlaces(params).then(response => {
+                commit('SET_PLACES', response);
+                resolve(response)
+            }).catch(e => {
+                commit('app/ADD_ERROR', {text: e.response.message}, {root: true});
+                reject(e);
+            })
+        })
+    },
     updatePlace: ({commit}, data) => {
         return new Promise((resolve, reject) => {
             updatePlace(data.id, data).then(response => {
-                resolve(response);
                 commit('UPDATE_PLACE', response);
+                resolve(response);
             }).catch(e => {
                 reject(e);
             })
@@ -18,8 +28,8 @@ const actions = {
     storePlace: ({commit}, data) => {
         return new Promise((resolve, reject) => {
             storePlace(data).then(response => {
-                resolve(response);
                 commit('STORE_PLACE', response);
+                resolve(response);
             }).catch(e => {
                 reject(e);
             })

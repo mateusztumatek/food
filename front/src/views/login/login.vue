@@ -63,9 +63,12 @@
         },
         methods:{
             loginUser(){
+                this.startLoading();
                 this.$store.dispatch('user/login', this.user).then(response => {
                     this.$router.push({ path: this.redirect || '/' });
+                    this.stopLoading();
                 }).catch(e => {
+                    this.stopLoading();
                     this.errors = e.response.data.errors;
                     setTimeout(() => {
                         this.errors = [];

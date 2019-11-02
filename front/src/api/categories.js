@@ -7,3 +7,11 @@ export function getCategories(params) {
         params: params
     })
 }
+
+export function deleteMassive(data) {
+    return Request({
+        url:config.config.base_url+'/api/categories',
+        method:'DELETE',
+        data: data
+    })
+}

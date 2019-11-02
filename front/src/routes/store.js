@@ -21,6 +21,11 @@ const store = {
             name: 'Place edit',
             component: () => import('@/views/place/create'),
             meta: {title: 'Edit place', auth: true}
+        },
+        {
+            path: '/place/:slug',
+            name: 'Place index',
+            component: () => import('@/views/place/index/index'),
         }
     ]
 };

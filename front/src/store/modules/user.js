@@ -1,5 +1,6 @@
 import {getToken, setToken, removeToken} from "../../utilis/auth";
 import {getUser, login, register, logout, resend, update} from "../../api/user";
+import store from '../index';
 import router from '../../router';
 const state = {
     user: {}
@@ -20,7 +21,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             getUser().then(response => {
                 commit('setUser', response);
-                commit('places/SET_PLACES', response.places, {root: true});
+                store.dispatch('places/getPlaces', {user_id: response.id});
                 resolve(response);
             }).catch(e => {
                 removeToken();
@@ -45,6 +46,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             login(data).then(response => {
                 commit('setUser', response.user);
+                store.dispatch('places/getPlaces', {user_id: response.user.id});
                 setToken(response.access_token);
                 resolve();
             }).catch(e => {
