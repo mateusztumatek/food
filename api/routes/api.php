@@ -20,7 +20,9 @@ Route::group(['middleware' => ['auth:api']], function (){
     Route::resource('/categories', 'CategoryController');
     Route::delete('/categories', 'CategoryController@massiveDestroy');
     Route::resource('/products', 'ItemController');
-
+    Route::resource('/sales', 'SaleController');
+    Route::get('/sales/{id}/manage', 'SaleController@manage');
+    Route::get('/sales/{id}/attempt', 'SaleController@attempt');
 });
 Route::post('/upload/{hash}', 'UploadController@upload');
 Route::get('/search', 'UserController@search');

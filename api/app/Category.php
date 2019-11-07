@@ -19,4 +19,8 @@ class Category extends Model
         $q->get();
         return $q;
     }
+    public function scopeWithProducts($q){
+        $q->with('items');
+        return $q;
+    }
 }

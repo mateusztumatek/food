@@ -3,10 +3,42 @@ import {getUser, login, register, logout, resend, update} from "../../api/user";
 import store from '../index';
 import router from '../../router';
 const state = {
-    user: {}
+    user: {},
+    location:null,
 };
-
+import Vue from 'vue';
 const actions = {
+    getLocation: ({state}) => {
+        return new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition((position) => {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                state.location = {lat: null, lng: null};
+                state.location.lat = lat;
+                state.location.lng = lng;
+                resolve(state.location);
+            }, () => {
+                state.location = 'denied';
+                reject();
+            });
+        })
+    },
+    checkLocation: ({commit, state}) => {
+        if (navigator.geolocation) {
+            navigator.permissions.query({ name: 'geolocation' })
+                .then((params) => {
+                 if(params.state == 'prompt'){
+                    state.location = 'no_ask';
+                 }
+                 if(params.state == 'denied'){
+                     state.location = 'denied';
+                 }
+                });
+
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    },
     update: ({commit}, data) => {
       return new Promise((resolve, reject) => {
           update(data.data, data.id).then(response => {

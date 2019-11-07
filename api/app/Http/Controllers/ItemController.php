@@ -7,13 +7,22 @@ use App\Item;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\ItemsService;
 
 class ItemController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $items = Item::whereHas('place', function ($q){
             $q->where('user_id', Auth::id());
-        })->with('categories', 'tags', 'place')->get();
+        })->with('categories', 'tags', 'place')->where(function ($q)use($request){
+            if($request->term){
+                $q->where('name', 'LIKE', '%'.$request->term.'%');
+            }
+        });
+
+        if($request->paginate){
+            $items = $items->paginate(($request->per_page)? $request->per_page : 10);
+        }else $items = $items->get();
         return response()->json($items);
     }
     public function store(Request $request){
@@ -21,27 +30,7 @@ class ItemController extends Controller
         if($request->place) $request->request->set('place_id', $request->place['id']);
         $request->request->set('active', true);
         $request->validate($this->validators($request));
-        $item = Item::create($request->all());
-        foreach ($request->categories as $category){
-            if(is_array($category)){
-                $cat = Category::where('id', $category['id'])->first();
-            }else{
-                if(!($cat = Category::where('place_id', $request->place_id)->where('name' , $category)->first())){
-                    $cat = Category::create([
-                        'name' => $category,
-                        'active' => true,
-                        'place_id' => $request->place_id
-                    ]);
-                }
-            }
-            if($cat) $item->categories()->attach($cat->id);
-        }
-        foreach ($request->tags as $tag){
-            $arr = [];
-            $arr['tag'] = $tag;
-            $arr['model_name'] = 'item';
-            $item->tags()->create($arr);
-        }
+        $item = ItemsService::create($request);
         return response()->json($item->load('tags', 'categories'));
     }
     public function update(Request $request, $id){

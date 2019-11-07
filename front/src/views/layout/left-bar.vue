@@ -4,6 +4,7 @@
                 v-model="sidebar.opened"
                 app
                 clipped
+
         >
             <v-list dense>
                 <v-list-item-group  v-for="item in items"
@@ -26,6 +27,19 @@
                     </v-list-group>
                 </v-list-item-group>
             </v-list>
+            <v-subheader class="mt-4 grey--text text--darken-1">Sprzedaże</v-subheader>
+            <v-list>
+                <v-list-item
+                        v-for="sellout in sellouts"
+                        :key="sellout.id"
+                        :to="'/sellout/'+sellout.id+'/manage'"
+                >
+                    <v-list-item-title v-bind:class="{'red--text': !sellout.is_attempted && sellout.id != activeSellout.id}">{{sellout.name}}<span v-if="!sellout.is_attempted && sellout.id != activeSellout.id" style="font-weight: 900" class="caption float-right">Nie aktywna</span></v-list-item-title>
+                </v-list-item>
+            </v-list>
+            <div class="text-center">
+                <v-btn color="primary" to="/sellout/create"><v-icon>mdi-cart-minus</v-icon>Rozpocznij sprzedaż</v-btn>
+            </div>
         </v-navigation-drawer>
     </div>
 </template>
@@ -49,6 +63,8 @@
             }
         },
         computed:{
+            sellouts() {return this.$store.getters.sellouts},
+            activeSellout() {return (this.$store.getters.activeSellout)? this.$store.getters.activeSellout : {}},
             sidebar() {
                 return this.$store.getters.sidebar;
             }

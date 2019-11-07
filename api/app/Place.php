@@ -12,6 +12,9 @@ class Place extends Model
     /*public function getImageAttribute($value){
         return url('/framework/'.$value);
     }*/
+    public function sales(){
+        return $this->hasMany('App\Sale');
+    }
     public function tags(){
         return $this->hasMany('App\Tag', 'model_id')->where('model_name', 'place');
     }

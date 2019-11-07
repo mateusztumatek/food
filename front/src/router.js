@@ -4,11 +4,13 @@ import Home from './views/Home.vue'
 import Layout from '@/AppMain.vue';
 import store from './store';
 import LoginLayout from '@/AppLogin.vue';
-Vue.use(Router)
+Vue.use(Router);
 
 import StoreRoutes from '@/routes/store.js';
 import ProductRoutes from '@/routes/products.js'
 import CategoryRoutes from '@/routes/categories';
+import SelloutRoutes from '@/routes/sellout';
+import Localization from '@/routes/localization';
 export const my_routes =
   [
     {
@@ -108,6 +110,8 @@ export const my_routes =
     StoreRoutes,
     ProductRoutes,
     CategoryRoutes,
+    SelloutRoutes,
+    Localization,
     {
       path: '*',
       name: '404',

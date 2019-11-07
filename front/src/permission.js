@@ -1,6 +1,17 @@
 import router from './router';
 import store from './store';
 import {getToken, removeToken} from './utilis/auth';
+const attempt = (to) => {
+    if (to.meta.attempting == true) {
+        store.dispatch('sellout/attempt', to.params.id);
+    }else{
+        store.commit('sellout/STOP_ATTEMPT');
+    }
+}
+router.beforeEach(async (to, from, next) => {
+    store.dispatch('user/checkLocation');
+    next();
+})
 router.beforeEach(async(to, from, next) => {
     // start progress bar
     // set page title
@@ -23,10 +34,11 @@ router.beforeEach(async(to, from, next) => {
                         }
                     }
                     if(to.path == '/verify') next('/');
+                    attempt(to);
                     next();
                 });
-
             }else{
+                attempt(to);
                 next();
             }
 
@@ -40,6 +52,7 @@ router.beforeEach(async(to, from, next) => {
         }
     }
 });
+
 router.afterEach(() => {
     setTimeout(() => {
         store.commit('app/setLoading', false);

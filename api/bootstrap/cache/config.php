@@ -1,7 +1,7 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'App',
     'front_url' => 'http://localhost:8080',
     'env' => 'local',
     'debug' => true,
@@ -11,7 +11,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:cEZOL4eQxX2bAamBIm1JgYXRzSXN20g0X5PvoszEP7k=',
+    'key' => 'base64:f4q2uwW7FCUX9F/Xob+sVVkPfBdewvrlI3uB8UCHdJQ=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -40,8 +40,9 @@
       22 => 'Barryvdh\\Cors\\ServiceProvider',
       23 => 'App\\Providers\\AppServiceProvider',
       24 => 'App\\Providers\\AuthServiceProvider',
-      25 => 'App\\Providers\\EventServiceProvider',
-      26 => 'App\\Providers\\RouteServiceProvider',
+      25 => 'App\\Providers\\BroadcastServiceProvider',
+      26 => 'App\\Providers\\EventServiceProvider',
+      27 => 'App\\Providers\\RouteServiceProvider',
     ),
     'aliases' => 
     array (
@@ -80,6 +81,7 @@
       'URL' => 'Illuminate\\Support\\Facades\\URL',
       'Validator' => 'Illuminate\\Support\\Facades\\Validator',
       'View' => 'Illuminate\\Support\\Facades\\View',
+      'Pusher' => 'Pusher\\Pusher',
     ),
   ),
   'auth' => 
@@ -123,18 +125,18 @@
   ),
   'broadcasting' => 
   array (
-    'default' => 'log',
+    'default' => 'pusher',
     'connections' => 
     array (
       'pusher' => 
       array (
         'driver' => 'pusher',
-        'key' => '',
-        'secret' => '',
-        'app_id' => '',
+        'key' => '8f99b0d8f31dc1b8d36c',
+        'secret' => '1259b856c1fcd93ad01d',
+        'app_id' => '893332',
         'options' => 
         array (
-          'cluster' => 'mt1',
+          'cluster' => 'eu',
           'useTLS' => true,
         ),
       ),
@@ -214,7 +216,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'app_cache',
   ),
   'cors' => 
   array (
@@ -249,7 +251,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'food',
+        'database' => 'app',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -257,9 +259,9 @@
       array (
         'driver' => 'mysql',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'food',
+        'database' => 'app',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -277,9 +279,9 @@
       array (
         'driver' => 'pgsql',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'food',
+        'database' => 'app',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -292,9 +294,9 @@
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'food',
+        'database' => 'app',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -309,7 +311,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'app_database_',
       ),
       'default' => 
       array (
@@ -547,7 +549,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'app_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => false,

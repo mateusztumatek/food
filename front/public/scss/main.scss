@@ -58,5 +58,17 @@
     display: none;
   }
 }
-
+.my-container{
+  width: 85%;
+  margin: auto;
+  max-width: 85%;
+}
+.empty-state{
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @import "mobiles";

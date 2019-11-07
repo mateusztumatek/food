@@ -1,11 +1,19 @@
 <template>
     <div class="w-100">
         <v-row>
-            <v-fade-transition v-for="product in products">
-                <v-col cols="12" md="6" lg="4">
+            <v-col cols="12">
+                <v-text-field
+                        v-model="term"
+                        @keydown="search()"
+                        :loading="loading"
+                        label="Szukaj produktu"
+                ></v-text-field>
+            </v-col>
+            <v-fade-transition v-for="product in products.data">
+                <v-col cols="12" md="6" lg="3">
                     <v-card hover ripple>
                         <v-img
-                                class="white&#45;&#45;text align-end"
+                                class="white--text align-end"
                                 :src="getSrc(product.image)"
                                 height="200px"
                         >
@@ -25,14 +33,13 @@
                             </v-card-title>
                         </v-img>
                         <v-card-text>
-                            {{product.description}}
-                            <p class="w-100 mb-0">{{product.description}}</p>
-                            <p class="w-100 mb-0"><v-icon class="mr-2">mdi-apps</v-icon>
+                            <p class="w-100 mb-3">{{product.description | truncate(80, '...')}}</p>
+                            <p class="w-100 mb-3"><v-icon class="mr-2">mdi-apps</v-icon>
                                 <v-chip color="blue" v-for="category in product.categories" class="mr-1">
                                     {{category.name}}
                                 </v-chip>
                             </p>
-
+                            <p class="w-100 mb-0"><v-icon class="mr-2">mdi-cash</v-icon><span style="font-weight: 200; font-size: 1.2rem">{{product.price | currency()}}PLN</span></p>
                         </v-card-text>
                         <v-card-actions>
                             <v-btn @click="editItem(product)">Edytuj</v-btn>
@@ -41,7 +48,6 @@
                     </v-card>
                 </v-col>
             </v-fade-transition>
-
             <v-col cols="12" md="6" lg="4">
                 <v-card height="100%" class="align-center d-flex">
                     <v-card-text class="text-center">
@@ -49,28 +55,67 @@
                     </v-card-text>
                 </v-card>
             </v-col>
+            <div class="w-100">
+                <infinite-loading @infinite="infiniteHandler" v-if="products.last_page > products.current_page"></infinite-loading>
+            </div>
         </v-row>
         <createor-component v-on:close="creator = false" :visible="creator"></createor-component>
     </div>
 </template>
 <script>
     import CreateorComponent from './creator';
+    import {getUserProducts} from "../../api/products";
+
     export default {
         components:{
             CreateorComponent
         },
         data(){
             return{
+                term: '',
+                loading: false,
                 creator: false,
+                products: {current_page:0, data:[]},
             }
         },
         computed:{
-            products(){return this.$store.getters.products.products;}
+            user() {return this.$store.getters.user},
+            /*products(){return this.$store.getters.products.products;}*/
         },
         mounted() {
-            this.$store.dispatch('products/getProducts');
+            /*this.$store.dispatch('products/getProducts');*/
+            this.getProducts(true);
         },
         methods:{
+            search(){
+              this.products.current_page = 0;
+              this.products.last_page = 0;
+              console.log(this.products);
+              this.getProducts();
+            },
+            infiniteHandler($state){
+                getUserProducts(this.user.id, {paginate: true, page: this.products.current_page + 1, term: this.term}).then(res => {
+                    this.products.current_page = res.current_page;
+                    this.products.last_page = res.last_page;
+                    res.data.forEach((item) => {
+                        this.products.data.push(item);
+                    })
+
+                    if(res.current_page == res.last_page) $state.complete();
+                    else $state.loaded();
+                }).catch(e => {
+                    $state.complete();
+                })
+            },
+            getProducts(set = false){
+                this.loading = true;
+
+                getUserProducts(this.user.id, {paginate: true, page: this.products.current_page+1, term: this.term}).then(response => {
+                    this.products = response;
+                    this.loading = false;
+                }).catch(e => {this.loading = false;})
+
+            },
             del(product){
                 this.$store.commit('products/DELETE_PRODUCT', product);
             /*  this.startLoading();
@@ -89,3 +134,11 @@
         }
     }
 </script>
+<style lang="scss">
+    .white--text{
+        .v-card__title{
+            background: rgb(0,0,0);
+            background: linear-gradient(0deg, rgba(0,0,0,0.865983893557423) 0%, rgba(0,0,0,0.6615021008403361) 40%, rgba(0,0,0,0) 100%);
+        }
+    }
+</style>

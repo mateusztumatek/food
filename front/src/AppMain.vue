@@ -4,11 +4,14 @@
         <my-topbar></my-topbar>
         <v-content>
             <v-container class="fill-height">
-                <transition name="fade" mode="out-in">
-                    <router-view :key="key" />
-                </transition>
+                <div class="my-container">
+                    <transition name="fade" mode="out-in">
+                        <router-view :key="key" />
+                    </transition>
+                </div>
             </v-container>
         </v-content>
+        <my-footer></my-footer>
         <div class="loading-container" v-if="app.loading">
             <div class="scaling-squares-spinner" >
                 <div class="square"></div>
@@ -25,12 +28,14 @@
     import myHeader from './views/layout/left-bar';
     import myTopbar from './views/layout/topbar-component';
     import ErrorsComponent from './components/errors';
+    import myFooter from './views/layout/footer';
     export default {
         name: 'App',
         components:{
             myLeftbar: myHeader,
             myTopbar: myTopbar,
-            ErrorsComponent
+            ErrorsComponent,
+            myFooter
         },
         computed: {
             app(){

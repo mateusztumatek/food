@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Schema;
 trait FilterTrait{
     public function scopeFilter($q){
         $inputs = request()->all();
-
+        if(array_key_exists('lat', $inputs)) $inputs['lat'] = null;
+        if(array_key_exists('lng', $inputs)) $inputs['lng'] = null;
         foreach ($inputs as $key => $input){
             if($key != 'orderBy' && $key != 'orderType'){
                 if(Schema::hasColumn(parent::getTable(), $key)){

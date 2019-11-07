@@ -1,6 +1,8 @@
 var _ = require('lodash');
+require('./bootstrap');
 import Vue from 'vue'
 import App from './App.vue'
+import InfiniteLoading from 'vue-infinite-loading';
 import router from './router'
 import config from './config';
 import './permission'; // permission control
@@ -13,6 +15,8 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import secrete from './secrete';
 import prototypes from './prototypes';
 Vue.use(prototypes);
+Vue.use(InfiniteLoading, { /* options */ });
+
 Vue.use(VueGoogleMaps, {
   load: {
     key: secrete.google,
@@ -21,7 +25,13 @@ Vue.use(VueGoogleMaps, {
 });
 Vue.config.productionTip = false
 Vue.prototype.$eventBus = new Vue();
-
+Vue.filter('currency', function (value) {
+  return parseFloat(value).toFixed(2);
+});
+Vue.filter('truncate', function (text, stop, clamp) {
+  if(!text) return '';
+  return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '')
+})
 Vue.mixin({
   data(){
     return{

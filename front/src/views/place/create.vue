@@ -17,7 +17,6 @@
                             </v-avatar>
                             <v-btn v-else @click="$refs.file_input.click()">Dodaj zdjęcie</v-btn>
                             <input type="file" id="file_input" @change="uploadLogo()" style="display: none" ref="file_input"></input>
-
                         </v-col>
                         <v-col cols="12">
                             <v-text-field :error="(errors.name)? true : false"

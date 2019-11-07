@@ -18,8 +18,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\SaleChangeEvent' => [
+            'App\Listeners\SaleChangeListener',
+        ],
     ];
-
     /**
      * Register any events for your application.
      *

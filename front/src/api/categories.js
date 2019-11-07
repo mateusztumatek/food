@@ -15,3 +15,18 @@ export function deleteMassive(data) {
         data: data
     })
 }
+export function editCategory(id,data){
+    return Request({
+        url:config.config.base_url+'/api/categories/'+id,
+        method:'PUT',
+        data: data
+    })
+}
+
+export function storeCategory(data){
+    return Request({
+        url:config.config.base_url+'/api/categories',
+        method:'POST',
+        data: data
+    })
+}

@@ -2,20 +2,29 @@
     <div class="w-100">
         <v-card>
             <v-card-title>
-                Kategorie
-                <v-spacer></v-spacer>
-                <v-text-field
-                        @input="search"
-                        v-model="term"
-                        append-icon="search"
-                        label="Szukaj"
-                        single-line
-                        lazy
-                        hide-details
-                ></v-text-field>
+                <v-row>
+                    <v-col cols="12" md="5" class="d-flex" style="align-items: center">
+                        Kategorie
+                    </v-col>
+                    <v-col cols="12" md="5" class="d-flex" style="align-items: center">
+                        <v-text-field
+                                @input="search"
+                                v-model="term"
+                                append-icon="search"
+                                label="Szukaj"
+                                single-line
+                                lazy
+                                hide-details
+                        ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" md="2" class="d-flex" style="align-items: center">
+                        <v-btn @click="edit={}">Dodaj nową</v-btn>
+                    </v-col>
+                </v-row>
             </v-card-title>
             <v-data-table
                     show-select
+                    @click:row="editItem"
                     v-model="selected"
                     :options.sync="params"
                     :headers="headers"
@@ -27,20 +36,34 @@
                 <template v-slot:item.place="{ item }">
                     <span v-if="item.place">{{item.place.name}}</span>
                 </template>
+                <template v-slot:item.active="{item}">
+                    <v-chip v-if="item.active" color="primary">tak</v-chip>
+                    <v-chip v-else color="red">Nie</v-chip>
+                </template>
+                <template v-slot:item.image="{item}">
+                    <v-avatar size="60px">
+                        <img
+                                v-if="item.image"
+                                alt="Avatar"
+                                :src="getSrc(item.image)">
+                    </v-avatar>
+                </template>
             </v-data-table>
             <v-card-actions v-if="selected.length > 0">
                 <v-btn @click="deleteSelected" color="red" >Usuń zaznaczone</v-btn>
             </v-card-actions>
         </v-card>
+        <edit-add v-on:closed="edit = null" v-on:updated="updatedItem" v-on:stored="storedItem" :dialog="edit" ></edit-add>
     </div>
 </template>
 <script>
     import {getCategories, deleteMassive} from "../../api/categories";
     import editAdd from './edit-add';
     export default {
-        component:{editAdd},
+        components: {editAdd},
         data () {
             return {
+                edit: null,
                 check: false,
                 temp_per_page: 10,
                 term: '',
@@ -89,6 +112,13 @@
             this.getCategories();
         },
         methods:{
+            updatedItem(item){
+                const index = _.findIndex(this.categories, ['id', item.id]);
+                this.categories[index] = item;
+            },
+            storedItem(item){
+              this.categories.push(item);
+            },
             deleteSelected(){
                 this.startLoading();
                 var ids = this.selected.map((item) => {
@@ -101,6 +131,9 @@
                     this.$store.commit('app/ADD_ERROR', {text: e.response.data.message});
                     this.stopLoading();
                 })
+            },
+            editItem(item){
+                this.edit = item;
             },
             getCategories(){
                 this.loading = true;
