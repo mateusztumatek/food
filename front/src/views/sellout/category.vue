@@ -11,7 +11,7 @@
                         <p class="grey--text">{{item.price | currency()}}</p>
                     </v-list-item-content>
                     <v-list-item-action v-if="category.place && category.place.user_id == user.id" @click.prevent>
-                        <v-btn :to="'/products?product_id='+item.id">Edytuj produkt</v-btn>
+                        <v-btn :to="'/products?product_id='+item.id" icon><v-icon>mdi-pencil</v-icon></v-btn>
                     </v-list-item-action>
                 </v-list-item>
                 <v-divider></v-divider>

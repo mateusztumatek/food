@@ -71,20 +71,25 @@ const actions = {
     getUserOrders({state, commit}, params){
         return new Promise((resolve, reject) => {
             getUserOrders().then(response => {
-                state.userOrders = response;
+                if(typeof response == 'object'){
+                    state.userOrders = Object.values(response);
+                }else{
+                    state.userOrders = response;
+                }
                 state.order_sync = true;
-                state.userOrders.forEach(item => {
-                    if(item.paid){
-                        getOrderPercentage(item);
+                console.log('ORDERS', state.userOrders);
+                for(var i in state.userOrders){
+                    if(i.paid){
+                        getOrderPercentage(i);
                     }
-                    Echo.channel('OrderChannel.'+item.id)
+                    Echo.channel('OrderChannel.'+i.id)
                         .listen('.order_updated', (e) => {
-                            console.log('IOWUAGHOAWG', e);
                             getOrder(e.order.hash).then(response => {
                                 commit('UPDATE_ORDER', response);
                             })
                         });
-                })
+                }
+
                 resolve(response);
             }).catch(e => {
                 reject(e);

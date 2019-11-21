@@ -14,11 +14,11 @@
                 </v-toolbar-items>
                 <v-spacer></v-spacer>
                 <v-toolbar-items>
-                    <v-menu min-width="300" offset-y origin="center center" transition="scale-transition">
+                    <v-menu :min-width="($root.isMobile())? '95%' : '300'" allow-overflow offset-y bottom origin="center center" transition="scale-transition">
                         <template v-slot:activator="{ on }">
                             <v-btn v-on="on" overlap text>
                                 <v-badge color="red">
-                                    <span slot="badge">{{userOrders.length}}</span>Twoje zamówienia
+                                    <span slot="badge">{{userOrders.length}}</span><v-icon>mdi-cart</v-icon>
                                 </v-badge>
                             </v-btn>
                         </template>
