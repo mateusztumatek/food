@@ -66,7 +66,7 @@ class PlaceController extends Controller
     public function destroy(Request $request, $id){
         $place = Place::find($id);
         if(!Auth::check() || $place->user_id != Auth::id()) return response()->json(['error' => 'You dont have permission'], 403);
-        $place->products->delete();
+        $place->products()->delete();
         $place->tags()->delete();
         $place->delete();
         return response()->json(true);

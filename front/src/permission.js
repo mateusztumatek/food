@@ -18,6 +18,16 @@ router.beforeEach(async(to, from, next) => {
     if(to.meta.title){
         document.title =to.meta.title;
     }
+    if(!store.getters.orders_sync){
+        store.dispatch('order/getUserOrders');
+    }
+    if(to.meta.getCart){
+        if(store.getters.cart == null || store.getters.cart.sale_id != to.params[to.meta.getCart]){
+            store.dispatch('cart/getSaleCart', to.params[to.meta.getCart]);
+        }
+    }else{
+        store.commit('cart/RESET_CART');
+    }
     store.commit('app/setLoading', true);
     // determine whether the user has logged in
     const hasToken = getToken();
@@ -41,7 +51,6 @@ router.beforeEach(async(to, from, next) => {
                 attempt(to);
                 next();
             }
-
         }
     } else {
         if (to.meta.auth == true) {
@@ -53,9 +62,12 @@ router.beforeEach(async(to, from, next) => {
     }
 });
 
-router.afterEach(() => {
+router.afterEach((to) => {
     setTimeout(() => {
         store.commit('app/setLoading', false);
     }, 500)
+    if(to.meta.header_visible){
+        store.commit('navigation/SET_HEADER', {title: ''});
+    }else store.commit('navigation/RESET_HEADER');
 
 })

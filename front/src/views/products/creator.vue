@@ -81,7 +81,8 @@
                 if(this.product.id) var dispatch = 'products/editProduct';
                 else dispatch = 'products/saveProduct';
                 this.$store.dispatch(dispatch).then(response => {
-                    this.$emit('close');
+                    this.$emit('update', response);
+                    this.$store.commit('products/RESET_NEW_PRODUCT');
                     this.stopLoading();
                 }).catch(e => {
                     this.stopLoading();

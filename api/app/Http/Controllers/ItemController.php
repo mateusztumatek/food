@@ -12,21 +12,26 @@ use App\Services\ItemsService;
 class ItemController extends Controller
 {
     public function index(Request $request){
-        $items = Item::whereHas('place', function ($q){
-            $q->where('user_id', Auth::id());
+        $items = Item::whereHas('place', function ($q) use($request){
+            $q->where('user_id', $request->user_id);
         })->with('categories', 'tags', 'place')->where(function ($q)use($request){
             if($request->term){
                 $q->where('name', 'LIKE', '%'.$request->term.'%');
             }
-        });
+        })->filter();
 
         if($request->paginate){
             $items = $items->paginate(($request->per_page)? $request->per_page : 10);
         }else $items = $items->get();
         return response()->json($items);
     }
+    public function show(Request $request, $id){
+        $product = Item::find($id);
+        if(!$product) return response()->json(['message' => 'Brak produktu'], 404);
+        return response()->json($product);
+    }
     public function store(Request $request){
-        $request->request->set('user_id', Auth::id());
+        $request->request->set('user_id', $request->user('api')->id);
         if($request->place) $request->request->set('place_id', $request->place['id']);
         $request->request->set('active', true);
         $request->validate($this->validators($request));
@@ -36,7 +41,7 @@ class ItemController extends Controller
     public function update(Request $request, $id){
         $item = Item::find($id);
         if(!Auth::check() || $item->place->user_id != Auth::id()) return response()->json(['message' => 'You dont have permission'], 403);
-        $request->request->set('user_id', Auth::id());
+        $request->request->set('user_id',$request->user('api')->id);
         $this->Validate($request, $this->validators($request));
         $item->update($request->all());
         $item->tags()->delete();

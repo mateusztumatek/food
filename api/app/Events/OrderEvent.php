@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderEvent
+class OrderEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,9 +19,18 @@ class OrderEvent
      *
      * @return void
      */
-    public function __construct()
+    protected $sale_id;
+    public $order, $method;
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
+    public function __construct($order, $method)
     {
-        //
+        $this->order = $order;
+        $this->sale_id = $this->order->sale->id;
+        $this->method = 'order_'.$method;
     }
 
     /**
@@ -31,6 +40,11 @@ class OrderEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return [new Channel('SaleChannel.'.$this->sale_id),
+            new Channel('OrderChannel.'.$this->order->id)
+        ];
+    }
+    public function broadcastAs(){
+        return $this->method;
     }
 }

@@ -18,11 +18,30 @@ const sellout = {
             meta: {title: 'Zarządzaj sprzedażą', auth: true, attempting: true}
         },
         {
-            path: '/sellout/:id',
+            path: '/sellout/:id/settings',
             name: 'Manage sellout',
-            component: () => import('@/views/sellout/show'),
-            meta: {title: 'Sprzedaż'}
+            component: () => import('@/views/sellout/create'),
+            meta: {title: 'Edytuj sprzedaż', auth: true, attempting: true}
         },
+        {
+            path: '/sellout/:id',
+            name: 'Show Sellout',
+            component: () => import('@/views/sellout/show'),
+            meta: {title: 'Sprzedaż', header_visible: true, getCart: 'id'}
+        },
+        {
+            path: '/sellout/:sale/category/:category',
+            name: 'Show Sellout category',
+            component: () => import('@/views/sellout/category'),
+            meta: {title: 'Kategoria', header_visible: true, getCart: 'sale'}
+        },
+        {
+            path: '/sellout/:sale/process',
+            name: 'Process sellout cart',
+            component: () => import('@/views/sellout/process'),
+            meta: {title: 'Zamów', header_visible: true, getCart: 'sale'}
+        },
+
 
     ]
 }

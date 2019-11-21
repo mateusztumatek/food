@@ -19,7 +19,7 @@
                             :items="places"
                             item-text="name"
                             :item-value="(item) => {return item}"
-                            @input="updateProduct($event, 'place')"
+                            @input="updateProduct($event.id, 'place_id')"
                             :rules="placeRules"
                             label="Wybierz miejsce do którego chcesz przyporządkować produkt"
                             hide-details

@@ -1,6 +1,9 @@
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/'
+        : '/',
     pwa:{
-        workboxPluginMode: 'InjectManifest',
+        /*workboxPluginMode: 'InjectManifest',
         workboxOptions: {
             navigateFallback: '/index.html',
             runtimeCaching: [
@@ -17,6 +20,6 @@ module.exports = {
                     }
                 }
             ]
-        }
+        }*/
     }
 }

@@ -8,7 +8,7 @@ const sellout = {
         path: '/localization',
         name: 'Localization',
         component: () => import('@/views/localization/index'),
-        meta: {title: 'Localization', auth: true}
+        meta: {title: 'Localization'}
     },
     ]
 }

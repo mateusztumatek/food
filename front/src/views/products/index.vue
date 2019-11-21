@@ -4,7 +4,7 @@
             <v-col cols="12">
                 <v-text-field
                         v-model="term"
-                        @keydown="search()"
+                        @input="search()"
                         :loading="loading"
                         label="Szukaj produktu"
                 ></v-text-field>
@@ -56,10 +56,11 @@
                 </v-card>
             </v-col>
             <div class="w-100">
-                <infinite-loading @infinite="infiniteHandler" v-if="products.last_page > products.current_page"></infinite-loading>
+                <v-btn v-if="showMore == false" @click="showMore = true" class="w-100">Pokaż więcej</v-btn>
+                <infinite-loading  @infinite="infiniteHandler" v-if="products.last_page > products.current_page && showMore"></infinite-loading>
             </div>
         </v-row>
-        <createor-component v-on:close="creator = false" :visible="creator"></createor-component>
+        <createor-component v-on:close="creator = false" :visible="creator" @update="updateProduct"></createor-component>
     </div>
 </template>
 <script>
@@ -76,6 +77,7 @@
                 loading: false,
                 creator: false,
                 products: {current_page:0, data:[]},
+                showMore: false,
             }
         },
         computed:{
@@ -85,12 +87,25 @@
         mounted() {
             /*this.$store.dispatch('products/getProducts');*/
             this.getProducts(true);
+            if(this.$route.query.product_id){
+                getUserProducts(this.user.id, {id: this.$route.query.product_id}).then(response => {
+                    this.editItem(response[0]);
+                })
+            }
         },
         methods:{
+            updateProduct(product){
+                var index = this.products.data.findIndex(x => x.id == product.id);
+                if(index == -1){
+                    this.products.data.unshift(product);
+                }else{
+                    this.products.data[index] = product;
+                }
+                this.creator = false;
+            },
             search(){
               this.products.current_page = 0;
               this.products.last_page = 0;
-              console.log(this.products);
               this.getProducts();
             },
             infiniteHandler($state){
@@ -100,7 +115,7 @@
                     res.data.forEach((item) => {
                         this.products.data.push(item);
                     })
-
+                    this.showMore = false;
                     if(res.current_page == res.last_page) $state.complete();
                     else $state.loaded();
                 }).catch(e => {

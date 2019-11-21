@@ -47,9 +47,11 @@ const mutations = {
         }else{
             let obj = {};
             obj[data.prop] = data.value;
+            console.log(obj);
             state.new_product = {...state.new_product, ...obj};
         }
     },
+    RESET_NEW_PRODUCT: (state) => {state.new_product = {};},
     ADD_PRODUCT: (state, data) => {state.products.push(data)},
     SET_PRODUCTS: (state, data) => {state.products = data},
     UPDATE_PRODUCT:(state, data) => {

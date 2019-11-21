@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
+    use FilterTrait;
     protected $fillable = ['place_id', 'name', 'description', 'image', 'price', 'prepere_time', 'active'];
     public function getImageAttribute($image){
         if($image) return $image;

@@ -49,6 +49,13 @@
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
+  'lorisleiva/laravel-deployer' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Lorisleiva\\LaravelDeployer\\LaravelDeployerServiceProvider',
+    ),
+  ),
   'nesbot/carbon' => 
   array (
     'providers' => 

@@ -15,3 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify');
+Route::resource('cart', 'CartController');
+Route::post('/cart/{sale_id}', 'CartController@addItem');
+Route::post('/cart/{sale_id}/delete', 'CartController@deleteItem');
+Route::post('/cart/{sale_id}/update', 'CartController@updateItem');
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::put('/orders/{id}', 'OrderController@update');
+    Route::get('/orders/{sale_id}/sale', 'OrderController@getSelloutOrders');
+});
+Route::get('/orders/{hash}', 'OrderController@show');
+Route::resource('orders', 'OrderController');
+Route::post('orders/notify', 'OrderController@notify');

@@ -3,7 +3,8 @@ import router from '../../router';
 const state = {
     app:{
         loading: false,
-        errors: []
+        errors: [],
+        messages:[],
     }
 };
 
@@ -16,12 +17,17 @@ const mutations = {
     },
     CLOSE_ERROR: (state, error) => {
         state.app.errors.splice(_.findIndex(state.app.errors, ['text', error.text]), 1);
-    }
+    },
+    ADD_MESSAGE: (state, message) => {state.app.messages.unshift({text: message})},
+    RESET_MESSAGES: (state) => {state.app.messages = []}
 };
 
-
+const getters = {
+    messages: (state) => {return state.app.messages}
+}
 export default {
     namespaced: true,
     state,
+    getters,
     mutations,
 };

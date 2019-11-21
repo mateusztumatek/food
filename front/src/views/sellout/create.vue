@@ -55,6 +55,12 @@
                 </v-card>
             </v-col>
             <v-col md="4" cols="12">
+                <v-card class="mb-5" v-if="sellout.id">
+                    <v-card-title>Niebezpieczna strefa</v-card-title>
+                    <v-card-text @click="deleteSellout()">
+                        <v-btn min-height="60" class="w-100" color="red">Usuń sprzedaż</v-btn>
+                    </v-card-text>
+                </v-card>
                 <v-card style="position: sticky; top:50px">
                     <v-card-title>Wybierz miejsce</v-card-title>
                     <v-card-text>
@@ -116,7 +122,7 @@
 </template>
 <script>
     import {getCategories} from "../../api/categories";
-    import {storeSellout} from "../../api/sellout";
+    import {storeSellout, manageSellout, updateSellout, deleteSellout} from "../../api/sellout";
 
     export default {
         data(){
@@ -165,19 +171,56 @@
             }
         },
         mounted(){
-/*
-            this.getCategories();
-*/
+            if(this.$route.params && this.$route.params.id){
+                this.getSellout();
+            }
         },
         methods:{
+            deleteSellout(){
+                this.$confirm('Czy na pewno chcesz usunąć tą sprzedaż').then(res => {
+                    deleteSellout(this.sellout.id).then(response =>{
+                        this.$store.commit('app/ADD_MESSAGE', 'Udało się usunąć sprzedaż');
+                        this.$store.commit('sellout/DELETE_SELLOUT', this.sellout);
+                        this.$router.push('/');
+                    }).catch(e => {
+                        if(e.response.data.message){
+                            this.$store.commit('app/ADD_ERROR', {text: e.response.data.message});
+                        }
+                    })
+                })
+            },
+            getSellout(){
+                this.loading = true;
+                manageSellout(this.$route.params.id, this.params).then(response => {
+                    this.sellout = response;
+                    this.selected = response.items;
+                    this.getCategories();
+                    this.$store.commit('sellout/SET_ACTIVE_SELLOUT', response);
+                    this.loading = false;
+                }).catch(e => {
+                    this.$store.commit('app/ADD_ERROR', {text: e.response.data.message}, {root: true});
+                    this.$router.push('/');
+                    this.loading = false;
+                });
+
+            },
             save(){
-                console.log(this.$refs.sellout_form.validate());
                 if(this.$refs.sellout_form.validate()){
+                    if(!this.selectedPlace || !this.selectedPlace.lat){
+                        this.errors.push(['Brak wybranego miejsca']);
+                        return null;
+                    }
                     var place = {lat: this.selectedPlace.lat, lng: this.selectedPlace.lng, city: this.selectedPlace.city, street: this.selectedPlace.street, postal_code: this.selectedPlace.postal_code};
                     var obj = {...this.sellout, ...{products: this.selected}, ...place};
                     this.startLoading();
-                    storeSellout(obj).then(response => {
+                    if(!this.sellout.id){
+                        var func = storeSellout(obj);
+                    }else{
+                        var func = updateSellout(this.sellout.id, obj);
+                    }
+                    func.then(response => {
                         this.stopLoading();
+                        this.$store.dispatch('sellout/getSellouts');
                         this.$router.push('/sellout/'+response.id+'/manage');
                     }).catch(e => {
                         this.stopLoading();
@@ -199,7 +242,13 @@
                             item.temp_id = iterator;
                         })
                     }*/
+                    var temp = this.selected;
+                    this.selected = [];
                     this.categories = response;
+                    setTimeout(() => {
+                        this.selected = temp;
+                    },200)
+
                 }).catch(e => {
                     this.$store.commit('app/ADD_ERROR', {text: e.response.data.message});
                 })

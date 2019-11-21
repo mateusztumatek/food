@@ -74,6 +74,9 @@
         computed:{
             places(){
                 return this.$store.getters.places;
+            },
+            user(){
+                return this.$store.getters.user;
             }
         },
         watch:{
@@ -85,7 +88,7 @@
         },
         mounted(){
             this.loading = true;
-          this.$store.dispatch('places/getPlaces').then(res => {this.loading = false});
+          this.$store.dispatch('places/getPlaces', {user_id: this.user.id}).then(res => {this.loading = false});
         },
         methods:{
 

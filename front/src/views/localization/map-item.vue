@@ -55,6 +55,7 @@
         </span>
         <v-card-actions>
             <v-btn
+                    :to="'/sellout/'+item.id"
                     color="primary accent-4"
                     text>
                 Zobacz więcej

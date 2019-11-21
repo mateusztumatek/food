@@ -65,6 +65,7 @@
             loginUser(){
                 this.startLoading();
                 this.$store.dispatch('user/login', this.user).then(response => {
+                    this.$store.dispatch('order/getUserOrders');
                     this.$router.push({ path: this.redirect || '/' });
                     this.stopLoading();
                 }).catch(e => {

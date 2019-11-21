@@ -11,7 +11,7 @@
                         :zoom="10"
                         ref="map"
                         map-type-id="terrain"
-
+                        @click="closeWindow()"
                         style="width:100%;  height: 700px;"
                 >
                     <gmap-marker :icon="'/img/user.png'" :key="'user'" v-if="location" :position="{lng: parseFloat(location.lng), lat:parseFloat(location.lat)}">
@@ -105,6 +105,11 @@
           }
         },
         methods:{
+            closeWindow(){
+              if(this.selected != null){
+                  this.selected = null;
+              }
+            },
           getSales(withDistance = true){
               this.loading = true;
               var bounds = this.$refs.map.$mapObject.getBounds();
@@ -143,6 +148,16 @@
             width: 400px;
             overflow: auto !important;
 
+        }
+    }
+    @media screen and (max-width: 1200px){
+        .gm-style-iw{
+            max-width: 320px !important;
+            width: 320px;
+            .gm-style-iw-d{
+                max-width: 320px !important;
+                width: 320px !important;
+            }
         }
     }
 </style>

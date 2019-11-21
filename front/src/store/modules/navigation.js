@@ -2,6 +2,7 @@ import router from '../../router';
 import {is_mobile} from "../../utilis/helper";
 
 const state = {
+    header:null,
     sidebar: {
         opened: false,
         withoutAnimation: false,
@@ -12,6 +13,8 @@ const state = {
 };
 
 const mutations = {
+    SET_HEADER: (state, data) => {state.header = data},
+    RESET_HEADER: state => {state.header = null},
     TOGGLE_SIDEBAR: state => {
         state.sidebar.opened = !state.sidebar.opened;
     },

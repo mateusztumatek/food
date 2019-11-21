@@ -9,6 +9,12 @@ class Category extends Model
 {
     use FilterTrait;
     protected $fillable = ['place_id', 'name', 'active', 'image'];
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute(){
+        if($this->image) return $this->image;
+        return 'categories/default.png';
+    }
     public function place(){
         return $this->belongsTo('App\Place');
     }

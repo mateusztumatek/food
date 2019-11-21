@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => env('SESSION_DRIVER', 'database'),
 
     /*
     |--------------------------------------------------------------------------
@@ -194,6 +194,6 @@ return [
     |
     */
 
-    'same_site' => null,
+    'same_site' => 'strict',
 
 ];

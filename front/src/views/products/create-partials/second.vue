@@ -37,7 +37,7 @@
                 valid: false,
                 categoriesRules:[
                     v => !!v || 'Kategorie są wymagane',
-                    v => (v.length == 0)? 'Kategorie są wymagane' : true
+                    v => (!!v && v.length == 0)? 'Kategorie są wymagane' : true
                 ],
                 categories: [],
             }

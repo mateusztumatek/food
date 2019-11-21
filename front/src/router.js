@@ -11,6 +11,7 @@ import ProductRoutes from '@/routes/products.js'
 import CategoryRoutes from '@/routes/categories';
 import SelloutRoutes from '@/routes/sellout';
 import Localization from '@/routes/localization';
+import OrderRoutes from '@/routes/orders';
 export const my_routes =
   [
     {
@@ -21,14 +22,14 @@ export const my_routes =
         {
           path: '/',
           component: () => import('@/views/Home.vue'),
-          meta:{auth:true}
+          meta:{}
         },
       ],
     },
     {
       path: '/login',
       redirect: '',
-      component: LoginLayout,
+      component: Layout,
       children:[
         {
           path:'',
@@ -41,7 +42,7 @@ export const my_routes =
     {
       path: '/register',
       redirect: '',
-      component: LoginLayout,
+      component: Layout,
       children:[
         {
           path:'',
@@ -112,6 +113,7 @@ export const my_routes =
     CategoryRoutes,
     SelloutRoutes,
     Localization,
+      OrderRoutes,
     {
       path: '*',
       name: '404',

@@ -5,6 +5,7 @@ import store from '../store';
 const service = axios.create({
     baseURL: process.env.MIX_BASE_API,
     timeout: 10000, // Request timeout
+    withCredentials: true
 });
 
 // Request intercepter

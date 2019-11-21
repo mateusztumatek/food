@@ -7,6 +7,7 @@ use App\Traits\BoundsFilter;
 use App\Traits\FilterTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
 class Sale extends Place
@@ -18,6 +19,17 @@ class Sale extends Place
 
     public function getImageAttribute(){
         return $this->place->image;
+    }
+    public function categories(){
+        $items = $this->items;
+        $categories = collect();
+        foreach ($items as $item){
+            foreach ($item->categories as $category){
+                $categories->push($category);
+            }
+        }
+        $categories = $categories->unique('id');
+        $this->setAttribute('categories', $categories);
     }
     public function getDistanceAttribute(){
         if(request()->withDistance && request()->user_lat && request()->user_lng){
@@ -32,5 +44,16 @@ class Sale extends Place
     }
     public function items(){
         return $this->belongsToMany('App\Item', 'sale_items', 'sale_id', 'item_id');
+    }
+    public function orders(){
+        return $this->hasMany('App\Order')->with('OrderItems');
+    }
+    public function delete()
+    {
+        DB::table('sale_items')->where('sale_id', $this->id)->delete();
+        $this->orders()->where('status', 'new')->update([
+            'status' => 'canceled'
+        ]);
+        return parent::delete();
     }
 }

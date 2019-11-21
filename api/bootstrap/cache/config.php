@@ -5,7 +5,7 @@
     'front_url' => 'http://localhost:8080',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost',
+    'url' => 'http://192.168.1.4:8080',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
@@ -102,7 +102,6 @@
       array (
         'driver' => 'passport',
         'provider' => 'users',
-        'hash' => false,
       ),
     ),
     'providers' => 
@@ -331,6 +330,62 @@
       ),
     ),
   ),
+  'deploy' => 
+  array (
+    'default' => 'basic',
+    'strategies' => 
+    array (
+    ),
+    'hooks' => 
+    array (
+      'start' => 
+      array (
+      ),
+      'build' => 
+      array (
+      ),
+      'ready' => 
+      array (
+        0 => 'artisan:storage:link',
+        1 => 'artisan:view:clear',
+        2 => 'artisan:cache:clear',
+        3 => 'artisan:config:cache',
+        4 => 'artisan:migrate',
+      ),
+      'done' => 
+      array (
+      ),
+      'success' => 
+      array (
+      ),
+      'fail' => 
+      array (
+      ),
+    ),
+    'options' => 
+    array (
+      'local_deploy_path' => 'Users/Mateusz/Deploy',
+      'application' => 'App',
+      'repository' => 'https://github.com/mateusztumatek/food',
+    ),
+    'hosts' => 
+    array (
+      'yaxint.nazwa.pl' => 
+      array (
+        'deploy_path' => '/home/yaxint/ftp/food/api',
+        'user' => 'yaxint',
+        'identityFile' => '\\Users\\Mateusz\\.ssh\\id_rsa',
+      ),
+    ),
+    'localhost' => 
+    array (
+      'deploy_path' => '/Users/Mateusz/Deploy',
+    ),
+    'include' => 
+    array (
+    ),
+    'custom_deployer_file' => false,
+  ),
   'filesystems' => 
   array (
     'default' => 'public',
@@ -346,7 +401,7 @@
       array (
         'driver' => 'local',
         'root' => 'C:\\xampp\\htdocs\\app\\api\\storage\\app/public',
-        'url' => 'http://localhost/storage',
+        'url' => 'http://192.168.1.4:8080/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -466,6 +521,14 @@
     ),
     'log_channel' => NULL,
   ),
+  'payu' => 
+  array (
+    'env' => 'sandbox',
+    'pos_id' => '368603',
+    'md5' => 'e64c47ceceaa895f4f007f916937a22c',
+    'client_id' => '368603',
+    'client_secret' => 'd65cb5bac1d82507bb4c2f004fc55ab2',
+  ),
   'queue' => 
   array (
     'default' => 'sync',
@@ -537,7 +600,7 @@
   'session' => 
   array (
     'driver' => 'file',
-    'lifetime' => '120',
+    'lifetime' => '140',
     'expire_on_close' => false,
     'encrypt' => false,
     'files' => 'C:\\xampp\\htdocs\\app\\api\\storage\\framework/sessions',
@@ -554,7 +617,7 @@
     'domain' => NULL,
     'secure' => false,
     'http_only' => true,
-    'same_site' => NULL,
+    'same_site' => 'strict',
   ),
   'view' => 
   array (

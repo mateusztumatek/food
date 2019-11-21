@@ -3,15 +3,14 @@
         <v-bottom-navigation
                 app
                 grow
-                v-model="activeBtn"
                 color="primary"
         >
-            <v-btn>
+            <v-btn :to="'/sellout/'+activeSellout.id+'/manage'">
                 <span>Zamówienia</span>
                 <v-icon>mdi-cart</v-icon>
             </v-btn>
 
-            <v-btn>
+            <v-btn :to="/sellout/+activeSellout.id+'/settings'">
                 <span>Ustawienia</span>
                 <v-icon>mdi-settings</v-icon>
             </v-btn>

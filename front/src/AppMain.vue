@@ -3,7 +3,8 @@
         <my-leftbar :open="open_leftbar"></my-leftbar>
         <my-topbar></my-topbar>
         <v-content>
-            <v-container class="fill-height">
+            <my-header v-if="header"></my-header>
+            <v-container style="align-items: start">
                 <div class="my-container">
                     <transition name="fade" mode="out-in">
                         <router-view :key="key" />
@@ -20,22 +21,30 @@
                 <div class="square"></div>
             </div>
         </div>
+        <ProductView></ProductView>
+        <cart-component></cart-component>
         <errors-component></errors-component>
     </v-app>
 </template>
 
 <script>
-    import myHeader from './views/layout/left-bar';
+    import myHeader from './views/layout/header';
+    import myLeftBar from './views/layout/left-bar';
     import myTopbar from './views/layout/topbar-component';
     import ErrorsComponent from './components/errors';
     import myFooter from './views/layout/footer';
+    import ProductView from './views/products/show';
+    import CartComponent from './views/cart/index';
     export default {
         name: 'App',
         components:{
-            myLeftbar: myHeader,
+            myLeftbar: myLeftBar ,
             myTopbar: myTopbar,
             ErrorsComponent,
-            myFooter
+            myFooter,
+            myHeader,
+            ProductView,
+            CartComponent
         },
         computed: {
             app(){
@@ -44,6 +53,9 @@
             key() {
                 return this.$route.fullPath;
             },
+            header(){
+                return this.$store.getters.header;
+            }
         },
         mounted(){
             this.$root.$eventBus.$on('left_bar', () => {
@@ -59,3 +71,12 @@
         }
     };
 </script>
+<style lang="scss">
+    @media screen and (max-width: 1200px){
+        .my-container{
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+</style>

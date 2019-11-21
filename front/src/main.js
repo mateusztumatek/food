@@ -54,7 +54,7 @@ Vue.mixin({
       setTimeout(() => {
         this.$store.commit('app/setLoading', false);
       }, 1000);
-    }
+    },
   }
 })
 

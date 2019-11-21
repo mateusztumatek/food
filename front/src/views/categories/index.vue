@@ -117,6 +117,7 @@
                 this.categories[index] = item;
             },
             storedItem(item){
+                console.log('ITEM', item);
               this.categories.push(item);
             },
             deleteSelected(){
@@ -126,6 +127,7 @@
                 });
                 deleteMassive({ids: ids}).then(response => {
                     this.getCategories();
+                    this.selected = [];
                     this.stopLoading();
                 }).catch(e => {
                     this.$store.commit('app/ADD_ERROR', {text: e.response.data.message});
