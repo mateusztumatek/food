@@ -12,6 +12,7 @@ import CategoryRoutes from '@/routes/categories';
 import SelloutRoutes from '@/routes/sellout';
 import Localization from '@/routes/localization';
 import OrderRoutes from '@/routes/orders';
+import Qrs from '@/routes/qrs';
 export const my_routes =
   [
     {
@@ -96,24 +97,14 @@ export const my_routes =
       }
       ]
     },
-    {
-      path: '/qr',
-      name: 'qr',
-      component: Layout,
-      children:[
-        {
-          path: '/',
-          component: () => import('@/views/qr/index'),
-          meta: {title: 'Skanuj kod QR'}
-        }
-      ]
-    },
+
     StoreRoutes,
     ProductRoutes,
     CategoryRoutes,
     SelloutRoutes,
     Localization,
       OrderRoutes,
+      Qrs,
     {
       path: '*',
       name: '404',

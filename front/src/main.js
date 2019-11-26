@@ -14,6 +14,8 @@ import './registerServiceWorker'
 import * as VueGoogleMaps from "vue2-google-maps";
 import secrete from './secrete';
 import prototypes from './prototypes';
+import VueQRCodeComponent from 'vue-qr-generator'
+Vue.component('qr-code', VueQRCodeComponent);
 Vue.use(prototypes);
 Vue.use(InfiniteLoading, { /* options */ });
 
@@ -62,7 +64,13 @@ new Vue({
   store,
   router,
   vuetify,
+  data(){
+    return{
+      base_url: null
+    }
+  },
   mounted(){
+    this.base_url = config.config.base_url;
   },
   methods:{
     isMobile(){

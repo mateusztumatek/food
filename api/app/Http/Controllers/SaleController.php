@@ -7,12 +7,16 @@ use App\Events\SaleChange;
 use App\Item;
 use App\Place;
 use App\Sale;
+use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Intervention\Image\Image;
+use LaravelQRCode\Facades\QRCode;
+use QR_Code\QR_Code;
 
 class SaleController extends Controller
 {
@@ -137,5 +141,28 @@ class SaleController extends Controller
         if(count($sale->orders()->where('paid', 0)->where('created_at', '>=', Carbon::now()->subDays(2))->get()) > 0) return response()->json(['message' => 'Nie możesz usunąć sprzedaży gdy są w niej niezrealizowane, nieopłacone zamówienia które zostały złożone nie dawniej niż 2 dni temu'], 400);
         $sale->delete();
         return response()->json(true);
+    }
+    public function qr(Request $request, $id){
+        $sale = Sale::find($id);
+        if(!$sale) return response()->json(['message' => 'Nie ma takiej sprzedaży'], 400);
+        if(!file_exists(storage_path('/app/public/qrs'))) mkdir(storage_path('/app/public/qrs'));
+        \QrCode::size(600)
+            ->format('png')
+            ->generate($sale->url, storage_path('app/public/qrs/'.$sale->id.'.png'));
+        return \Intervention\Image\Facades\Image::make(storage_path('/app/public/qrs/'.$sale->id.'.png'))->resize(600, 600)->response('png');
+    }
+    public function pdf(Request $request, $id){
+        $sale = Sale::find($id);
+        if(!$sale) return response()->json(['message' => 'Nie ma takiej sprzedaży'], 400);
+        if(!file_exists(storage_path('/app/public/sellout/pdf'))){
+            mkdir(storage_path('/app/public/sellout'));
+            mkdir(storage_path('/app/public/sellout/pdf'));
+        }
+        PDF::setOptions(['dpi' => 150, 'debugLayoutPaddingBox' => true, 'defaultFont' => 'Arial']);
+        $this->qr($request, $id);
+        /*return view('pdfs.pdf', compact('sale'));*/
+        $pdf = PDF::loadView('pdfs.pdf', ['sale' => $sale]);
+        return $pdf->download('pdf.pdf');
+        return \Intervention\Image\Facades\Image::make(storage_path('/app/public/qrs/'.$sale->id.'.png'))->resize(600, 600)->response('png');
     }
 }

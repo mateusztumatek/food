@@ -176,6 +176,8 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
+
 
     ],
 
@@ -228,6 +230,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Pusher' => Pusher\Pusher::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+
 
 
     ],
