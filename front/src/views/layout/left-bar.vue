@@ -70,6 +70,7 @@
                     {type: 'subtitle', text: 'Manage your shop', visible: true, hasPlace: true},
                     { icon: 'mdi-alarm-check', text: 'Twoje miejsca', to:'/place', visible: true, hasPlace: true},
                     { icon: 'mdi-package-variant-closed', text: 'Produkty', to:'/products', visible: true, hasPlace:true},
+                    { icon: 'mdi-qrcode', text: 'Generuj kody QR', to:'/generate_qr', visible: true, hasPlace:true},
                     { icon: 'favorite', text: 'Kategorie', to:'/categories', visible: true, hasPlace: true},
                     { icon: 'favorite', text: 'Kategorie2', to:'/cateories', visible: true, hasPlace: true,
                         items:[

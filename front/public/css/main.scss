@@ -68,6 +68,13 @@
   margin: auto;
   max-width: 85%;
 }
+
+@media screen and (max-width: 1800px) {
+  .my-container{
+    width: 95%;
+    max-width: 95%;
+  }
+}
 .empty-state{
   width: 100%;
   min-height: 600px;

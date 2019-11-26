@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Item;
+use App\Place;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,7 +80,8 @@ class ItemController extends Controller
         return [
             'place_id' => 'required|exists:places,id',
             'user_id' => ['required', function($field, $data, $fail)use($request){
-                if($data != $request->place['user_id']) $fail('Nie masz uprawnień');
+                $place = Place::find($request->place_id);
+                if($data != $place->user_id) $fail('Nie masz uprawnień');
             }],
             'name' => 'required',
             'image' => ['required', function($field, $data, $fail){

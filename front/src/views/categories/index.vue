@@ -117,8 +117,8 @@
                 this.categories[index] = item;
             },
             storedItem(item){
-                console.log('ITEM', item);
               this.categories.push(item);
+              if(this.categories.length == 1) this.getCategories();
             },
             deleteSelected(){
                 this.startLoading();

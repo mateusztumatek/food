@@ -15,8 +15,11 @@ class Sale extends Place
     use FilterTrait;
     use BoundsFilter;
     protected $fillable = ['hour_from', 'hour_to', 'place_id', 'payment_type', 'archivize', 'last_attempt', 'hash', 'expected_time', 'city', 'street', 'lng', 'lat', 'postal_code', 'name'];
-    public $appends = ['is_attempted', 'distance', 'image'];
+    public $appends = ['is_attempted', 'distance', 'image', 'url'];
 
+    public function getUrlAttribute(){
+        return url('/sellout/'.$this->id);
+    }
     public function getImageAttribute(){
         return $this->place->image;
     }

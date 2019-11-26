@@ -6,6 +6,17 @@
       0 => 'Barryvdh\\Cors\\ServiceProvider',
     ),
   ),
+  'barryvdh/laravel-dompdf' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Barryvdh\\DomPDF\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'PDF' => 'Barryvdh\\DomPDF\\Facade',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
@@ -68,6 +79,28 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'simplesoftwareio/simple-qrcode' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'QrCode' => 'SimpleSoftwareIO\\QrCode\\Facades\\QrCode',
+    ),
+  ),
+  'werneckbh/laravel-qr-code' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LaravelQRCode\\Providers\\QRCodeServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'QRCode' => 'LaravelQRCode\\Facades\\QRCode',
     ),
   ),
 );

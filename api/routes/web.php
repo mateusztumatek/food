@@ -26,3 +26,5 @@ Route::group(['middleware' => ['auth:api']], function () {
 Route::get('/orders/{hash}', 'OrderController@show');
 Route::resource('orders', 'OrderController');
 Route::post('orders/notify', 'OrderController@notify');
+Route::get('sellout/{id}/qr', 'SaleController@qr');
+Route::get('sellout/{id}/pdf', 'SaleController@pdf');
