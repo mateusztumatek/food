@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Order;
+use App\Place;
 use App\Sale;
 use App\Services\PayuPayment;
 use Carbon\Carbon;
@@ -27,9 +28,11 @@ class OrderController extends Controller
         ]);
         $cart = Cart::getCartBySaleId($request->sale_id, $request);
         $local_id = Order::getNextId($request->sale_id);
+        $sale = Sale::find($request->sale_id);
         $order = Order::create([
             'user_id' => ($request->user('api'))? $request->user('api')->id : null,
             'sale_id' => $request->sale_id,
+            'place_id' => $sale->place->id,
             'amount' => $cart->price,
             'comment' => $request->comment,
             'payment_type' => $request->payment_type,
@@ -62,7 +65,12 @@ class OrderController extends Controller
         Session::put('orders', $session_orders);
         if($order->payment_type == 'payu'){
             $payu_service = new PayuPayment();
-            $return = $payu_service->makePayment($order);
+            try{
+                $return = $payu_service->makePayment($order);
+            }catch(\Exception $e){
+                return response()->json(['message' => 'Nie udało się utworzyc płatności online. Zapłać przy kasie', 'order' => $order], 400);
+            }
+
             return response()->json($return);
         }
 
@@ -97,7 +105,25 @@ class OrderController extends Controller
         $orders = $orders->with('OrderItems')->get();
         return response()->json($orders);
     }
+    public function getUserCustomersOrders(Request $request){
+        /*$place = Place::find($place_id);
+        if(!$place) return response()->json(['errors' => 'Nie znaleziono miejsca'], 400);*/
+        if(!$request->user('api')->id) return response()->json(['errors' => 'Nie masz uprawnień'], 403);
+        $places = Place::where('user_id', $request->user('api')->id)->get();
+        $orders = Order::where(function ($q)use($places){
+            foreach ($places as $place){
+                $q->orWhere('place_id', $place->id);
+            }
+        })->with('sale', 'place', 'orderItems');
+        $orders = $orders->orderBy('created_at', 'desc');
+        $orders = $orders->paginate(($request->perPage)? $request->perPage : 10);
+        foreach ($orders as $o){
+        }
+        return response()->json($orders);
+
+    }
     public function notify(Request $request){
         Log::info(print_r($request->all(), true));
     }
+
 }

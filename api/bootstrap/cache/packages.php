@@ -92,15 +92,4 @@
       'QrCode' => 'SimpleSoftwareIO\\QrCode\\Facades\\QrCode',
     ),
   ),
-  'werneckbh/laravel-qr-code' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'LaravelQRCode\\Providers\\QRCodeServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'QRCode' => 'LaravelQRCode\\Facades\\QRCode',
-    ),
-  ),
 );

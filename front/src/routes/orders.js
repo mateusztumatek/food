@@ -10,7 +10,12 @@ const orders = {
         component: () => import('@/views/orders/show'),
         meta: {title: 'Order'}
     },
-
+        {
+            path: '/orders',
+            name: 'Orders',
+            component: () => import('@/views/orders/shop_orders'),
+            meta: {title: 'Shop orders', auth: true}
+        }
     ]
 };
 export default orders;

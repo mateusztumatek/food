@@ -27,7 +27,7 @@ class ItemController extends Controller
         return response()->json($items);
     }
     public function show(Request $request, $id){
-        $product = Item::find($id);
+        $product = Item::with('tags')->find($id);
         if(!$product) return response()->json(['message' => 'Brak produktu'], 404);
         return response()->json($product);
     }

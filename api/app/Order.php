@@ -8,15 +8,21 @@ use Illuminate\Support\Facades\Session;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'sale_id', 'payment_link', 'payment_date', 'local_id', 'amount', 'comment', 'payment_type', 'paid', 'status', 'time', 'name', 'email', 'hash'];
+    protected $fillable = ['user_id', 'sale_id', 'place_id', 'payment_link', 'payment_date', 'local_id', 'amount', 'comment', 'payment_type', 'paid', 'status', 'time', 'name', 'email', 'hash'];
+   /* public $appends = ['items_count'];
 
+    public function getItemsCountAttribute(){
+        return $this->OrderItems()->count();
+    }*/
     public function OrderItems(){
         return $this->hasMany('App\OrderItem')->with('item');
     }
     public function sale(){
-        return $this->belongsTo('App\Sale')->with('place');
+        return $this->belongsTo('App\Sale');
     }
-
+    public function place(){
+        return $this->belongsTo('App\Place');
+    }
     public function checkPermission(){
         if($this->user_id){
             if(request()->user('api') && request()->user('api')->id == $this->user_id) return true;

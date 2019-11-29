@@ -23,6 +23,7 @@
     "vue-axios": "^2.1.4",
     "vue-infinite-loading": "^2.4.4",
     "vue-qr-generator": "^3.0.1",
+    "vue-qrcode-reader": "^2.1.1",
     "vue-router": "^3.0.3",
     "vue-upload-image": "^1.1.5",
     "vue2-google-maps": "^0.10.7",

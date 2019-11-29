@@ -22,6 +22,8 @@ Route::post('/cart/{sale_id}/update', 'CartController@updateItem');
 Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/orders/{id}', 'OrderController@update');
     Route::get('/orders/{sale_id}/sale', 'OrderController@getSelloutOrders');
+    Route::get('/orders/customers', 'OrderController@getUserCustomersOrders');
+
 });
 Route::get('/orders/{hash}', 'OrderController@show');
 Route::resource('orders', 'OrderController');

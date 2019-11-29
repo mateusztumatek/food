@@ -77,7 +77,6 @@ const actions = {
                     state.userOrders = response;
                 }
                 state.order_sync = true;
-                console.log('ORDERS', state.userOrders);
                 for(var i in state.userOrders){
                     if(i.paid){
                         getOrderPercentage(i);
@@ -111,7 +110,9 @@ const actions = {
             storeOrder(order).then(response => {
                 resolve(response);
             }).catch(e => {
-                store.commit('app/ADD_ERROR', {text: 'Nie udało się utworzyć zamówienia'}, {root: true});
+                if(e.response.data.message){
+                    store.commit('app/ADD_ERROR', {text: e.response.data.message}, {root: true});
+                }
                 reject(e);
             })
         })

@@ -11,7 +11,7 @@
                 <div class="py-3">
                     <v-list three-line subheader>
                         <v-list-item class="text-center justify-center">
-                            <v-avatar size="300">
+                            <v-avatar size="300" tile>
                                 <img
                                         style="object-fit: cover"
                                         :src="getSrc(product.image)"
@@ -24,6 +24,9 @@
                                 <v-list-item-title class="display-1">{{product.price | currency()}} zł</v-list-item-title>
                                 <v-list-item-title>{{product.name}}</v-list-item-title>
                                 <v-list-item-subtitle>{{product.description}}</v-list-item-subtitle>
+                                <div class="mt-2">
+                                    <v-chip class="mr-2" color="primary" v-for="tag in product.tags">{{tag.tag}}</v-chip>
+                                </div>
                             </v-list-item-content>
                         </v-list-item>
                         <v-list-item>

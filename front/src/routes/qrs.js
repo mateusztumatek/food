@@ -12,15 +12,8 @@ const qrs = {
     },
         {
             path: '/qr',
-            name: 'qr',
-            component: Layout,
-            children:[
-                {
-                    path: '/',
-                    component: () => import('@/views/qr/index'),
-                    meta: {title: 'Skanuj kod QR'}
-                }
-            ]
+            component: () => import('@/views/qr/index'),
+            meta: {title: 'Skanuj kod QR'}
         },
     ]
 };

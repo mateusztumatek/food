@@ -35,3 +35,10 @@ export function getSelloutOrders(sale_id, params) {
         params: params
     })
 }
+export function getCustomersOrders(params) {
+    return Request({
+        url: config.config.base_url + '/orders/customers',
+        method: 'get',
+        params: params
+    })
+}

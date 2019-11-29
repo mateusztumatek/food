@@ -15,7 +15,7 @@ class CustomServeCommand extends ServeCommand
     protected function getOptions()
     {
         return [
-            ['host', null, InputOption::VALUE_OPTIONAL, 'The host address to serve the application on.', '192.168.0.10'],//default 127.0.0.1
+            ['host', null, InputOption::VALUE_OPTIONAL, 'The host address to serve the application on.', '192.168.1.4'],//default 127.0.0.1
             ['port', null, InputOption::VALUE_OPTIONAL, 'The port to serve the application on.', 9000],
         ];
     }

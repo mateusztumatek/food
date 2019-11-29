@@ -126,6 +126,9 @@
                     if(e.response.data.errors){
                         this.errors = e.response.data.errors;
                     }
+                    if(e.response.data.order){
+                        this.$router.push('/orders/'+e.response.data.order.hash);
+                    }
                     this.loading = false;
                 })
             }

@@ -15,6 +15,9 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import secrete from './secrete';
 import prototypes from './prototypes';
 import VueQRCodeComponent from 'vue-qr-generator'
+import VueQrcodeReader from "vue-qrcode-reader";
+Vue.use(VueQrcodeReader);
+
 Vue.component('qr-code', VueQRCodeComponent);
 Vue.use(prototypes);
 Vue.use(InfiniteLoading, { /* options */ });
