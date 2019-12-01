@@ -60,6 +60,11 @@ Vue.mixin({
         this.$store.commit('app/setLoading', false);
       }, 1000);
     },
+    getStatusColor(status){
+      if(status == 'new') return 'primary'
+      if(status == 'completed') return 'green';
+      if(status == 'canceled') return 'red';
+    }
   }
 })
 

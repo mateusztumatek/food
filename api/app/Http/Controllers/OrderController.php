@@ -115,6 +115,10 @@ class OrderController extends Controller
                 $q->orWhere('place_id', $place->id);
             }
         })->with('sale', 'place', 'orderItems');
+        if($request->amount_from) $orders = $orders->where('amount', '>=', $request->amount_from);
+        if($request->amount_to) $orders = $orders->where('amount', '<=', $request->amount_to);
+        if($request->date_from) $orders = $orders->where('created_at', '>=', Carbon::parse($request->date_from));
+        if($request->date_to) $orders = $orders->where('created_at', '<=', Carbon::parse($request->date_to));
         $orders = $orders->orderBy('created_at', 'desc');
         $orders = $orders->paginate(($request->perPage)? $request->perPage : 10);
         foreach ($orders as $o){

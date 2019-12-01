@@ -1,17 +1,17 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'App',
+    'name' => 'Laravel',
     'front_url' => 'http://localhost:8080',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://192.168.1.4:8080',
+    'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:f4q2uwW7FCUX9F/Xob+sVVkPfBdewvrlI3uB8UCHdJQ=',
+    'key' => 'base64:cEZOL4eQxX2bAamBIm1JgYXRzSXN20g0X5PvoszEP7k=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -126,18 +126,18 @@
   ),
   'broadcasting' => 
   array (
-    'default' => 'pusher',
+    'default' => 'log',
     'connections' => 
     array (
       'pusher' => 
       array (
         'driver' => 'pusher',
-        'key' => '8f99b0d8f31dc1b8d36c',
-        'secret' => '1259b856c1fcd93ad01d',
-        'app_id' => '893332',
+        'key' => '',
+        'secret' => '',
+        'app_id' => '',
         'options' => 
         array (
-          'cluster' => 'eu',
+          'cluster' => 'mt1',
           'useTLS' => true,
         ),
       ),
@@ -217,7 +217,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'app_cache',
+    'prefix' => 'laravel_cache',
   ),
   'cors' => 
   array (
@@ -252,7 +252,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'app',
+        'database' => 'food',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -260,9 +260,9 @@
       array (
         'driver' => 'mysql',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
-        'database' => 'app',
+        'database' => 'food',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -280,9 +280,9 @@
       array (
         'driver' => 'pgsql',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
-        'database' => 'app',
+        'database' => 'food',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -295,9 +295,9 @@
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
-        'database' => 'app',
+        'database' => 'food',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -312,7 +312,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'app_database_',
+        'prefix' => 'laravel_database_',
       ),
       'default' => 
       array (
@@ -367,7 +367,7 @@
     'options' => 
     array (
       'local_deploy_path' => 'Users/Mateusz/Deploy',
-      'application' => 'App',
+      'application' => 'Laravel',
       'repository' => 'https://github.com/mateusztumatek/food',
     ),
     'hosts' => 
@@ -388,6 +388,29 @@
     ),
     'custom_deployer_file' => false,
   ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'orientation' => 'portrait',
+    'defines' => 
+    array (
+      'font_dir' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
+      'font_cache' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
+      'temp_dir' => 'C:\\Users\\Klusek\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\xampp\\htdocs\\app\\api',
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => true,
+      'font_height_ratio' => 1,
+      'enable_html5_parser' => false,
+    ),
+  ),
   'filesystems' => 
   array (
     'default' => 'public',
@@ -403,7 +426,7 @@
       array (
         'driver' => 'local',
         'root' => 'C:\\xampp\\htdocs\\app\\api\\storage\\app/public',
-        'url' => 'http://192.168.1.4:8080/storage',
+        'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -526,10 +549,10 @@
   'payu' => 
   array (
     'env' => 'sandbox',
-    'pos_id' => '368603',
-    'md5' => 'e64c47ceceaa895f4f007f916937a22c',
-    'client_id' => '368603',
-    'client_secret' => 'd65cb5bac1d82507bb4c2f004fc55ab2',
+    'pos_id' => NULL,
+    'md5' => NULL,
+    'client_id' => NULL,
+    'client_secret' => NULL,
   ),
   'queue' => 
   array (
@@ -602,7 +625,7 @@
   'session' => 
   array (
     'driver' => 'file',
-    'lifetime' => '140',
+    'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
     'files' => 'C:\\xampp\\htdocs\\app\\api\\storage\\framework/sessions',
@@ -614,7 +637,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'app_session',
+    'cookie' => 'laravel_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => false,
@@ -628,29 +651,6 @@
       0 => 'C:\\xampp\\htdocs\\app\\api\\resources\\views',
     ),
     'compiled' => 'C:\\xampp\\htdocs\\app\\api\\storage\\framework\\views',
-  ),
-  'dompdf' => 
-  array (
-    'show_warnings' => false,
-    'orientation' => 'portrait',
-    'defines' => 
-    array (
-      'font_dir' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
-      'font_cache' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
-      'temp_dir' => 'C:\\Users\\Mateusz\\AppData\\Local\\Temp',
-      'chroot' => 'C:\\xampp\\htdocs\\app\\api',
-      'enable_font_subsetting' => false,
-      'pdf_backend' => 'CPDF',
-      'default_media_type' => 'screen',
-      'default_paper_size' => 'a4',
-      'default_font' => 'serif',
-      'dpi' => 96,
-      'enable_php' => false,
-      'enable_javascript' => true,
-      'enable_remote' => true,
-      'font_height_ratio' => 1.1,
-      'enable_html5_parser' => false,
-    ),
   ),
   'flare' => 
   array (

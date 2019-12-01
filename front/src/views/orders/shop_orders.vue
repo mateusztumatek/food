@@ -7,18 +7,25 @@
                 :items="orders.data"
                 :expanded.sync="expanded"
                 show-expand
+                :loading="loading"
                 item-key="id"
                 show-select
                 class="elevation-1"
         >
             <template v-slot:top>
-                <table-header @change="(event) => {this.params = event}"></table-header>
+                <table-header @change="updateParams"></table-header>
             </template>
             <template v-slot:item.amount="{item}">
                 <span>{{item.amount | currency()}} PLN</span>
             </template>
             <template v-slot:item.items_count="{item}">
                 <span>{{item.order_items.length}}</span>
+            </template>
+            <template v-slot:item.paid="{item}">
+                <v-chip :color="(item.paid)? 'green' : 'red'"><span v-if="item.paid">Tak</span><span v-else>Nie</span></v-chip>
+            </template>
+            <template v-slot:item.status="{item}">
+                <span><v-chip :color="getStatusColor(item.status)">{{item.status}}</v-chip></span>
             </template>
             <template v-slot:expanded-item="{ item }">
                 <td :colspan="7">
@@ -46,6 +53,17 @@
                 </td>
             </template>
         </v-data-table>
+        <div class="row mx-0" v-if="selected && selected.length > 0">
+            <div class="col-md-12">
+                <v-select v-model="update.status" :items="['new', 'canceled', 'complete']" label="Status zamówień"></v-select>
+            </div>
+            <div class="col-md-12">
+                <v-switch v-model="update.paid" label="Opłacone"></v-switch>
+            </div>
+            <div clas="col-md-12">
+                <v-btn @click="updateOrders()" width="100%" color="primary">Zapisz</v-btn>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -55,10 +73,12 @@
         components:{TableHeader},
         data(){
             return{
+                loading: false,
                 params:{},
                 selected: [],
                 orders: null,
                 expanded: [],
+                update:{},
                 headers: [
                     {
                         text: 'ID',
@@ -70,6 +90,8 @@
                     { text: 'Sprzedaż', value: 'sale.name' },
                     { text: 'Koszt zamówienia', value: 'amount' },
                     { text: 'Pozycji w zamówieniu', value: 'items_count'},
+                    { text: 'Opłacone', value: 'paid'},
+                    { text: 'Status', value: 'status'},
                     { text: '', value: 'data-table-expand' },
 
                     /*{ text: 'Iron (%)', value: 'iron' },*/
@@ -81,9 +103,18 @@
         },
         methods:{
             getOrders(){
-                getCustomersOrders().then(response => {this.orders = response}).catch(e => {
+                this.loading = true;
+                getCustomersOrders(this.params).then(response => {this.orders = response; this.loading = false}).catch(e => {
+                    this.loading = false;
                     this.$store.commit('app/ADD_ERROR', {text: e.response.data.message});
                 })
+            },
+            updateOrders(){
+                
+            },
+            updateParams(params){
+                this.params = params;
+                this.getOrders();
             }
         }
     }
