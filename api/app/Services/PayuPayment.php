@@ -24,7 +24,7 @@ class PayuPayment{
         $order['merchantPosId'] = OpenPayU_Configuration::getMerchantPosId();
         $order['description'] = 'Zamówienie nr '.$ord->id;
         $order['currencyCode'] = 'PLN';
-        $order['totalAmount'] = $ord->amount;
+        $order['totalAmount'] = $ord->amount * 100;
         $order['extOrderId'] = $ord->id;
         foreach ($ord->OrderItems as $key => $item){
             $order['products'][$key]['name'] = $item->item->name;

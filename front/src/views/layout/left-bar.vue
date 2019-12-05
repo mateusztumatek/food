@@ -73,6 +73,9 @@
                     { icon: 'mdi-qrcode', text: 'Generuj kody QR', to:'/generate_qr', visible: true, hasPlace:true},
                     { icon: 'favorite', text: 'Kategorie', to:'/categories', visible: true, hasPlace: true},
                     { icon: 'mdi-cart', text: 'Zamówienia', to:'/orders', visible: true, hasPlace: true},
+                    { icon: 'mdi-chart-areaspline-variant', text: 'Statystyki', to:'/stats', visible: true, hasPlace: true},
+                    { icon: 'mdi-sale', text: 'Kody zniżkowe', to:'/codes', visible: true, hasPlace: true},
+
                     /*{ icon: 'favorite', text: 'Kategorie2', to:'/cateories', visible: true, hasPlace: true,
                         items:[
                             {icon: 'home', text: 'Podstrona', to: '/'}

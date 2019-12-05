@@ -93,17 +93,17 @@ class SaleController extends Controller
         ]);
         if(!$sellout) return response()->json(['message' => 'Nie odnaleziono sprzedaży'], 400);
         if($request->user('api')->id != $sellout->place->user_id) return response()->json(['message' => 'Nie masz uprawnien'], 403);
-        $sale = Sale::create($request->all());
-        DB::table('sale_items')->where('sale_id', $sale->id)->delete();
+        $sellout->update($request->all());
+        DB::table('sale_items')->where('sale_id', $sellout->id)->delete();
         foreach ($request->products as $product){
             $item = [
                 'item_id' => $product['id'],
-                'sale_id' => $sale->id,
+                'sale_id' => $sellout->id,
                 'active' => true,
             ];
             DB::table('sale_items')->insert($item);
         }
-        return response()->json($sale->load('items'));
+        return response()->json($sellout->load('items'));
     }
     public function store(Request $request){
         if($request->hour_from)$request->merge(['hour_from' => Carbon::parse($request->hour_from)]);

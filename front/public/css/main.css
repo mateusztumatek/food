@@ -164,6 +164,40 @@
   max-width: 85%;
 }
 
+.my-card {
+  margin-top: 20px;
+  /*
+  padding-top: 100px;
+  */
+}
+.my-card .v-card__title {
+  padding-left: 30%;
+}
+.my-card .my-card-header-text {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.my-card-header {
+  padding: 20px 0px;
+  padding-left: 20px;
+}
+.my-card-header i {
+  font-size: 50px;
+}
+
+.apexcharts-menu {
+  background-color: #424242 !important;
+}
+
+.apexcharts-tooltip {
+  background: #424242 !important;
+}
+
+.apexcharts-canvas.dark {
+  background-color: transparent !important;
+}
+
 @media screen and (max-width: 1800px) {
   .my-container {
     width: 95%;

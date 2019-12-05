@@ -121,8 +121,6 @@ class OrderController extends Controller
         if($request->date_to) $orders = $orders->where('created_at', '<=', Carbon::parse($request->date_to));
         $orders = $orders->orderBy('created_at', 'desc');
         $orders = $orders->paginate(($request->perPage)? $request->perPage : 10);
-        foreach ($orders as $o){
-        }
         return response()->json($orders);
 
     }

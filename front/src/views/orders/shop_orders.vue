@@ -1,11 +1,13 @@
 <template>
     <div class="w-100">
         <v-data-table
-                v-if="orders && orders.data"
                 v-model="selected"
                 :headers="headers"
                 :items="orders.data"
                 :expanded.sync="expanded"
+                :options.sync="pagination"
+                :server-items-length="orders.total"
+                :footer-props="{'items-per-page-options': [10,20,50]}"
                 show-expand
                 :loading="loading"
                 item-key="id"
@@ -60,6 +62,9 @@
             <div class="col-md-12">
                 <v-switch v-model="update.paid" label="Opłacone"></v-switch>
             </div>
+            <div v-for="e in errors" class="col-md-12">
+                <v-alert type="error" v-for="error in e" class="col-md-12">{{error}}</v-alert>
+            </div>
             <div clas="col-md-12">
                 <v-btn @click="updateOrders()" width="100%" color="primary">Zapisz</v-btn>
             </div>
@@ -67,16 +72,18 @@
     </div>
 </template>
 <script>
-    import {getCustomersOrders} from "../../api/order";
+    import {getCustomersOrders, updateOrder} from "../../api/order";
     import TableHeader from '../../components/table-header';
     export default {
         components:{TableHeader},
         data(){
             return{
+                timeout: false,
+                pagination: {},
                 loading: false,
                 params:{},
                 selected: [],
-                orders: null,
+                orders: {},
                 expanded: [],
                 update:{},
                 headers: [
@@ -98,22 +105,50 @@
                 ],
             }
         },
+        watch:{
+          pagination:{
+              deep: true,
+              handler: function(){
+                  if(this.timeout){
+                      this.getOrders();
+                  }
+              }
+          }
+        },
         mounted(){
             this.getOrders();
+            setTimeout(() => {
+                this.timeout = true;
+            },700)
         },
         methods:{
             getOrders(){
                 this.loading = true;
-                getCustomersOrders(this.params).then(response => {this.orders = response; this.loading = false}).catch(e => {
+                var params = {...this.params, page: this.pagination.page, perPage: this.pagination.itemsPerPage};
+                getCustomersOrders(params).then(response => {this.orders = response; this.loading = false}).catch(e => {
                     this.loading = false;
                     this.$store.commit('app/ADD_ERROR', {text: e.response.data.message});
                 })
             },
             updateOrders(){
-                
+                this.selected.forEach((item) => {
+                    item.status = this.update.status;
+                    if(this.update.paid){
+                        item.paid = true;
+                    }else item.paid = false;
+                    updateOrder(item.id, item).then(response => {
+
+                    }).catch(e => {
+                        this.$store.commit('app/ADD_ERROR', {text: 'Nie udało się zaktualizować zamówień'});
+                        this.errors = e.response.data.errors;
+                        this.resetErrors();
+                    })
+                })
+
             },
             updateParams(params){
                 this.params = params;
+                this.pagination.page = 1;
                 this.getOrders();
             }
         }

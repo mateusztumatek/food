@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -39,7 +40,7 @@ class Order extends Model
     public static function getOrders($request){
         $orders = collect();
         if($request->user('api')){
-            $orders = Order::where('user_id', $request->user('api')->id)->get();
+            $orders = Order::where('user_id', $request->user('api')->id)->where('created_at', '>=', Carbon::now()->subDay())->get();
         }
         if(Session::has('orders')){
             $temp = Session::get('orders');

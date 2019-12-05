@@ -31,7 +31,8 @@
             getSale(){
                 this.startLoading();
                 getSellout(this.$route.params.id).then(response => {
-                    this.sale = response;
+                    this.sale = response
+                    this.$store.dispatch('stats/cacheStat', {type: 'place_view', place_id: this.sale.place.id});
                     this.stopLoading();
                     this.loading = false;
                     this.$store.commit('navigation/SET_HEADER', {title: 'Sprzedaż'+this.sale.name});

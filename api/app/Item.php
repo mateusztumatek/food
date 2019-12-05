@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use FilterTrait;
-    protected $fillable = ['place_id', 'name', 'description', 'image', 'price', 'prepere_time', 'active'];
+    protected $fillable = ['place_id', 'name', 'description', 'image', 'price', 'prepere_time', 'active', 'stats'];
+    public $appends = ['stats_arr'];
+    public function getStatsArrAttribute(){
+        if(!$this->stats){
+            return collect();
+        }else{
+            return \Opis\Closure\unserialize($this->stats);
+        }
+    }
     public function getImageAttribute($image){
         if($image) return $image;
             else return 'products/placeholder.png';

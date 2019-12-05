@@ -82,6 +82,7 @@
               this.startLoading();
             getProduct(product.id).then(response => {
                 this.product = response;
+                this.$store.dispatch('stats/cacheStat', {type: 'item_view', item_id: this.product.id});
                 this.dialog = true;
                 this.stopLoading();
             }).catch(e => {this.stopLoading();})

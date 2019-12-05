@@ -14,6 +14,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens;
     protected $appends = ['avatar'];
+
     /**
      * The attributes that are mass assignable.
      *

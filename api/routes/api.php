@@ -25,6 +25,14 @@ Route::group(['middleware' => 'session'], function (){
         Route::get('/sales/{id}/manage', 'SaleController@manage');
         Route::get('/sales/{id}/attempt', 'SaleController@attempt');
         Route::resource('/products', 'ItemController');
+        Route::get('stats', 'StatsController@index');
+        Route::post('stats', 'StatsController@store');
+        Route::get('stats/charts', 'StatsController@charts');
+        Route::get('stats/products_chart', 'StatsController@getProductsChart');
+        Route::get('stats/clients', 'StatsController@getClients');
+
+        Route::resource('/codes', 'DiscountCodeController');
+
 
     });
     Route::resource('/sales', 'SaleController');

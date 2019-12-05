@@ -17,7 +17,9 @@ import prototypes from './prototypes';
 import VueQRCodeComponent from 'vue-qr-generator'
 import VueQrcodeReader from "vue-qrcode-reader";
 Vue.use(VueQrcodeReader);
+import VueApexCharts from 'vue-apexcharts'
 
+Vue.component('apexchart', VueApexCharts)
 Vue.component('qr-code', VueQRCodeComponent);
 Vue.use(prototypes);
 Vue.use(InfiniteLoading, { /* options */ });

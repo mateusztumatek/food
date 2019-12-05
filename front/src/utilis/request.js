@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getToken, setToken } from './auth';
+import {getSessionKey, setSessionKey} from "./session";
 import store from '../store';
 // Create axios instance
 const service = axios.create({
@@ -14,6 +15,7 @@ service.interceptors.request.use(
         const token = getToken();
         if (token) {
             config.headers['Authorization'] = 'Bearer ' + getToken(); // Set JWT token
+            if(getSessionKey()) config.headers['session-key'] = getSessionKey();
         }
         return config;
     },
@@ -30,7 +32,10 @@ service.interceptors.response.use(
             setToken(response.headers.authorization);
             response.data.token = response.headers.authorization;
         }
-
+        if (response.headers['session-key']) {
+            console.log('SET SESSION KEY', response.headers['session-key']);
+            setSessionKey(response.headers['session-key']);
+        }
         return response.data;
     },
     error => {

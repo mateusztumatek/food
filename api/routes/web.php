@@ -30,3 +30,11 @@ Route::resource('orders', 'OrderController');
 Route::post('orders/notify', 'OrderController@notify');
 Route::get('sellout/{id}/qr', 'SaleController@qr');
 Route::get('sellout/{id}/pdf', 'SaleController@pdf');
+
+Route::get('/session_key', function (\Illuminate\Http\Request $request){
+    if($session_key = $request->headers->get('session-key')){
+        return response()->json(['session-key' => $session_key]);
+    }else{
+        return response()->json(['session-key' => md5(\Illuminate\Support\Str::random(60))]);
+    }
+});

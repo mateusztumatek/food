@@ -176,8 +176,10 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,
 
+        \Torann\GeoIP\GeoIPServiceProvider::class,
 
     ],
 
@@ -230,7 +232,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Pusher' => Pusher\Pusher::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Tracker' => PragmaRX\Tracker\Vendor\Laravel\Facade::class,
+
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
 
 
 

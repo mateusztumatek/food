@@ -23,7 +23,7 @@ class Kernel extends HttpKernel
 /*        \Barryvdh\Cors\HandleCors::class,*/
 /*        \App\Http\Middleware\CorsMiddleware::class*/
 
-
+        \App\Http\Middleware\SessionKey::class
     ];
 
     /**
@@ -40,11 +40,14 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \PragmaRX\Tracker\Vendor\Laravel\Middlewares\Tracker::class,
+
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
+            \PragmaRX\Tracker\Vendor\Laravel\Middlewares\Tracker::class,
         ],
 
         'session' => [

@@ -1,17 +1,17 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'App',
     'front_url' => 'http://localhost:8080',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost',
+    'url' => 'http://192.168.1.4:8080',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:cEZOL4eQxX2bAamBIm1JgYXRzSXN20g0X5PvoszEP7k=',
+    'key' => 'base64:f4q2uwW7FCUX9F/Xob+sVVkPfBdewvrlI3uB8UCHdJQ=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -44,6 +44,8 @@
       26 => 'App\\Providers\\EventServiceProvider',
       27 => 'App\\Providers\\RouteServiceProvider',
       28 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
+      29 => 'PragmaRX\\Tracker\\Vendor\\Laravel\\ServiceProvider',
+      30 => 'Torann\\GeoIP\\GeoIPServiceProvider',
     ),
     'aliases' => 
     array (
@@ -84,6 +86,8 @@
       'View' => 'Illuminate\\Support\\Facades\\View',
       'Pusher' => 'Pusher\\Pusher',
       'QrCode' => 'SimpleSoftwareIO\\QrCode\\Facades\\QrCode',
+      'Tracker' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Facade',
+      'GeoIP' => 'Torann\\GeoIP\\Facades\\GeoIP',
     ),
   ),
   'auth' => 
@@ -126,18 +130,18 @@
   ),
   'broadcasting' => 
   array (
-    'default' => 'log',
+    'default' => 'pusher',
     'connections' => 
     array (
       'pusher' => 
       array (
         'driver' => 'pusher',
-        'key' => '',
-        'secret' => '',
-        'app_id' => '',
+        'key' => '8f99b0d8f31dc1b8d36c',
+        'secret' => '1259b856c1fcd93ad01d',
+        'app_id' => '893332',
         'options' => 
         array (
-          'cluster' => 'mt1',
+          'cluster' => 'eu',
           'useTLS' => true,
         ),
       ),
@@ -217,7 +221,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'app_cache',
   ),
   'cors' => 
   array (
@@ -252,7 +256,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'food',
+        'database' => 'app',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -260,9 +264,9 @@
       array (
         'driver' => 'mysql',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'food',
+        'database' => 'app',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -280,9 +284,9 @@
       array (
         'driver' => 'pgsql',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'food',
+        'database' => 'app',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -295,9 +299,9 @@
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'food',
+        'database' => 'app',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -312,7 +316,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'app_database_',
       ),
       'default' => 
       array (
@@ -367,7 +371,7 @@
     'options' => 
     array (
       'local_deploy_path' => 'Users/Mateusz/Deploy',
-      'application' => 'Laravel',
+      'application' => 'App',
       'repository' => 'https://github.com/mateusztumatek/food',
     ),
     'hosts' => 
@@ -388,29 +392,6 @@
     ),
     'custom_deployer_file' => false,
   ),
-  'dompdf' => 
-  array (
-    'show_warnings' => false,
-    'orientation' => 'portrait',
-    'defines' => 
-    array (
-      'font_dir' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
-      'font_cache' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
-      'temp_dir' => 'C:\\Users\\Klusek\\AppData\\Local\\Temp',
-      'chroot' => 'C:\\xampp\\htdocs\\app\\api',
-      'enable_font_subsetting' => false,
-      'pdf_backend' => 'CPDF',
-      'default_media_type' => 'screen',
-      'default_paper_size' => 'a4',
-      'default_font' => 'serif',
-      'dpi' => 96,
-      'enable_php' => false,
-      'enable_javascript' => true,
-      'enable_remote' => true,
-      'font_height_ratio' => 1,
-      'enable_html5_parser' => false,
-    ),
-  ),
   'filesystems' => 
   array (
     'default' => 'public',
@@ -426,7 +407,7 @@
       array (
         'driver' => 'local',
         'root' => 'C:\\xampp\\htdocs\\app\\api\\storage\\app/public',
-        'url' => 'http://localhost/storage',
+        'url' => 'http://192.168.1.4:8080/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -438,6 +419,86 @@
         'bucket' => '',
         'url' => NULL,
       ),
+    ),
+  ),
+  'geoip' => 
+  array (
+    'log_failures' => true,
+    'include_currency' => true,
+    'service' => 'ipapi',
+    'services' => 
+    array (
+      'maxmind_database' => 
+      array (
+        'class' => 'Torann\\GeoIP\\Services\\MaxMindDatabase',
+        'database_path' => 'C:\\xampp\\htdocs\\app\\api\\storage\\app/geoip.mmdb',
+        'update_url' => 'https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz',
+        'locales' => 
+        array (
+          0 => 'en',
+        ),
+      ),
+      'maxmind_api' => 
+      array (
+        'class' => 'Torann\\GeoIP\\Services\\MaxMindWebService',
+        'user_id' => NULL,
+        'license_key' => NULL,
+        'locales' => 
+        array (
+          0 => 'en',
+        ),
+      ),
+      'ipapi' => 
+      array (
+        'class' => 'Torann\\GeoIP\\Services\\IPApi',
+        'secure' => true,
+        'key' => NULL,
+        'continent_path' => 'C:\\xampp\\htdocs\\app\\api\\storage\\app/continents.json',
+        'lang' => 'en',
+      ),
+      'ipgeolocation' => 
+      array (
+        'class' => 'Torann\\GeoIP\\Services\\IPGeoLocation',
+        'secure' => true,
+        'key' => NULL,
+        'continent_path' => 'C:\\xampp\\htdocs\\app\\api\\storage\\app/continents.json',
+        'lang' => 'en',
+      ),
+      'ipdata' => 
+      array (
+        'class' => 'Torann\\GeoIP\\Services\\IPData',
+        'key' => NULL,
+        'secure' => true,
+      ),
+      'ipfinder' => 
+      array (
+        'class' => 'Torann\\GeoIP\\Services\\IPFinder',
+        'key' => NULL,
+        'secure' => true,
+        'locales' => 
+        array (
+          0 => 'en',
+        ),
+      ),
+    ),
+    'cache' => 'none',
+    'cache_tags' => NULL,
+    'cache_expires' => 30,
+    'default_location' => 
+    array (
+      'ip' => '127.0.0.0',
+      'iso_code' => 'US',
+      'country' => 'United States',
+      'city' => 'New Haven',
+      'state' => 'CT',
+      'state_name' => 'Connecticut',
+      'postal_code' => '06510',
+      'lat' => 41.31,
+      'lon' => -72.92,
+      'timezone' => 'America/New_York',
+      'continent' => 'NA',
+      'default' => true,
+      'currency' => 'USD',
     ),
   ),
   'hashing' => 
@@ -549,10 +610,10 @@
   'payu' => 
   array (
     'env' => 'sandbox',
-    'pos_id' => NULL,
-    'md5' => NULL,
-    'client_id' => NULL,
-    'client_secret' => NULL,
+    'pos_id' => '368603',
+    'md5' => 'e64c47ceceaa895f4f007f916937a22c',
+    'client_id' => '368603',
+    'client_secret' => 'd65cb5bac1d82507bb4c2f004fc55ab2',
   ),
   'queue' => 
   array (
@@ -625,7 +686,7 @@
   'session' => 
   array (
     'driver' => 'file',
-    'lifetime' => '120',
+    'lifetime' => '140',
     'expire_on_close' => false,
     'encrypt' => false,
     'files' => 'C:\\xampp\\htdocs\\app\\api\\storage\\framework/sessions',
@@ -637,12 +698,119 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'app_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => false,
     'http_only' => true,
     'same_site' => 'strict',
+  ),
+  'tracker' => 
+  array (
+    'enabled' => true,
+    'cache_enabled' => true,
+    'use_middleware' => true,
+    'do_not_track_robots' => false,
+    'do_not_track_environments' => 
+    array (
+    ),
+    'do_not_track_routes' => 
+    array (
+      0 => 'tracker.stats.*',
+    ),
+    'do_not_track_paths' => 
+    array (
+      0 => '',
+    ),
+    'do_not_track_ips' => 
+    array (
+      0 => '127.0.0.0/24',
+    ),
+    'log_untrackable_sessions' => true,
+    'log_enabled' => false,
+    'console_log_enabled' => false,
+    'log_sql_queries' => false,
+    'connection' => 'mysql',
+    'do_not_log_sql_queries_connections' => 
+    array (
+      0 => 'tracker',
+    ),
+    'geoip_database_path' => 'C:\\xampp\\htdocs\\app\\api\\config/geoip',
+    'log_sql_queries_bindings' => false,
+    'log_events' => false,
+    'log_only_events' => 
+    array (
+    ),
+    'id_columns_names' => 
+    array (
+      0 => 'id',
+    ),
+    'do_not_log_events' => 
+    array (
+      0 => 'illuminate.log',
+      1 => 'eloquent.*',
+      2 => 'router.*',
+      3 => 'composing: *',
+      4 => 'creating: *',
+    ),
+    'log_geoip' => true,
+    'log_user_agents' => true,
+    'log_users' => true,
+    'log_devices' => true,
+    'log_languages' => false,
+    'log_referers' => false,
+    'log_paths' => false,
+    'log_queries' => false,
+    'log_routes' => false,
+    'log_exceptions' => false,
+    'store_cookie_tracker' => false,
+    'tracker_cookie_name' => 'please_change_this_cookie_name',
+    'tracker_session_name' => 'tracker_session',
+    'user_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\User',
+    'session_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Session',
+    'log_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Log',
+    'path_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Path',
+    'query_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Query',
+    'query_argument_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\QueryArgument',
+    'agent_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Agent',
+    'device_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Device',
+    'cookie_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Cookie',
+    'domain_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Domain',
+    'referer_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Referer',
+    'referer_search_term_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\RefererSearchTerm',
+    'route_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Route',
+    'route_path_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\RoutePath',
+    'route_path_parameter_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\RoutePathParameter',
+    'error_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Error',
+    'geoip_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\GeoIp',
+    'sql_query_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\SqlQuery',
+    'sql_query_binding_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\SqlQueryBinding',
+    'sql_query_binding_parameter_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\SqlQueryBindingParameter',
+    'sql_query_log_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\SqlQueryLog',
+    'connection_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Connection',
+    'event_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Event',
+    'event_log_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\EventLog',
+    'system_class_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\SystemClass',
+    'language_model' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Models\\Language',
+    'authentication_ioc_binding' => 
+    array (
+      0 => 'auth',
+    ),
+    'authentication_guards' => 
+    array (
+    ),
+    'authenticated_check_method' => 'check',
+    'authenticated_user_method' => 'user',
+    'authenticated_user_id_column' => 'id',
+    'authenticated_user_username_column' => 'email',
+    'stats_panel_enabled' => false,
+    'stats_routes_before_filter' => '',
+    'stats_routes_after_filter' => '',
+    'stats_routes_middleware' => 'web',
+    'stats_template_path' => '/templates/sb-admin-2',
+    'stats_base_uri' => 'stats',
+    'stats_layout' => 'pragmarx/tracker::layout',
+    'stats_controllers_namespace' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Controllers',
   ),
   'view' => 
   array (
@@ -651,6 +819,29 @@
       0 => 'C:\\xampp\\htdocs\\app\\api\\resources\\views',
     ),
     'compiled' => 'C:\\xampp\\htdocs\\app\\api\\storage\\framework\\views',
+  ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'orientation' => 'portrait',
+    'defines' => 
+    array (
+      'font_dir' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
+      'font_cache' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
+      'temp_dir' => 'C:\\Users\\Mateusz\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\xampp\\htdocs\\app\\api',
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => true,
+      'font_height_ratio' => 1.1,
+      'enable_html5_parser' => false,
+    ),
   ),
   'flare' => 
   array (
@@ -704,4 +895,10 @@
       0 => 'App\\Nova',
     ),
   ),
+  'datatables::search' => 
+  array (
+    'case_insensitive' => true,
+    'use_wildcards' => false,
+  ),
+  'datatables::dataFullSupport' => false,
 );

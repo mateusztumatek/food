@@ -46,6 +46,17 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
+  'jenssegers/agent' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Jenssegers\\Agent\\AgentServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Agent' => 'Jenssegers\\Agent\\Facades\\Agent',
+    ),
+  ),
   'laravel/passport' => 
   array (
     'providers' => 
@@ -81,6 +92,17 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'pragmarx/tracker' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'PragmaRX\\Tracker\\Vendor\\Laravel\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Tracker' => 'PragmaRX\\Tracker\\Vendor\\Laravel\\Facade',
+    ),
+  ),
   'simplesoftwareio/simple-qrcode' => 
   array (
     'providers' => 
@@ -90,6 +112,17 @@
     'aliases' => 
     array (
       'QrCode' => 'SimpleSoftwareIO\\QrCode\\Facades\\QrCode',
+    ),
+  ),
+  'torann/geoip' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Torann\\GeoIP\\GeoIPServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'GeoIP' => 'Torann\\GeoIP\\Facades\\GeoIP',
     ),
   ),
 );

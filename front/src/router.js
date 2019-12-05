@@ -5,6 +5,7 @@ import Layout from '@/AppMain.vue';
 import store from './store';
 import LoginLayout from '@/AppLogin.vue';
 Vue.use(Router);
+import {getSessionKey} from "./utilis/session";
 
 import StoreRoutes from '@/routes/store.js';
 import ProductRoutes from '@/routes/products.js'
@@ -12,6 +13,8 @@ import CategoryRoutes from '@/routes/categories';
 import SelloutRoutes from '@/routes/sellout';
 import Localization from '@/routes/localization';
 import OrderRoutes from '@/routes/orders';
+import StatsRoutes from '@/routes/stats'
+import DiscountCodes from '@/routes/codes';
 import Qrs from '@/routes/qrs';
 export const my_routes =
   [
@@ -103,8 +106,10 @@ export const my_routes =
     CategoryRoutes,
     SelloutRoutes,
     Localization,
+      StatsRoutes,
       OrderRoutes,
       Qrs,
+      DiscountCodes,
     {
       path: '*',
       name: '404',
@@ -127,6 +132,12 @@ const createRouter = () => new Router({
 
 const router = createRouter();
 router.beforeEach((from, to, next) => {
+    if(!getSessionKey()){
+        store.dispatch('stats/getSessionKey');
+    }else{
+        if(store.getters)
+        store.dispatch('notifications/watchSessionEvents');
+    }
   var title = from.name;
   if(to.meta.title){
     title = from.meta.title
