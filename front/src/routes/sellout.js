@@ -27,13 +27,13 @@ const sellout = {
             path: '/sellout/:id',
             name: 'Show Sellout',
             component: () => import('@/views/sellout/show'),
-            meta: {title: 'Sprzedaż', header_visible: true, getCart: 'id'}
+            meta: {title: 'Sprzedaż', header_visible: true, getCart: 'id', fullWidth: true}
         },
         {
             path: '/sellout/:sale/category/:category',
             name: 'Show Sellout category',
             component: () => import('@/views/sellout/category'),
-            meta: {title: 'Kategoria', header_visible: true, getCart: 'sale'}
+            meta: {title: 'Kategoria', header_visible: true, getCart: 'sale' , fullWidth: true}
         },
         {
             path: '/sellout/:sale/process',

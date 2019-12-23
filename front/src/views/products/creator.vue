@@ -85,6 +85,7 @@
                     this.$store.commit('products/RESET_NEW_PRODUCT');
                     this.stopLoading();
                 }).catch(e => {
+                    this.$store.commit('app/ADD_ERROR', {text: e.response.data.message});
                     this.stopLoading();
                 });
             }

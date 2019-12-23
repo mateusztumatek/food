@@ -7,7 +7,7 @@
                 :loading="isLoading"
                 :search-input.sync="term"
                 :items="items"
-                placeholder="Search"
+                :placeholder="$t('Szukaj')"
                 @focus="setSearch(true)"
                 @blur="setSearch(false)">
             <template v-slot:item="data">

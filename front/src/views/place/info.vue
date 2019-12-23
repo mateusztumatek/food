@@ -24,7 +24,6 @@
                         </v-card-title>
                     </v-img>
                     <v-card-text>
-                        {{place.description}}
                         <p class="w-100 mb-0"><v-icon class="mr-2">mdi-sign-direction</v-icon>{{place.street}}</p>
                         <p class="w-100 mb-0"><v-icon class="mr-2">mdi-city</v-icon>{{place.city}} {{place.postal_code}}</p>
 

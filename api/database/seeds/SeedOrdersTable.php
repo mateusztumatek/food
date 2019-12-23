@@ -14,7 +14,7 @@ class SeedOrdersTable extends Seeder
         $faker = \Faker\Factory::create();
         $statuses = ['new', 'completed', 'canceled'];
         $sales = \App\Sale::whereHas('items')->whereHas('place', function($q){
-            $q->where('user_id', 21);
+            $q->where('user_id', 1);
         })->get();
         foreach ($sales as $sale){
             for ($i = 0; $i<450; $i++){

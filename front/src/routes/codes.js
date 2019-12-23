@@ -16,6 +16,12 @@ const sellout = {
             component: () => import('@/views/codes/edit-add.vue'),
             meta: {title: 'Kody zniżkowe'}
         },
+        {
+            path: '/codes/:id/edit',
+            name: 'Edytuj Kod zniżkowy',
+            component: () => import('@/views/codes/edit-add.vue'),
+            meta: {title: 'Edytuj Kod zniżkowy'}
+        },
     ]
 }
 

@@ -9,6 +9,7 @@ class NotificationController extends Controller
 {
     public function index(){
         $notifications = Notification::getNotifications();
-        dd($notifications);
+        return response()->json($notifications);
     }
+
 }

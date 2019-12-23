@@ -50,10 +50,12 @@ class CartController extends Controller
         $item = Item::find($request->item_id);
         $item->quantity = $request->quantity;
         $cart->addItem($item);
+        $cart->refresh();
         $cart->save($request);
         return response()->json($cart);
     }
     public function show(Request $request, $sale_id){
+        $cart = Cart::getCartBySaleId($sale_id, $request);
         return response()->json(Cart::getCartBySaleId($sale_id, $request));
     }
 }

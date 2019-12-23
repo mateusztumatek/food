@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../adopciaki/.idea/adopciaki.iml" filepath="$PROJECT_DIR$/../adopciaki/.idea/adopciaki.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api/.idea/api.iml" filepath="$PROJECT_DIR$/api/.idea/api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/app.iml" filepath="$PROJECT_DIR$/.idea/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mobile-app/.idea/mobile-app.iml" filepath="$PROJECT_DIR$/../mobile-app/.idea/mobile-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../my-shop/.idea/my-shop.iml" filepath="$PROJECT_DIR$/../my-shop/.idea/my-shop.iml" />
+    </modules>
+  </component>
+</project>

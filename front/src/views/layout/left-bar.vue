@@ -13,7 +13,7 @@
                               v-if="item.visible && checkItem(item)">
                     <v-list-item @mouseover="hovered($event)" @mouseleave="hovered(null)" v-if="!item.items && item.type != 'subtitle'" :to="(item.to && !item.items)? item.to : null">
                         <v-list-item-icon><v-icon v-text="item.icon"></v-icon></v-list-item-icon>
-                        <v-list-item-title>{{item.text}}</v-list-item-title>
+                        <v-list-item-title>{{$t(item.text)}}</v-list-item-title>
                     </v-list-item>
                     <v-list-group v-if="item.items && item.type != 'subtitle'">
                         <template v-slot:activator>
@@ -22,16 +22,16 @@
                         </template>
                         <v-list-item v-for="subitem in item.items" :to="subitem.to">
                             <v-list-item-content>
-                                <v-list-item-title>{{subitem.text}}</v-list-item-title>
+                                <v-list-item-title>{{$t(subitem.text)}}</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
                     </v-list-group>
-                    <v-subheader class="mt-4 grey--text text--darken-1" v-if="item.type == 'subtitle'">{{item.text}}</v-subheader>
+                    <v-subheader class="mt-4 grey--text text--darken-1" v-if="item.type == 'subtitle'">{{$t('item.text')}}</v-subheader>
                 </v-list-item-group>
                 <div class="navigation-tick"></div>
             </v-list>
             <div v-if="user.id && places.length > 0">
-                <v-subheader class="mt-4 grey--text text--darken-1">Sprzedaże</v-subheader>
+                <v-subheader class="mt-4 grey--text text--darken-1">{{$t('Sprzedaże')}}</v-subheader>
                 <v-list>
                     <v-list-item
                             v-for="sellout in sellouts"
@@ -42,7 +42,7 @@
                     </v-list-item>
                 </v-list>
                 <div class="text-center">
-                    <v-btn color="primary" to="/sellout/create"><v-icon>mdi-cart-minus</v-icon>Rozpocznij sprzedaż</v-btn>
+                    <v-btn color="primary" to="/sellout/create"><v-icon>mdi-cart-minus</v-icon>{{$t('Rozpocznij sprzedaż')}}</v-btn>
                 </div>
             </div>
 

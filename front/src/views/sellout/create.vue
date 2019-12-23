@@ -19,6 +19,11 @@
                                 single-line
                         ></v-select>
                         <v-text-field label="Nazwij sprzedaż" v-model="sellout.name" :rules="rules.name"></v-text-field>
+                        <v-btn v-if="!sellout.background_image" outlined tile class="w-100" min-height="60px" @click="choosePhoto()">Dodaj zdjęcie</v-btn>
+                        <div v-if="sellout.background_image">
+                            <v-img max-width="50%" :src="getSrc(sellout.background_image)" ></v-img>
+                            <v-btn @click="sellout.background_image = null" color="red" tile class="mt-2">Zmień zdjęcie</v-btn>
+                        </div>
                         <v-radio-group :rules="rules.payment_type" label="Wybierz rodzaj płatności zamówienia." v-model="sellout.payment_type" :mandatory="false">
                             <v-radio label="Przedpłata" value="prepaid"></v-radio>
                             <v-radio label="Płatność po wykonaniu" value="afterpaid"></v-radio>
@@ -176,6 +181,11 @@
             }
         },
         methods:{
+            choosePhoto(){
+              this.$mediaPicker().then(photo => {
+                 this.sellout.background_image = photo;
+              })
+            },
             deleteSellout(){
                 this.$confirm('Czy na pewno chcesz usunąć tą sprzedaż').then(res => {
                     deleteSellout(this.sellout.id).then(response =>{

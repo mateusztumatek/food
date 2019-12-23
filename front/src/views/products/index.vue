@@ -6,7 +6,7 @@
                         v-model="term"
                         @input="search()"
                         :loading="loading"
-                        label="Szukaj produktu"
+                        :label="$t('Szukaj produktu')"
                 ></v-text-field>
             </v-col>
             <v-fade-transition v-for="product in products.data">
@@ -42,8 +42,8 @@
                             <p class="w-100 mb-0"><v-icon class="mr-2">mdi-cash</v-icon><span style="font-weight: 200; font-size: 1.2rem">{{product.price | currency()}}PLN</span></p>
                         </v-card-text>
                         <v-card-actions>
-                            <v-btn @click="editItem(product)">Edytuj</v-btn>
-                            <v-btn @click="del(product)"><v-icon>mdi-trash-can-outline</v-icon>Usuń</v-btn>
+                            <v-btn @click="editItem(product)">{{$t('Edytuj')}}</v-btn>
+                            <v-btn @click="del(product)"><v-icon>mdi-trash-can-outline</v-icon>{{$t('Usuń')}}</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-col>
@@ -51,12 +51,12 @@
             <v-col cols="12" md="6" lg="4">
                 <v-card height="100%" class="align-center d-flex">
                     <v-card-text class="text-center">
-                        <v-btn @click="create_new()">Dodaj nowy produkt</v-btn>
+                        <v-btn @click="create_new()">{{$t('Dodaj nowy produkt')}}</v-btn>
                     </v-card-text>
                 </v-card>
             </v-col>
             <div class="w-100">
-                <v-btn v-if="showMore == false" @click="showMore = true" class="w-100">Pokaż więcej</v-btn>
+                <v-btn v-if="showMore == false" @click="showMore = true" class="w-100">{{$t('Pokaż więcej')}}</v-btn>
                 <infinite-loading  @infinite="infiniteHandler" v-if="products.last_page > products.current_page && showMore"></infinite-loading>
             </div>
         </v-row>
@@ -140,6 +140,7 @@
               })*/
             },
             create_new(){
+                this.$store.commit('products/RESET_NEW_PRODUCT');
                 this.creator = true;
             },
             editItem(product){

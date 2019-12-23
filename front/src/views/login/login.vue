@@ -11,16 +11,15 @@
             >
                 <v-card class="elevation-12">
                     <v-toolbar
-                            color="primary"
                             dark
                             flat>
-                        <v-toolbar-title>Login form</v-toolbar-title>
+                        <v-toolbar-title>{{$t('Zaloguj się')}}</v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
-                        <v-form>
+                        <v-form @keyup.native.enter="loginUser()">
                             <v-text-field
                                     v-model = "user.login"
-                                    label="Login"
+                                    :label="$t('Login')"
                                     name="login"
                                     :error="(errors.login)? true : false"
                                     :error-messages="errors.login"
@@ -32,7 +31,7 @@
                                     id="password"
                                     :error="(errors.password)? true : false"
                                     :error-messages="errors.password"
-                                    label="Password"
+                                    :label="$t('Hasło')"
                                     name="password"
                                     prepend-icon="lock"
                                     type="password"
@@ -42,7 +41,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <div class="flex-grow-1"></div>
-                        <v-btn color="primary" @click="loginUser()">Login</v-btn>
+                        <v-btn color="primary" @click="loginUser()">{{$t('Login')}}</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>

@@ -9,7 +9,7 @@
           >
                <v-card-text>
                     <div class="w-100 text-center"  style="padding: 20px 0px">
-                         <h2>Wyszukaj w pobliżu</h2>
+                         <h2>{{$t('Wyszukaj w pobliżu')}}</h2>
                          <img class="my-3" style="max-width: 30%" src="/img/local.svg">
                     </div>
                </v-card-text>
@@ -23,7 +23,7 @@
           >
                <v-card-text>
                     <div class="w-100 text-center"  style="padding: 20px 0px">
-                         <h2>Skanuj QR code</h2>
+                         <h2>{{$t('Skanuj QR kod')}}</h2>
                          <img class="my-3" style="max-width: 30%" src="/img/qr-code.svg">
                     </div>
                </v-card-text>

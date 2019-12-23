@@ -8,9 +8,9 @@
                     <div class="w-100">
                         <img style="max-width: 200px" v-if="product.image" :src="getSrc(product.image)">
                     </div>
-                    <v-btn @click="$refs.file_input.click()"><span v-if="product.image">Edytuj zdjęcie</span><span v-else>Dodaj zdjęcie</span></v-btn>
+                    <v-btn @click="$mediaPicker().then(res => {updateProduct(res, 'image')})"><span v-if="product.image">Edytuj zdjęcie</span><span v-else>Dodaj zdjęcie</span></v-btn>
                     <input type="file" id="file_input" @change="uploadLogo()" style="display: none" ref="file_input"></input>
-                    <v-text-field :rules="imageRules" type="hidden" class="notInput" :value="product.image"></v-text-field>
+                    <v-text-field type="hidden" class="notInput" :value="product.image"></v-text-field>
 
                 </v-col>
                 <v-col cols="12">
@@ -34,6 +34,13 @@
                             label="Nazwa produktu"
                             @input="updateProduct($event, 'name')"
                     ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                    <v-textarea
+                            :value="product.description"
+                            :label="$t('Opis produktu')"
+                            @input="updateProduct($event, 'description')"
+                    ></v-textarea>
                 </v-col>
                 <v-col cols="12">
                     <v-combobox

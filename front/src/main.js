@@ -17,7 +17,9 @@ import prototypes from './prototypes';
 import VueQRCodeComponent from 'vue-qr-generator'
 import VueQrcodeReader from "vue-qrcode-reader";
 Vue.use(VueQrcodeReader);
+
 import VueApexCharts from 'vue-apexcharts'
+import {i18n} from "./plugins/i18n";
 
 Vue.component('apexchart', VueApexCharts)
 Vue.component('qr-code', VueQRCodeComponent);
@@ -74,6 +76,7 @@ new Vue({
   store,
   router,
   vuetify,
+  i18n,
   data(){
     return{
       base_url: null

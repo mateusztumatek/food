@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'front_url' => 'http://localhost:8080',
+    'front_url' =>  env('APP_URL', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,8 +80,8 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
-    'locale' => 'en',
+    'locales' => ['pl', 'en', 'de'],
+    'locale' => 'pl',
 
     /*
     |--------------------------------------------------------------------------

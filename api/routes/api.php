@@ -31,15 +31,22 @@ Route::group(['middleware' => 'session'], function (){
         Route::get('stats/products_chart', 'StatsController@getProductsChart');
         Route::get('stats/clients', 'StatsController@getClients');
 
+        Route::get('/codes/generate_pdf', 'DiscountCodeController@pdfs');
         Route::resource('/codes', 'DiscountCodeController');
-
+        Route::post('/codes/send_client', 'DiscountCodeController@sendToClient');
+        Route::delete('/codes', 'DiscountCodeController@destroy');
 
     });
     Route::resource('/sales', 'SaleController');
     Route::get('/sales/{sale}/category_items/{category}', 'SaleController@categoryItems');
+
+    Route::post('/upload/update', 'UploadController@update');
+    Route::post('/upload/remove', 'UploadController@remove');
     Route::post('/upload/{hash}', 'UploadController@upload');
+    Route::get('/upload/getuploads', 'UploadController@userUploads');
     Route::get('/search', 'UserController@search');
     Auth::routes(['verify' => true]);
     Route::get('/crowler', 'CrowlerController@index');
-});
 
+});
+Route::get('/langs', 'ExampleController@langs');

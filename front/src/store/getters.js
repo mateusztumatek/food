@@ -16,6 +16,7 @@ const getters = {
     cart_visible: (state) => {return state.cart.visible},
     userOrders: (state) => {return state.order.userOrders},
     orders_sync: (state) => {return state.order.order_sync},
-    activeOrder: (state) => {return state.order.activeOrder}
+    activeOrder: (state) => {return state.order.activeOrder},
+    notifications: (state) => {return state.notifications.notifications}
 };
 export default getters;

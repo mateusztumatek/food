@@ -9,6 +9,13 @@ const attempt = (to) => {
     }
 }
 router.beforeEach(async (to, from, next) => {
+    if(!store.getters.app.langs){
+        store.dispatch('app/getLangs');
+    }
+    console.log(store.getters.notifications);
+    if(store.getters.notifications == null){
+        store.dispatch('notifications/getNotifications');
+    }
     store.dispatch('user/checkLocation');
     next();
 })

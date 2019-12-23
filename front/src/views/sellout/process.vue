@@ -63,8 +63,12 @@
             </v-list-item>
             <v-list-item>
                 <v-list-item-content>
+                    <discount-code></discount-code>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>
                     <div>
-                        <p v-for="item in cart.items">{{item.name}} <span class="grey--text" v-if="item.quantity > 1">x{{item.quantity}}</span> {{item.price * item.quantity | currency()}} PLN</p>
                         <h3 class="display-1"><v-icon class="grey--text mr-2">mdi-cash</v-icon>{{cart.price | currency()}} PLN</h3>
                     </div>
                 </v-list-item-content>
@@ -83,8 +87,9 @@
 </template>
 <script>
     import {updateItem} from "../../api/cart";
-
+    import DiscountCode from "../../components/discount-code";
     export default {
+        components:{DiscountCode},
         data(){
             return{
                 editItemComment: null,

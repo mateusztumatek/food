@@ -6,10 +6,11 @@ use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
+use mysql_xdevapi\Exception;
 
 class Cart
 {
-    public $sale_id, $sale, $items, $price, $code;
+    public $sale_id, $sale, $items, $price, $code, $discount_percentage, $discount_value;
 
     public function addItem($item){
         if($item){
@@ -60,11 +61,44 @@ class Cart
         foreach ($this->items as $item){
             $this->price = $this->price + $item->price * $item->quantity;
         }
+        if($this->code){
+            if($this->code->value){
+                $this->price = $this->price - $this->code->value;
+            }
+            if($this->code->percentage){
+                $this->price = $this->price - (($this->code->percentage / 100) * $this->price);
+            }
+        }
     }
     public function save($request){
        $request->session()->put('cart'.$this->sale_id, $this);
     }
     public function calculateTime(){
         return 30;
+    }
+
+    public function applyCode($code){
+        $code = DiscountCode::where('sellout_id', $this->sale_id)->orWhere('place_id', $this->sale->place_id)->where('code', $code)->first();
+        if($code){
+            if($code->max_uses <= $code->uses) throw new \Exception('Wykorzystano maksymalną ilość tego kodu');
+            $this->code = $code;
+            $code->uses = $code->uses + 1;
+            $code->update();
+        }else{
+            throw new \Exception('Code not exists or has been used');
+        }
+    }
+
+    public function removeCode(){
+        if($this->code){
+            $code = DiscountCode::find($this->code->id);
+            if($code){
+                $code->uses = $code->uses - 1;
+                $code->update();
+            }
+            $this->code = null;
+            $this->discount_percentage = null;
+            $this->discount_value= null;
+        }
     }
 }

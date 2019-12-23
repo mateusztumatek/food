@@ -47,7 +47,6 @@ const mutations = {
         }else{
             let obj = {};
             obj[data.prop] = data.value;
-            console.log(obj);
             state.new_product = {...state.new_product, ...obj};
         }
     },

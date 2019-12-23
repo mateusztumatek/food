@@ -32,27 +32,52 @@
                                 <v-list-item v-if="client.user" :href="'/account/'+client.user.id">
                                     <v-list-item-title >Zobacz profil</v-list-item-title>
                                 </v-list-item>
-                                <v-list-item >
-                                    <v-list-item-title >Wyślij kod promocyjny</v-list-item-title>
+                                <v-list-item  @click="showCodePicker(client)">
+                                    <v-list-item-title>Wyślij kod promocyjny</v-list-item-title>
                                 </v-list-item>
                             </v-list>
                         </v-menu>
                     </v-list-item-icon>
                 </v-list-item>
             </v-list>
+
+            <v-dialog :value="(selectedClient)? true : false" persistent max-width="600px">
+                <v-card>
+                    <v-card-title>
+                        <span class="headline">Wyślij kod do klienta </span>
+                    </v-card-title>
+                    <v-card-text>
+                        <v-list>
+                            <v-list-item @click="sendCode(code)" v-for="code in codes">
+                                <v-list-item-title>
+                                    {{code.code}}
+                                </v-list-item-title>
+                                <v-list-item-action>
+                                    <span v-if="code.percentage">{{code.percentage}}%</span>
+                                    <span v-else>{{code.value}}zł</span>
+                                </v-list-item-action>
+                            </v-list-item>
+                        </v-list>
+                    </v-card-text>
+                </v-card>
+            </v-dialog>
         </v-card>
     </div>
 </template>
 <script>
     import {getClients} from "../../api/stats";
+    import {getCodes, sendToClient} from "../../api/codes";
 
     export default {
         data(){
             return{
+                selectedClient: null,
                 clients: [],
-                loading: true
+                loading: true,
+                codes: [],
             }
         },
+
         mounted() {
           this.getClients();
         },
@@ -60,6 +85,29 @@
             getClients(){
                 getClients().then(response => {
                     this.clients = response;
+                })
+            },
+            showCodePicker(client){
+                this.selectedClient = client;
+                this.getCodes();
+            },
+            getCodes(){
+                this.loadingCodes = true;
+                getCodes().then(response => {
+                    this.codes = response.data;
+                })
+            },
+            sendCode(code){
+                var data = {
+                    code_id: code.id
+                };
+                if(this.selectedClient.user){
+                    data['user_id'] = this.selectedClient.user_id;
+                }
+                data['session_key'] = this.selectedClient.session_key;
+
+                sendToClient(data).then(response => {
+                    this.$store.commit('app/ADD_MESSAGE', 'Wysłano kod do klienta ');
                 })
             }
         }

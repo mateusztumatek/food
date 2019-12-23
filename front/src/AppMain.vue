@@ -4,8 +4,8 @@
         <my-topbar></my-topbar>
         <v-content>
             <my-header v-if="header"></my-header>
-            <v-container style="align-items: start">
-                <div class="my-container">
+            <v-container style="align-items: start" v-bind:class="{'px-0 pt-0': $route.meta.fullWidth}">
+                <div class="my-container" v-bind:class="{'full-width': $route.meta.fullWidth}">
                     <transition name="fade" mode="out-in">
                         <router-view :key="key" />
                     </transition>
@@ -24,6 +24,7 @@
         <ProductView></ProductView>
         <cart-component></cart-component>
         <errors-component></errors-component>
+        <image-editor></image-editor>
     </v-app>
 </template>
 
@@ -35,9 +36,11 @@
     import myFooter from './views/layout/footer';
     import ProductView from './views/products/show';
     import CartComponent from './views/cart/index';
+    import ImageEditor from './components/image-editor';
     export default {
         name: 'App',
         components:{
+            ImageEditor,
             myLeftbar: myLeftBar ,
             myTopbar: myTopbar,
             ErrorsComponent,
@@ -62,6 +65,7 @@
                 console.log('fwafwa');
                 this.open_leftbar = !this.open_leftbar;
             })
+            console.log(this.$route);
         },
         data(){
             return{

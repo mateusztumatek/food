@@ -36,6 +36,9 @@
         },
         computed:{
             sellouts(){return this.$store.getters.sellouts}
+        },
+        mounted() {
+            console.log(this.sellouts.url);
         }
     }
 </script>

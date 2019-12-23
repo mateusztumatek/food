@@ -14,7 +14,7 @@
                             color="primary"
                             dark
                             flat>
-                        <v-toolbar-title> <span v-if="!user">Register form</span><span v-else>Zweryfikuj email</span></v-toolbar-title>
+                        <v-toolbar-title> <span v-if="!user">{{$t('Zarejestruj się')}}</span><span v-else>{{$t('Zweryfikuj email')}}</span></v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
                         <v-form
@@ -24,7 +24,7 @@
                         >
                             <v-text-field
                                     v-model = "user.login"
-                                    label="Login"
+                                    :label="$t('Login')"
                                     name="login"
                                     prepend-icon="person"
                                     :error="(errors.login)? true : false"
@@ -34,7 +34,7 @@
                             ></v-text-field>
                             <v-text-field
                                     v-model = "user.email"
-                                    label="Email"
+                                    :label="$t('Email')"
                                     :rules="emailRules"
                                     :error="(errors.email)? true : false"
                                     :error-messages="errors.email"
@@ -45,7 +45,7 @@
                             <v-text-field
                                     v-model = "user.password"
                                     id="password"
-                                    label="Password"
+                                    :label="$t('Hasło')"
                                     name="password"
                                     :error="(errors.password)? true : false"
                                     :error-messages="errors.password"
@@ -56,7 +56,7 @@
                             <v-text-field
                                     v-model = "user.password_confirmation"
                                     id="password"
-                                    label="Password confirmation"
+                                    :label="$t('Powtórz hasło')"
                                     name="password"
                                     :error="(errors.password_confirmation)? true : false"
                                     :error-messages="errors.password_confirmation"
@@ -67,7 +67,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <div class="flex-grow-1"></div>
-                        <v-btn color="primary" @click="registerUser()">Register</v-btn>
+                        <v-btn color="primary" @click="registerUser()">{{$t('Zarejestruj się')}}</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>

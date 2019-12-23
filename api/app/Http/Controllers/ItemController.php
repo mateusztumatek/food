@@ -47,16 +47,19 @@ class ItemController extends Controller
         $item->update($request->all());
         $item->tags()->delete();
         $item->categories()->detach();
-        foreach ($request->tags as $tag){
-            if(is_object($tag) || is_array($tag)){
-                Tag::create($tag);
-            }else{
-                $arr = [];
-                $arr['model_name'] = 'item';
-                $arr['model_id'] = $item->id;
-                $arr['tag'] = $tag;
-                Tag::create($arr);
+        if($request->tags && is_array($request->tags)){
+            foreach ($request->tags as $tag){
+                if(is_object($tag) || is_array($tag)){
+                    Tag::create($tag);
+                }else{
+                    $arr = [];
+                    $arr['model_name'] = 'item';
+                    $arr['model_id'] = $item->id;
+                    $arr['tag'] = $tag;
+                    Tag::create($arr);
+                }
             }
+
         }
 
         foreach ($request->categories as $category){
@@ -84,7 +87,7 @@ class ItemController extends Controller
                 if($data != $place->user_id) $fail('Nie masz uprawnień');
             }],
             'name' => 'required',
-            'image' => ['required', function($field, $data, $fail){
+            'image' => [function($field, $data, $fail){
                 if(!file_exists(storage_path('/app/public/'.$data))) $fail('Plik nie istnieje');
             }],
             'price' => 'required',

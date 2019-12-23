@@ -120,3 +120,13 @@
   left: 0px;
   transition: all 300ms;
 }
+.full-width{
+  width: 100%;
+  max-width: 100%;
+}
+.trumbowyg-editor{
+  background-color: #ecf0f1;
+  p,h1,h2,h3,span{
+    color: black !important;
+  }
+}

@@ -3,17 +3,17 @@
         <v-app-bar
                 app
                 clipped-left
-                color="red"
+                :color="(isTransparent())? 'transparent' : 'red'"
                 class="my-header"
                 v-bind:class="{'searching': search.isSearch}"
                 dense
         >
             <v-app-bar-nav-icon @click="toggleSidebar()"></v-app-bar-nav-icon>
                 <v-toolbar-items v-bind:class="{'w-100': $root.isMobile()}">
-                    <autocomplete></autocomplete>
+                    <autocomplete v-if="!isTransparent()"></autocomplete>
                 </v-toolbar-items>
                 <v-spacer></v-spacer>
-                <v-toolbar-items>
+                <v-toolbar-items v-if="!isTransparent()">
                     <v-menu :min-width="($root.isMobile())? '95%' : '300'" allow-overflow offset-y bottom origin="center center" transition="scale-transition">
                         <template v-slot:activator="{ on }">
                             <v-btn v-on="on" overlap text>
@@ -32,9 +32,9 @@
                                     <v-progress-circular v-if="order.timeleft" color="primary" :size="60" width="1" v-model="order.timeleft.percentage">{{order.timeleft.percentage}}%</v-progress-circular>
                                 </v-list-item-icon>
                                 <v-list-item-content>
-                                    <v-list-item-title>Zamówienie nr: #{{order.local_id}}</v-list-item-title>
+                                    <v-list-item-title>{{$t('Zamówienie')}} {{$t('nr')}}:#{{order.local_id}}</v-list-item-title>
                                     <div class="mt-2">
-                                        <v-chip :x-small="order.status == 'new'" color="primary">status: {{order.status}}</v-chip>
+                                        <v-chip :x-small="order.status == 'new'" color="primary">{{$t('status')}}: {{order.status}}</v-chip>
                                     </div>
                                 </v-list-item-content>
                                 <v-list-item-action >
@@ -60,6 +60,7 @@
                     <v-btn icon @click="fullScreen()">
                         <v-icon>fullscreen</v-icon>
                     </v-btn>
+                    <lang-switcher></lang-switcher>
                     <v-menu offset-y origin="center center" transition="scale-transition" v-if="user.id">
                         <template v-slot:activator="{ on }">
                             <v-btn v-on="on" icon>
@@ -75,7 +76,7 @@
                         <template v-slot:activator="{ on }">
                             <v-btn v-on="on" icon large >
                                 <v-avatar size="30px">
-                                    <img v-if="user.avatar" :src="$root.getSrc(user.avatar)" alt="Michael Wang" />
+                                    <img v-if="user.avatar" style="object-fit: cover" :src="$root.getSrc(user.avatar)" alt="Michael Wang" />
                                 </v-avatar>
                             </v-btn>
                         </template>
@@ -90,7 +91,7 @@
                                     <v-icon v-text="item.icon"></v-icon>
                                 </v-list-item-icon>
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="item.name"></v-list-item-title>
+                                    <v-list-item-title v-text="$t(item.name)"></v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
                         </v-list>
@@ -104,9 +105,10 @@
     import Notification from '../../components/notifications';
     import Autocomplete from './autocomplete';
     import util from '../../utilis';
+    import LangSwitcher from '../../components/lang-switcher';
     export default {
         components:{
-          NotificationList: Notification,
+          NotificationList: Notification,LangSwitcher,
             Autocomplete
         },
 
@@ -124,7 +126,7 @@
                         handler: () => {this.$router.push('/place/create')},
                     },
                     {
-                        name: 'logout',
+                        name: 'Wyloguj się',
                         icon: 'mdi-logout',
                         handler: () => {this.logout()},
                     }
@@ -136,7 +138,14 @@
                 'user', 'search', 'userOrders'
             ]),
         },
+        mounted(){
+
+        },
         methods:{
+          isTransparent(){
+            if(this.$route.name == 'login' || this.$route.name == 'register') return true;
+            return false;
+          },
           toggleSidebar(){
             this.$store.dispatch('navigation/toggleSideBar');
           },

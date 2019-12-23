@@ -114,6 +114,13 @@
       'QrCode' => 'SimpleSoftwareIO\\QrCode\\Facades\\QrCode',
     ),
   ),
+  'tanmuhittin/laravel-google-translate' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Tanmuhittin\\LaravelGoogleTranslate\\LaravelGoogleTranslateServiceProvider',
+    ),
+  ),
   'torann/geoip' => 
   array (
     'providers' => 

@@ -32,12 +32,15 @@ class ItemsService{
             }
             if($cat) $item->categories()->attach($cat->id);
         }
-        foreach ($request->tags as $tag){
-            $arr = [];
-            $arr['tag'] = $tag;
-            $arr['model_name'] = 'item';
-            $item->tags()->create($arr);
+        if($request->tags && is_array($request->tags)){
+            foreach ($request->tags as $tag){
+                $arr = [];
+                $arr['tag'] = $tag;
+                $arr['model_name'] = 'item';
+                $item->tags()->create($arr);
+            }
         }
+
         return $item;
     }
 }

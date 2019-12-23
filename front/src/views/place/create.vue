@@ -5,7 +5,7 @@
                 v-model="valid"
                 lazy-validation>
             <v-card>
-                <v-card-title>Tworzenie nowego miejsca</v-card-title>
+                <v-card-title>{{$t('Tworzenie nowego miejsca')}}</v-card-title>
                 <v-card-text>
                     <v-row justify="center">
                         <v-col cols="12" class="text-center">
@@ -13,29 +13,25 @@
                                 <img
                                         :src="getSrc(place.image)"
                                 >
-                                <div class="change"><v-btn @click="$refs.file_input.click()" small color="primary">Zmień</v-btn></div>
+                                <div class="change"><v-btn @click="$refs.file_input.click()" small color="primary">{{$t('Zmień')}}</v-btn></div>
                             </v-avatar>
-                            <v-btn v-else @click="$refs.file_input.click()">Dodaj zdjęcie</v-btn>
+                            <v-btn v-else @click="$refs.file_input.click()">{{$t('Dodaj zdjęcie')}}</v-btn>
                             <input type="file" id="file_input" @change="uploadLogo()" style="display: none" ref="file_input"></input>
                         </v-col>
                         <v-col cols="12">
                             <v-text-field :error="(errors.name)? true : false"
-                                          :error-messages="errors.name" v-model="place.name" label="Nazwa miejsca"></v-text-field>
+                                          :error-messages="errors.name" v-model="place.name" :label="$t('Nazwa miejsca')"></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <trumbowyg v-model="place.description" :config="config" class="form-control" name="content"></trumbowyg>
                         </v-col>
 
-                        <v-col cols="12">
-                            <v-textarea
-                                    outlined
-                                    v-model="place.description"
-                                    label="Opis miejsca"
-                            ></v-textarea>
-                        </v-col>
                         <v-col cols="12">
                             <v-combobox
                                     v-model="place.tags"
                                     chips
                                     clearable
-                                    label="Tagi"
+                                    :label="$t('Tagi')"
                                     multiple
                             >
                                 <template v-slot:selection="{ attrs, item, select, selected }">
@@ -92,7 +88,7 @@
                     <v-spacer></v-spacer>
                     <v-btn color="primary" @click="save">
                         <v-icon class="mr-2">mdi-content-save</v-icon>
-                        Zapisz
+                        {{$t('Zapisz')}}
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -102,12 +98,24 @@
 <script>
     import {upload} from "../../api/upload";
     import {getPlace} from "../../api/place";
+    // Import this component
+    import Trumbowyg from 'vue-trumbowyg';
 
+    // Import editor css
+    import 'trumbowyg/dist/ui/trumbowyg.css';
     export default {
+        components: {
+            Trumbowyg
+        },
         data(){
             return{
+                text: 'SIEMANKO',
                 valid: true,
                place:{},
+                config: {
+                    // Get options from
+                    // https://alex-d.github.io/Trumbowyg/documentation
+                }
             }
         },
         computed:{

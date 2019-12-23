@@ -2,13 +2,19 @@
   'app' => 
   array (
     'name' => 'App',
-    'front_url' => 'http://localhost:8080',
+    'front_url' => 'http://192.168.1.4:8080',
     'env' => 'local',
     'debug' => true,
     'url' => 'http://192.168.1.4:8080',
     'asset_url' => NULL,
     'timezone' => 'UTC',
-    'locale' => 'en',
+    'locales' => 
+    array (
+      0 => 'pl',
+      1 => 'en',
+      2 => 'de',
+    ),
+    'locale' => 'pl',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
     'key' => 'base64:f4q2uwW7FCUX9F/Xob+sVVkPfBdewvrlI3uB8UCHdJQ=',
@@ -392,6 +398,29 @@
     ),
     'custom_deployer_file' => false,
   ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'orientation' => 'portrait',
+    'defines' => 
+    array (
+      'font_dir' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
+      'font_cache' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
+      'temp_dir' => 'C:\\Users\\Mateusz\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\xampp\\htdocs\\app\\api',
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => true,
+      'font_height_ratio' => 1.1,
+      'enable_html5_parser' => false,
+    ),
+  ),
   'filesystems' => 
   array (
     'default' => 'public',
@@ -513,6 +542,24 @@
       'memory' => 8192,
       'threads' => 2,
       'time' => 2,
+    ),
+  ),
+  'laravel_google_translate' => 
+  array (
+    'google_translate_api_key' => 'AIzaSyDtb3Q4IcFfJ8FM4M8f7DbaPuk448NcyoM',
+    'trans_functions' => 
+    array (
+      0 => 'trans',
+      1 => 'trans_choice',
+      2 => 'Lang::get',
+      3 => 'Lang::choice',
+      4 => 'Lang::trans',
+      5 => 'Lang::transChoice',
+      6 => '@lang',
+      7 => '@choice',
+      8 => '__',
+      9 => '\\$trans.get',
+      10 => '\\$t',
     ),
   ),
   'logging' => 
@@ -819,29 +866,6 @@
       0 => 'C:\\xampp\\htdocs\\app\\api\\resources\\views',
     ),
     'compiled' => 'C:\\xampp\\htdocs\\app\\api\\storage\\framework\\views',
-  ),
-  'dompdf' => 
-  array (
-    'show_warnings' => false,
-    'orientation' => 'portrait',
-    'defines' => 
-    array (
-      'font_dir' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
-      'font_cache' => 'C:\\xampp\\htdocs\\app\\api\\storage\\fonts/',
-      'temp_dir' => 'C:\\Users\\Mateusz\\AppData\\Local\\Temp',
-      'chroot' => 'C:\\xampp\\htdocs\\app\\api',
-      'enable_font_subsetting' => false,
-      'pdf_backend' => 'CPDF',
-      'default_media_type' => 'screen',
-      'default_paper_size' => 'a4',
-      'default_font' => 'serif',
-      'dpi' => 96,
-      'enable_php' => false,
-      'enable_javascript' => true,
-      'enable_remote' => true,
-      'font_height_ratio' => 1.1,
-      'enable_html5_parser' => false,
-    ),
   ),
   'flare' => 
   array (
