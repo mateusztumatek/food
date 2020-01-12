@@ -76,7 +76,16 @@ class OrderController extends Controller
 
         return response()->json($order);
     }
-    public function update(Request $request, $id){
+    public function masiveUpdate(Request $request){
+        $request->validate([
+            'orders' => 'array',
+        ]);
+        foreach ($request->orders as $order){
+            $this->update($request, $order['id'], false);
+        }
+        return response()->json(true);
+    }
+    public function update(Request $request, $id = null, $loadRelations = true){
         $order = Order::find($id);
         if(!$order) return response()->json(['errors' => 'Nie znaleziono zamówienia'], 400);
         if($request->user('api')->id != $order->sale->place->user_id) return response()->json(['message' => 'Nie masz uprawnień'], 400);
@@ -84,9 +93,19 @@ class OrderController extends Controller
             'status' => 'required',
             'paid' => 'required'
         ]);
-
+        if(array_key_exists('is_archivized', $request->all())){
+            if($request->is_archivized && $order->archivized_at == null){
+                $request->request->set('archivized_at', Carbon::now());
+            }else{
+                $request->request->set('archivized_at', null);
+            }
+        }
         $order->update($request->all());
-        return response()->json($order->load('OrderItems', 'sale'));
+        if($loadRelations){
+            return response()->json($order->load('OrderItems', 'sale'));
+        }else{
+            return response()->json($order);
+        }
     }
     public function show(Request $request, $hash){
         $order = Order::where('hash', $hash)->first();
@@ -99,10 +118,9 @@ class OrderController extends Controller
         if(Auth::id() != $sale->place->user_id) return respons()->json(['message' => 'Nie masz uprwanień'], 403);
         $orders = Order::where('sale_id', $sale->id);
         if($request->status){
-
             $orders = $orders->where('status', $request->status);
         }
-        $orders = $orders->with('OrderItems')->get();
+        $orders = $orders->with('OrderItems')->paginate(20);
         return response()->json($orders);
     }
     public function getUserCustomersOrders(Request $request){
@@ -115,6 +133,7 @@ class OrderController extends Controller
                 $q->orWhere('place_id', $place->id);
             }
         })->with('sale', 'place', 'orderItems');
+        (!$request->archivized || $request->archivized == 'false')? $orders = $orders->where('archivized_at', null) : $orders = $orders->where('archivized_at', '!=', null);
         if($request->amount_from) $orders = $orders->where('amount', '>=', $request->amount_from);
         if($request->amount_to) $orders = $orders->where('amount', '<=', $request->amount_to);
         if($request->date_from) $orders = $orders->where('created_at', '>=', Carbon::parse($request->date_from));

@@ -43,7 +43,7 @@
                                 </v-list-item>
                                 <v-divider></v-divider>
                                 <v-list-item class="mt-4" style="flex-wrap: wrap">
-                                    <v-btn :loading="loading" color="primary" v-if="order.paid" class="ma-1" @click="editItem = order; editItem.editType = 'status'">Zmień status zamówienia</v-btn>
+                                    <v-btn :loading="loading" color="primary" class="ma-1" @click="editItem = order; editItem.editType = 'status'">Zmień status zamówienia</v-btn>
                                     <v-btn :loading="loading" :color="(order.paid)? 'red': 'primary'" class="ma-1" @click="markPaid(order)"><span v-if="order.paid">Oznacz jako nieopłacone</span><span v-else>Oznacz jako opłacone</span></v-btn>
                                     <v-btn color="primary" :loading="loading" class="ma-1" @click="editItem = order; editItem.editType = 'time'">Wydłuż czas realizacji</v-btn>
                                 </v-list-item>
@@ -53,6 +53,8 @@
                 </v-expansion-panel>
             </transition-group>
         </v-expansion-panels>
+        <infinite-loading  @infinite="infiniteHandler" v-if="orders && orders.current_page < orders.last_page"></infinite-loading>
+
         <v-dialog  @click:outside="editItem = null" :value="(editItem && editItem.id)? true : false" :width="($root.isMobile())? '90%' : '50%'">
             <v-card v-if="editItem && editItem.id && editItem.editType == 'time'">
                 <v-card-title>Wydłuż czas realizacji zamówienia</v-card-title>
@@ -93,8 +95,8 @@
         },
         computed:{
             sorted(){
-                if(this.orders){
-                    return this.orders.filter((x) => {
+                if(this.orders && this.orders.data){
+                    return this.orders.data.filter((x) => {
                         if(this.params.new){
                             return x.status == 'new';
                         }else{
@@ -117,6 +119,14 @@
             this.$store.dispatch('sellout/attempt', this.$route.params.id);
         },
         methods:{
+            infiniteHandler($state){
+                if(this.orders.current_page < this.orders.last_page){
+                    this.params.page = this.orders.current_page + 1;
+                    this.getOrders($state);
+                }else{
+                    $state.complete();
+                }
+            },
             setTime(order, time){
                 order.time = time;
                 this.updateOrder(order);
@@ -128,10 +138,10 @@
             },
             updateOrder(order){
                 this.$store.dispatch('order/updateOrder', order).then(response => {
-                    var index = this.orders.findIndex(x => x.id == response.id);
+                    var index = this.orders.data.findIndex(x => x.id == response.id);
                     if(index != -1){
-                        this.$set(this.orders, index, response);
-                        this.getTime(this.orders[index]);
+                        this.$set(this.orders.data, index, response);
+                        this.getTime(this.orders.data[index]);
                         this.loading = false;
                     }
                     this.editItem = null;
@@ -165,7 +175,7 @@
                 });
 
             },
-            getOrders(){
+            getOrders($state = null){
                 this.startLoading();
                 if(this.params.new){
                     this.params.status = 'new';
@@ -173,10 +183,27 @@
                     this.params.status = null;
                 }
                 getSelloutOrders(this.$route.params.id, this.params).then(response => {
-                    this.orders = response;
-                    this.orders.forEach((order) => {
-                        this.getTime(order);
-                    })
+                    if(response.current_page == 1){
+                        this.orders = response;
+                        this.orders.data.forEach((order) => {
+                            this.getTime(order);
+                        })
+                    }else{
+                        this.orders.current_page = response.current_page;
+                        this.orders.last_page = response.last_page;
+                        response.data.forEach((order) => {
+                            this.getTime(order);
+                            this.orders.data.push(order);
+                        })
+                    }
+                    if($state){
+                        if(response.page != response.last_page){
+                            $state.loaded();
+                        }else{
+                            $state.complete();
+                        }
+                    }
+
                     this.stopLoading();
                 })
             },

@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Session;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'sale_id', 'place_id', 'payment_link', 'payment_date', 'local_id', 'amount', 'comment', 'payment_type', 'paid', 'status', 'time', 'name', 'email', 'hash'];
-   /* public $appends = ['items_count'];
+    protected $fillable = ['user_id', 'sale_id', 'place_id', 'payment_link', 'payment_date', 'local_id', 'amount', 'comment', 'payment_type', 'paid', 'status', 'time', 'name', 'email', 'hash', 'archivized_at'];
+    protected $appends = ['is_archivized'];
+    public function getIsArchivizedAttribute(){
+        return $this->archivized_at != null && $this->archivized_at <= Carbon::now();
+    }
+    /* public $appends = ['items_count'];
 
     public function getItemsCountAttribute(){
         return $this->OrderItems()->count();

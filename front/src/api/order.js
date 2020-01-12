@@ -42,3 +42,10 @@ export function getCustomersOrders(params) {
         params: params
     })
 }
+export function masiveUpdate(data) {
+    return Request({
+        url:config.config.base_url+'/orders',
+        method: 'PUT',
+        data: data
+    })
+}

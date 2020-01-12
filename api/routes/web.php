@@ -21,12 +21,15 @@ Route::post('/cart/{sale_id}/delete', 'CartController@deleteItem');
 Route::post('/cart/{sale_id}/update', 'CartController@updateItem');
 Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/orders/{id}', 'OrderController@update');
+    Route::put('orders', 'OrderController@masiveUpdate');
+
     Route::get('/orders/{sale_id}/sale', 'OrderController@getSelloutOrders');
     Route::get('/orders/customers', 'OrderController@getUserCustomersOrders');
 
 });
 Route::get('/orders/{hash}', 'OrderController@show');
 Route::resource('orders', 'OrderController');
+
 Route::post('orders/notify', 'OrderController@notify');
 Route::get('sellout/{id}/qr', 'SaleController@qr');
 Route::get('sellout/{id}/pdf', 'SaleController@pdf');

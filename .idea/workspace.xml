@@ -21,49 +21,18 @@
       <change afterPath="$PROJECT_DIR$/api/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/api/.idea/workspace.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/api/app/Http/Controllers/UploadController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/public/images/de.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/public/images/en.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/public/images/pl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/resources/lang/pl/auth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/resources/lang/pl/my.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/resources/lang/pl/pagination.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/resources/lang/pl/passwords.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/resources/lang/pl/validation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/resources/sass/pdfs.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/resources/views/pdfs/coupons.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-BlackItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-BoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-ExtraBoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-ExtraLight.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-ExtraLightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-LightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/storage/fonts/NunitoSans-SemiBoldItalic.ttf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/public/img/local.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/public/img/qr-code.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/public/precache-manifest.48fb60c6f9aa46e330bc5908c6baa808.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/public/service-worker.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/AppLogin.vue" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/AppMain.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/api/langs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/api/notifications.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/api/search.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/api/upload.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/api/user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/components/discount-code.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/components/image-editor.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/components/lang-switcher.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/components/media-picker.vue" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/components/notifications.vue" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/config.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/permission.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/plugins/i18n.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/routes/store.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/secrete.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/front/src/store/getters.js" afterDir="false" />
@@ -253,72 +222,14 @@
       <change afterPath="$PROJECT_DIR$/../signme2/resources/views/front/layouts/footer.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../signme2/resources/views/front/layouts/navbar.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../signme2/resources/views/front/layouts/slider.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/DiscountCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/DiscountCode.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/DiscountCodeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/DiscountCodeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/ExampleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/ExampleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/ItemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/NotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/NotificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/UploadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/UploadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Notification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Sale.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Sale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Services/ItemsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Services/ItemsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/bootstrap/cache/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/bootstrap/cache/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/bootstrap/cache/packages.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/bootstrap/cache/packages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/bootstrap/cache/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/bootstrap/cache/services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/seeds/SeedOrdersTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/database/seeds/SeedOrdersTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/lang/en/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/lang/en/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/lang/en/pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/lang/en/pagination.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/lang/en/passwords.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/lang/en/passwords.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/lang/en/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/lang/en/validation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Order.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/webpack.mix.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/public/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/public/css/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/front/public/css/main.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/public/css/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/public/css/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/AppMain.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/AppMain.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/codes.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/codes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/upload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/notifications.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/notifications.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/permission.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/prototypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/prototypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/routes/codes.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/routes/codes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/routes/sellout.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/routes/sellout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/getters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/modules/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/modules/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/modules/notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/modules/notifications.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/modules/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/modules/products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/utilis/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/utilis/helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/account/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/account/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/codes/edit-add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/codes/edit-add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/codes/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/codes/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/layout/autocomplete.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/layout/autocomplete.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/layout/left-bar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/layout/left-bar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/layout/topbar-component.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/layout/topbar-component.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/login/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/login/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/login/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/login/register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/place/create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/place/create.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/place/info.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/place/info.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/products/create-partials/first.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/products/create-partials/first.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/products/creator.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/products/creator.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/products/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/products/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/qr/generate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/qr/generate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/sellout/category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/sellout/category.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/sellout/create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/sellout/create.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/sellout/process.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/sellout/process.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/sellout/show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/sellout/show.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/stats/last-clients.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/stats/last-clients.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/table-header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/table-header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/orders/shop_orders.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/orders/shop_orders.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/sellout/admin/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/sellout/admin/manage.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -332,25 +243,70 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front/src/main.js">
+        <entry file="file://$PROJECT_DIR$/front/src/views/products/index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-end-line="16" />
+            <state relative-caret-position="1870">
+              <caret line="111" column="31" selection-start-line="111" selection-start-column="16" selection-end-line="111" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front/src/api/order.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="748">
+              <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
               <folding>
-                <element signature="e#662#704#0" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/front/src/prototypes.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+            <state relative-caret-position="289">
+              <caret line="26" column="75" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/app/Http/Controllers/OrderController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2142">
+              <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front/src/views/login/login.vue">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front/src/store/modules/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#0#66#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/config/auth.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../adopciaki/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -359,7 +315,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>zapisz</find>
       <find>data</find>
       <find>stats</find>
       <find>event</find>
@@ -389,6 +344,7 @@
       <find>laravel</find>
       <find>plugins</find>
       <find>protot</find>
+      <find>orders</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -400,13 +356,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/front/src/store/modules/app.js" />
-        <option value="$PROJECT_DIR$/front/src/views/layout/autocomplete.vue" />
-        <option value="$PROJECT_DIR$/front/src/views/Home.vue" />
-        <option value="$PROJECT_DIR$/front/src/views/layout/left-bar.vue" />
-        <option value="$PROJECT_DIR$/front/src/views/login/login.vue" />
-        <option value="$PROJECT_DIR$/front/src/views/login/register.vue" />
-        <option value="$PROJECT_DIR$/api/resources/lang/pl/my.php" />
         <option value="$PROJECT_DIR$/front/src/api/codes.js" />
         <option value="$PROJECT_DIR$/api/app/Http/Controllers/DiscountCodeController.php" />
         <option value="$PROJECT_DIR$/front/src/views/stats/last-clients.vue" />
@@ -420,7 +369,6 @@
         <option value="$PROJECT_DIR$/front/vue.config.js" />
         <option value="$PROJECT_DIR$/api/public/index.php" />
         <option value="$PROJECT_DIR$/api/public/.htaccess" />
-        <option value="$PROJECT_DIR$/api/routes/web.php" />
         <option value="$PROJECT_DIR$/api/database/migrations/2019_12_15_003257_create_file_ownders_table.php" />
         <option value="$PROJECT_DIR$/api/app/FileOwnder.php" />
         <option value="$PROJECT_DIR$/front/src/utilis/helper.js" />
@@ -437,7 +385,6 @@
         <option value="$PROJECT_DIR$/front/src/components/media-picker.vue" />
         <option value="$PROJECT_DIR$/front/src/routes/sellout.js" />
         <option value="$PROJECT_DIR$/front/src/AppMain.vue" />
-        <option value="$PROJECT_DIR$/front/src/views/products/index.vue" />
         <option value="$PROJECT_DIR$/front/src/views/products/create-partials/first.vue" />
         <option value="$PROJECT_DIR$/api/database/migrations/2019_12_15_181226_edit_image_field_in_items_table.php" />
         <option value="$PROJECT_DIR$/front/src/views/products/creator.vue" />
@@ -451,6 +398,15 @@
         <option value="$PROJECT_DIR$/api/database/migrations/2019_12_15_231054_change_description_in_sales_table.php" />
         <option value="$PROJECT_DIR$/front/src/views/place/info.vue" />
         <option value="$PROJECT_DIR$/front/src/views/sellout/show.vue" />
+        <option value="$PROJECT_DIR$/front/src/views/products/index.vue" />
+        <option value="$PROJECT_DIR$/api/database/migrations/2020_01_08_211745_add_archivized_to_orders_table.php" />
+        <option value="$PROJECT_DIR$/api/routes/web.php" />
+        <option value="$PROJECT_DIR$/front/src/api/order.js" />
+        <option value="$PROJECT_DIR$/front/src/views/sellout/admin/manage.vue" />
+        <option value="$PROJECT_DIR$/front/src/views/orders/shop_orders.vue" />
+        <option value="$PROJECT_DIR$/api/app/Order.php" />
+        <option value="$PROJECT_DIR$/front/src/components/table-header.vue" />
+        <option value="$PROJECT_DIR$/api/app/Http/Controllers/OrderController.php" />
       </list>
     </option>
   </component>
@@ -606,47 +562,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -657,7 +573,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../forum" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../reporter" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -757,17 +673,22 @@
       <workItem from="1576355587475" duration="14188000" />
       <workItem from="1576411131557" duration="25019000" />
       <workItem from="1576926524505" duration="4588000" />
+      <workItem from="1577652258009" duration="15000" />
+      <workItem from="1577992870211" duration="1099000" />
+      <workItem from="1578072844449" duration="7000" />
+      <workItem from="1578512941999" duration="3950000" />
+      <workItem from="1578677048064" duration="1530000" />
+      <workItem from="1578680486353" duration="451000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="497487000" />
+    <option name="totallyTimeSpent" value="504539000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="1861" height="1047" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18267629" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19600222" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -819,146 +740,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/front/src/components/confirm.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/views/layout/left-bar.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/utilis/helper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/components/notifications.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/components/errors.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/api/upload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/app/Http/Controllers/UploadController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="63" column="142" selection-start-line="63" selection-start-column="142" selection-end-line="63" selection-end-column="142" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/views/account/edit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#v-avatar#0;n#v-col#0;n#v-row#0;n#v-card-text#0;n#v-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#2206#2249#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/components/image-editor.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="985">
-          <caret line="72" column="36" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#v-card-title#0;n#v-card#0;n#v-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tui-image-editor#0;n#v-card-text#0;n#v-card#0;n#v-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/views/layout/topbar-component.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="78" column="84" selection-start-line="78" selection-start-column="84" selection-end-line="78" selection-end-column="84" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#v-avatar#0;n#v-btn#0;n#template#0;n#v-menu#2;n#v-toolbar-items#1;n#v-app-bar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/database/migrations/2019_12_15_172022_add_image_to_sellouts_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/components/media-picker.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="869">
-          <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
-          <folding>
-            <element signature="e#2423#2470#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/views/sellout/create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/store/modules/navigation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/store/modules/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/routes/sellout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="94" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front/src/api/sellout.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -970,13 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/views/products/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1481">
-          <caret line="142" column="65" selection-start-line="142" selection-start-column="65" selection-end-line="142" selection-end-column="65" />
         </state>
       </provider>
     </entry>
@@ -1131,16 +905,6 @@
     <entry file="file://$PROJECT_DIR$/../my-shop/resources/js/bootstrap.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/views/sellout/show.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="64" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="64" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../my-shop/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
@@ -1190,10 +954,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/components/media-picker.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/front/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-end-line="16" />
+        <state relative-caret-position="170">
+          <caret line="15" column="25" selection-start-line="15" selection-end-line="16" />
           <folding>
             <element signature="e#662#704#0" expanded="true" />
           </folding>
@@ -1202,10 +973,138 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front/src/prototypes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        <state relative-caret-position="918">
+          <caret line="59" column="30" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/views/sellout/process.vue">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/views/sellout/show.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="48" column="64" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="64" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/app/Http/Controllers/UploadController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="46" column="29" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/views/sellout/admin/manage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2533">
+          <caret line="152" column="33" selection-start-line="152" selection-start-column="33" selection-end-line="152" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/app/Order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/database/migrations/2020_01_08_211745_add_archivized_to_orders_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/views/orders/shop_orders.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2380">
+          <caret line="141" column="63" selection-start-line="141" selection-start-column="63" selection-end-line="141" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/components/table-header.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="62" column="14" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../adopciaki/routes/console.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/views/products/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1870">
+          <caret line="111" column="31" selection-start-line="111" selection-start-column="16" selection-end-line="111" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/api/order.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="26" column="75" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/app/Http/Controllers/OrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/views/login/login.vue">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/config/auth.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../adopciaki/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding>
+            <element signature="e#23#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/store/modules/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
           </folding>
         </state>
       </provider>

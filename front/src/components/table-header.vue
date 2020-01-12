@@ -57,6 +57,9 @@
             <div class="col-md-3">
                 <v-text-field clearable v-model="params.amount_to" type="number" label="Wartość zamówień do"></v-text-field>
             </div>
+            <div class="col-md-3">
+                <v-checkbox v-model="params.archivized" label="Archiwizowane"></v-checkbox>
+            </div>
         </div>
     </div>
 </template>

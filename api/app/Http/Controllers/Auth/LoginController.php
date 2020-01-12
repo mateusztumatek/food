@@ -54,6 +54,7 @@ class LoginController extends Controller
             'remember_me' => 'boolean'
         ]);
         $credentials = request([$field, 'password']);
+
         if(!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized',

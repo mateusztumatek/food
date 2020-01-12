@@ -55,12 +55,15 @@
                 </td>
             </template>
         </v-data-table>
-        <div class="row mx-0" v-if="selected && selected.length > 0">
+        <div class="row mx-0 mb-10" v-if="selected && selected.length > 0">
             <div class="col-md-12">
                 <v-select v-model="update.status" :items="['new', 'canceled', 'complete']" label="Status zamówień"></v-select>
             </div>
             <div class="col-md-12">
                 <v-switch v-model="update.paid" label="Opłacone"></v-switch>
+            </div>
+            <div class="col-md-12">
+                <v-checkbox v-model="update.is_archivized" label="Archiwizuj"></v-checkbox>
             </div>
             <div v-for="e in errors" class="col-md-12">
                 <v-alert type="error" v-for="error in e" class="col-md-12">{{error}}</v-alert>
@@ -72,7 +75,7 @@
     </div>
 </template>
 <script>
-    import {getCustomersOrders, updateOrder} from "../../api/order";
+    import {getCustomersOrders, masiveUpdate} from "../../api/order";
     import TableHeader from '../../components/table-header';
     export default {
         components:{TableHeader},
@@ -131,20 +134,25 @@
                 })
             },
             updateOrders(){
-                this.selected.forEach((item) => {
-                    item.status = this.update.status;
-                    if(this.update.paid){
-                        item.paid = true;
-                    }else item.paid = false;
-                    updateOrder(item.id, item).then(response => {
-
-                    }).catch(e => {
-                        this.$store.commit('app/ADD_ERROR', {text: 'Nie udało się zaktualizować zamówień'});
-                        this.errors = e.response.data.errors;
-                        this.resetErrors();
+                var data = {orders: this.selected};
+                data.status = this.update.status;
+                if(this.update.paid){
+                    data.paid = true;
+                }else data.paid = false;
+                data.is_archivized = this.update.is_archivized;
+                this.startLoading();
+                masiveUpdate(data).then(response => {
+                    this.selected.forEach(item => {
+                        item.status = data.status;
+                        item.paid = data.paid;
                     })
+                    this.stopLoading();
+                }).catch(e => {
+                    this.$store.commit('app/ADD_ERROR', {text: 'Nie udało się zaktualizować zamówień'});
+                    this.errors = e.response.data.errors;
+                    this.resetErrors();
+                    this.stopLoading();
                 })
-
             },
             updateParams(params){
                 this.params = params;

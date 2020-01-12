@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { getToken, setToken } from './auth';
 import {getSessionKey, setSessionKey} from "./session";
-import store from '../store';
 // Create axios instance
 const service = axios.create({
     baseURL: process.env.MIX_BASE_API,
