@@ -52,6 +52,14 @@
                 </transition>
             </v-container>
         </v-content>
+        <div class="loading-container" v-if="app.loading">
+            <div class="scaling-squares-spinner" >
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+        </div>
     </v-app>
 </template>
 
@@ -71,7 +79,7 @@
         }),
         computed:{
             ...mapGetters([
-                'sidebar','title','mobile'
+                'sidebar','title','mobile','app'
             ]),
         },
         mounted() {

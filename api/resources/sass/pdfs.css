@@ -1,0 +1,76 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+.code-holder {
+  text-align: center;
+  background-color: #222222;
+}
+.code-holder img {
+  width: 120px;
+}
+
+.code-back {
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  /* &:before{
+     z-index: 1;
+     content: "";
+     width: 130%;
+     height: 100%;
+     position: absolute;
+     top: -50%;
+     left: -20%;
+     border-radius: 100%;
+     background: rgb(39,110,133);
+     background: linear-gradient(180deg, rgba(39,110,133,1) 0%, rgba(35,136,169,1) 100%);
+   }
+   .content{
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     height: 100%;
+     width: 100%;
+     padding-top: 20px;
+     z-index: 2;
+     .discount-span{
+       font-weight: bold;
+       font-size: 7rem;
+       color:white;
+       span{
+         font-size: 3rem;
+       }
+     }
+   }*/
+  background-color: #0e1d22;
+}
+.code-back .discount-span {
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 4rem;
+  color: white;
+}
+.code-back .discount-span span {
+  font-size: 1rem !important;
+}
+.code-back .code {
+  padding: 30px;
+  border: 1px solid #2388aa;
+  border-radius: 10px;
+  font-size: 3rem;
+  font-weight: 200;
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
+.code-back .code:before {
+  font-size: 1rem;
+  content: "code";
+  left: 20%;
+  top: 0px;
+  position: absolute;
+  background-color: #0e1d22;
+  padding: 5px 10px;
+}
+
+/*# sourceMappingURL=pdfs.css.map */

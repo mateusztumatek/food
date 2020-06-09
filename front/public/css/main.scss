@@ -1,0 +1,132 @@
+@import "external";
+.v-navigation-drawer{
+  overflow: visible !important;
+  .v-navigation-drawer__content{
+    overflow:  visible !important;
+  }
+  .toggle-active{
+    margin-right: 0px;
+    animation: active-link;
+    animation-timing-function: ease-in;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+  }
+}
+@keyframes active-link {
+  0%{
+    margin-right: -0px;
+  }
+  100%{
+    background-color: red;
+    margin-right: -15px;
+    -webkit-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.27);
+    box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.27);
+  }
+}
+
+.change-avatar{
+  overflow: hidden;
+  &:hover{
+    .change{
+      top: 45% !important;
+    }
+  }
+  .change{
+    transition: all 300ms;
+    top: 100%;
+    position: absolute;
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all .3s;
+
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  transform: scaleX(0);
+}
+.w-100{
+  width: 100%;
+}
+
+.text-muted{
+  opacity: 0.7;
+}
+.input-center{
+  input{
+    text-align: center !important;
+  }
+}
+.notInput{
+  .v-input__slot{
+    display: none;
+  }
+}
+.my-container{
+  width: 85%;
+  margin: auto;
+  max-width: 85%;
+}
+.my-card{
+  margin-top: 20px;
+  /*
+  padding-top: 100px;
+  */
+  .v-card__title{
+    padding-left: 30%;
+  }
+  .my-card-header-text{
+    font-size: 3rem;
+    font-weight: 900;
+  }
+}
+.my-card-header{
+  i{
+    font-size: 50px;
+  }
+  padding: 20px 0px;
+  padding-left: 20px;
+}
+.apexcharts-menu{
+  background-color: #424242 !important;
+}
+.apexcharts-tooltip {
+  background: #424242 !important;
+}
+.apexcharts-canvas.dark{
+  background-color: transparent !important;
+}
+@media screen and (max-width: 1800px) {
+  .my-container{
+    width: 95%;
+    max-width: 95%;
+  }
+}
+.empty-state{
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@import "mobiles";
+
+.navigation-tick{
+  position: fixed;
+  width: 3px;
+  background-color: white;
+  left: 0px;
+  transition: all 300ms;
+}
+.full-width{
+  width: 100%;
+  max-width: 100%;
+}
+.trumbowyg-editor{
+  background-color: #ecf0f1;
+  p,h1,h2,h3,span{
+    color: black !important;
+  }
+}

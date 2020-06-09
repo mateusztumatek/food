@@ -14,6 +14,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens;
     protected $appends = ['avatar'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,7 +37,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->save();
         Mail::to($this->email)->send(new VerificationEmail($this));
     }
-
+    public function places(){
+        return $this->hasMany('App\Place')->with('tags');
+    }
     /**
      * The attributes that should be cast to native types.
      *

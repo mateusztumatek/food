@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'front_url' => 'http://localhost:8080',
+    'front_url' =>  env('APP_URL', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,8 +80,8 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
-    'locale' => 'en',
+    'locales' => ['pl', 'en', 'de'],
+    'locale' => 'pl',
 
     /*
     |--------------------------------------------------------------------------
@@ -173,9 +173,13 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,
+
+        \Torann\GeoIP\GeoIPServiceProvider::class,
 
     ],
 
@@ -227,6 +231,13 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Pusher' => Pusher\Pusher::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Tracker' => PragmaRX\Tracker\Vendor\Laravel\Facade::class,
+
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
+
+
 
     ],
 

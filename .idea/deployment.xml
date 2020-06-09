@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="yaxint.nazwa.pl">
+    <serverData>
+      <paths name="api">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/food/food/api" local="$PROJECT_DIR$/api" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="yaxint.nazwa.pl">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/food/food/front" local="$PROJECT_DIR$/front/dist" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

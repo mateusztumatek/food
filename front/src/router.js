@@ -4,10 +4,18 @@ import Home from './views/Home.vue'
 import Layout from '@/AppMain.vue';
 import store from './store';
 import LoginLayout from '@/AppLogin.vue';
-Vue.use(Router)
+Vue.use(Router);
+import {getSessionKey} from "./utilis/session";
 
 import StoreRoutes from '@/routes/store.js';
-console.log(StoreRoutes);
+import ProductRoutes from '@/routes/products.js'
+import CategoryRoutes from '@/routes/categories';
+import SelloutRoutes from '@/routes/sellout';
+import Localization from '@/routes/localization';
+import OrderRoutes from '@/routes/orders';
+import StatsRoutes from '@/routes/stats'
+import DiscountCodes from '@/routes/codes';
+import Qrs from '@/routes/qrs';
 export const my_routes =
   [
     {
@@ -18,14 +26,14 @@ export const my_routes =
         {
           path: '/',
           component: () => import('@/views/Home.vue'),
-          meta:{auth:true}
+          meta:{}
         },
       ],
     },
     {
       path: '/login',
       redirect: '',
-      component: LoginLayout,
+      component: Layout,
       children:[
         {
           path:'',
@@ -38,7 +46,7 @@ export const my_routes =
     {
       path: '/register',
       redirect: '',
-      component: LoginLayout,
+      component: Layout,
       children:[
         {
           path:'',
@@ -92,19 +100,16 @@ export const my_routes =
       }
       ]
     },
-    {
-      path: '/qr',
-      name: 'qr',
-      component: Layout,
-      children:[
-        {
-          path: '/',
-          component: () => import('@/views/qr/index'),
-          meta: {title: 'Skanuj kod QR'}
-        }
-      ]
-    },
+
     StoreRoutes,
+    ProductRoutes,
+    CategoryRoutes,
+    SelloutRoutes,
+    Localization,
+      StatsRoutes,
+      OrderRoutes,
+      Qrs,
+      DiscountCodes,
     {
       path: '*',
       name: '404',
@@ -127,6 +132,12 @@ const createRouter = () => new Router({
 
 const router = createRouter();
 router.beforeEach((from, to, next) => {
+    if(!getSessionKey()){
+        store.dispatch('stats/getSessionKey');
+    }else{
+        if(store.getters)
+        store.dispatch('notifications/watchSessionEvents');
+    }
   var title = from.name;
   if(to.meta.title){
     title = from.meta.title

@@ -49,3 +49,9 @@ export function update(data, id) {
         data: data
     })
 }
+export function getSessionKey() {
+    return Request({
+        url: config.config.base_url+'/session_key',
+        method: 'get',
+    })
+}

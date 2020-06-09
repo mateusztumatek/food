@@ -12,12 +12,41 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => ['auth:api']], function (){
-    Route::get('/user', function (Request $request){return $request->user();});
-    Route::put('/users/{id}', 'UserController@update');
-    Route::resource('/examples', 'ExampleController');
+Route::group(['middleware' => 'session'], function (){
+    Route::get('/products/{id}', 'ItemController@show');
+
+    Route::group(['middleware' => ['auth:api']], function (){
+        Route::get('/user', 'UserController@show');
+        Route::put('/users/{id}', 'UserController@update');
+        Route::resource('/examples', 'ExampleController');
+        Route::resource('/places', 'PlaceController');
+        Route::resource('/categories', 'CategoryController');
+        Route::delete('/categories', 'CategoryController@massiveDestroy');
+        Route::get('/sales/{id}/manage', 'SaleController@manage');
+        Route::get('/sales/{id}/attempt', 'SaleController@attempt');
+        Route::resource('/products', 'ItemController');
+        Route::get('stats', 'StatsController@index');
+        Route::post('stats', 'StatsController@store');
+        Route::get('stats/charts', 'StatsController@charts');
+        Route::get('stats/products_chart', 'StatsController@getProductsChart');
+        Route::get('stats/clients', 'StatsController@getClients');
+
+        Route::get('/codes/generate_pdf', 'DiscountCodeController@pdfs');
+        Route::resource('/codes', 'DiscountCodeController');
+        Route::post('/codes/send_client', 'DiscountCodeController@sendToClient');
+        Route::delete('/codes', 'DiscountCodeController@destroy');
+
+    });
+    Route::resource('/sales', 'SaleController');
+    Route::get('/sales/{sale}/category_items/{category}', 'SaleController@categoryItems');
+
+    Route::post('/upload/update', 'UploadController@update');
+    Route::post('/upload/remove', 'UploadController@remove');
+    Route::post('/upload/{hash}', 'UploadController@upload');
+    Route::get('/upload/getuploads', 'UploadController@userUploads');
+    Route::get('/search', 'UserController@search');
+    Auth::routes(['verify' => true]);
+    Route::get('/crowler', 'CrowlerController@index');
+
 });
-Route::post('/upload/{hash}', 'UploadController@upload');
-Route::get('/search', 'UserController@search');
-Auth::routes(['verify' => true]);
-Route::get('/crowler', 'CrowlerController@index');
+Route::get('/langs', 'ExampleController@langs');
